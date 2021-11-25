@@ -148,6 +148,22 @@ clean:
 	@rm -f $(XINUXBIN)
 
 #--------------------------------------------------------------------------------
+# QEMU grub system image test
+#--------------------------------------------------------------------------------
+qemu-iso-pre: xinu test/grub/grub.cfg
+	rm -rf test/img
+	mkdir -p test/img/boot/grub
+	cp xinu.elf test/img/
+	cp test/grub/grub.cfg test/img/boot/grub
+
+# Generates the Grub2-based ISO - see bochsrc.txt for info.
+# Requires grub2-mkrescue and xorriso be installed!
+run-qemu: qemu-iso-pre
+	grub-mkrescue -o disk.iso test/img 
+	qemu-system-i386 -cdrom disk.iso
+
+
+#--------------------------------------------------------------------------------
 # Locations of source directories and exceptions (.c and .[sS] files to exclude)
 #--------------------------------------------------------------------------------
 	
