@@ -1,0 +1,33 @@
+This directory holds Xinu sources for Virtual Box.  They are derived from
+the Galileo version described in:
+
+	Douglas Comer, Operating System Design -- The Xinu Approach,
+	Second edition, CRC Press, 2015.
+
+The changes are:
+
+ 1) The tty driver uses port-mapped I/O in place of the memory-mapped I/O
+    used on the Galileo.  The include file io.h contains macros that
+    handle both.  Also, in uart.h, the Control and Status Registers are
+    sing;e bytes instead of the word-oriented approach used on the Galileo.
+
+ 2) The Ethernet driver is for an Intel 82545EM chip, which is a form of
+    Intel's E1000E Ethernet design.  The internals of the driver differ
+    completely from the driver used with the Ethernet on the Galileo SoC.
+
+ 3) The startup sequence (file start.S) differs from the Galileo startup
+    sequence.  It may be possible to move toward a more common form; we
+    adopted an older startup sequence that works, and haven't tried to
+    blend them.
+
+ 4) The platform initialization used with the Galileo (platinit.c) has
+    been removed, and basic PC functions have been substituted (in file
+    i386.c).
+
+ 5) The Galileo version uses the memory map left by grub to construct a
+    free list.  We deleted the code that depends on grub and substituted
+    simpler free list code from an earlier version of Xinu because we
+    had trouble reading the grub free list.  Additional work may be
+    needed to ensure the free list is correct.
+
+July, 2016
