@@ -96,6 +96,14 @@ vga:
 		-w vgawrite	-s vgaseek	-n ioerr
 		-intr ionull
 		
+/* type of the vga screen framebuffer */
+mice:
+	on nothing
+		-i miceinit	-o miceopen	-c miceclose
+		-r miceread	-g ioerr	-p ioerr
+		-w micewrite	-s ioerr	-n ioerr
+		-intr micehandlerirq
+		
 /* type of namespace device */
 nam:
 	on top
@@ -114,6 +122,9 @@ nam:
 
    /* Define the vga screen framebuffer */
    VGA is vga on nothing
+
+   /* Define the ps/2 mouse */
+   MOUSE is mice on nothing
 
    /* Define a null device */
    NULLDEV is null on nothing

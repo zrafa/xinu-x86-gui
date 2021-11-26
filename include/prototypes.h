@@ -81,7 +81,6 @@ extern	void	ethIrqEnable(struct ethcblk *);
 
 /* in file ethdispatch.S */
 extern	void	ethdispatch(void);
-extern	void	mouse_handler_irq(void);
 extern	void	keyboard_handler_irq(void);
 
 /* in file ethhandler.c */
@@ -516,7 +515,7 @@ extern	syscall	send(pid32, umsg32);
 
 /* in file shell.c */
 extern 	process shell(did32);
-extern 	process mouse(did32);
+extern 	process mouse_p(did32);
 extern 	process keyboard(did32);
 
 /* in file signal.c */
@@ -596,13 +595,22 @@ extern	syscall	unsleep(pid32);
 /* in file userret.c */
 extern	void	userret(void);
 
-/* in file vga* */
+/* in vga* files */
 extern devcall vgaclose ( struct dentry        *devptr);
 extern devcall vgainit ( struct dentry *devptr );
 extern devcall vgaopen ( struct        dentry  *devptr, char   *name, char     *mode);
 extern devcall vgaread ( struct dentry *devptr, char          *buffer, uint32        count  );
 extern devcall vgaseek ( struct dentry *devptr, uint32 pos);
 extern devcall vgawrite ( struct dentry        *devptr, char *buffer, uint32        count );
+
+/* in mice* files */
+extern devcall miceclose ( struct dentry       *devptr);
+extern void micehandler(void);
+extern devcall miceinit ( struct dentry        *devptr);
+extern devcall miceopen ( struct       dentry  *devptr, char   *name, char     *mode);
+extern devcall miceread ( struct dentry        *devptr, char          *buffer, uint32        count  );
+extern devcall micewrite ( struct dentry       *devptr, char *buffer, uint32        count);
+extern	interrupt	micehandlerirq(void);
 
 
 /* in file wait.c */

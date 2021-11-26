@@ -81,7 +81,7 @@ typedef struct __attribute__ ((packed)) {
  
 // tell compiler our int32 function is external
 extern void inter32(unsigned char intnum, regs16_t *regs);
-extern void mouse_init();
+// extern void mouse_init();
 extern void keyboard_init();
 
  
@@ -106,9 +106,9 @@ process	main(void)
 
 	recvclr();
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
-	mouse_init();
+	// mouse_init();
 	keyboard_init();
-	resume(create(mouse, 1024, 50, "mouse", 1, CONSOLE));
+	resume(create(mouse_p, 1024, 50, "mouse", 1, CONSOLE));
 	resume(create(keyboard, 1024, 50, "keyboard", 1, CONSOLE));
 
 	/* Wait for shell to exit and recreate it */

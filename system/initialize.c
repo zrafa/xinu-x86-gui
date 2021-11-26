@@ -103,20 +103,6 @@ void nulluser (unsigned long magic, unsigned long addr)
 	resume(create((void *)startup, INITSTK, INITPRIO,
 					"Startup process", 0, NULL));
 
-  printf ("mods_count = %x \n", (uint32) mbi->mods_count);
-  printf ("vbe_mode_info = %x \n", (uint32) mbi->vbe_mode_info);
-  printf ("flags = 0x%x\n", (uint32) mbi->flags);
-  printf ("width = %x\n", (uint32) mbi->framebuffer_width);
-  printf ("height = %x\n", (uint32) mbi->framebuffer_height);
-  printf ("pitch = %x\n", (uint32) mbi->framebuffer_pitch);
-  printf ("bpp = %x\n", (uint32) mbi->framebuffer_bpp);
-  uint64 b = (uint64) mbi->framebuffer_addr;
-  uint32 b2 = (uint32) (b & 0x00000000ffffffff);
-  printf ("add = %x\n", (uint32) b2);
-//  printf ("vga = %x\n", (uint32) vga);
-  b2 = (uint32) (b & 0xffffffff00000000);
-  b2 = (uint32) (b >> 32);
-  printf ("add2 = %x\n", (uint32) b2);
 	/* Become the Null process (i.e., guarantee that the CPU has	*/
 	/*  something to run when no other process is ready to execute)	*/
 

@@ -1,0 +1,6 @@
+devcall	miceclose ( struct dentry	*devptr);
+void micehandler(struct regs *a_r);
+devcall	miceinit ( struct dentry	*devptr);
+devcall	miceopen ( struct	dentry	*devptr, char	*name, char	*mode);
+devcall	miceread ( struct dentry	*devptr, char          *buffer, uint32        count  );
+devcall	micewrite ( struct dentry	*devptr, char *buffer, uint32        count);
