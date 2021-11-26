@@ -88,6 +88,14 @@ lfl:
 		-w lflwrite	-s lflseek	-n lflcontrol
 		-intr ionull
 		
+/* type of the vga screen framebuffer */
+vga:
+	on nothing
+		-i vgainit	-o ioerr	-c vgaclose
+		-r vgaread	-g ioerr	-p ioerr
+		-w vgawrite	-s vgaseek	-n ioerr
+		-intr ionull
+		
 /* type of namespace device */
 nam:
 	on top
@@ -103,6 +111,9 @@ nam:
 
    /* Define the console device to be a tty and specify CSR*/
    CONSOLE is tty  on uart  csr 0001770 -irq 0044
+
+   /* Define the vga screen framebuffer */
+   VGA is vga on nothing
 
    /* Define a null device */
    NULLDEV is null on nothing

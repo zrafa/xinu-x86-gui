@@ -44,17 +44,16 @@ pid32	currpid;		/* ID of currently executing process	*/
  *------------------------------------------------------------------------
  */
 
-unsigned char * vga2;
-unsigned char * vga3;
+//unsigned char * vga;
+struct mbootinfo *mbi;
 
-void nulluser (unsigned long add3, unsigned long magic, unsigned long addr)
+void nulluser (unsigned long magic, unsigned long addr)
 // void	nulluser()
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
 	uint32	free_mem;		/* Total amount of free memory	*/
 	
 // RAFA
-  struct mbootinfo *mbi;
 	if (magic == 0x2BADB002)
   		kprintf ("APAAA \n");
 
@@ -63,9 +62,8 @@ void nulluser (unsigned long add3, unsigned long magic, unsigned long addr)
   kprintf ("magic =  %i \n", magic);
 
   kprintf ("ad =  %x \n", addr);
-  mbi = (struct mbootinfo *) addr;
-  vga2 = (unsigned char *) (unsigned long) mbi->framebuffer_addr;
-  vga3 = (unsigned char *) (unsigned long) add3;
+	mbi = (struct mbootinfo *) addr;
+  // vga = (unsigned char *) (unsigned long) mbi->framebuffer_addr;
 
 	/* Initialize the system */
 
@@ -115,8 +113,7 @@ void nulluser (unsigned long add3, unsigned long magic, unsigned long addr)
   uint64 b = (uint64) mbi->framebuffer_addr;
   uint32 b2 = (uint32) (b & 0x00000000ffffffff);
   printf ("add = %x\n", (uint32) b2);
-  printf ("vga2 = %x\n", (uint32) vga2);
-  printf ("vga3 = %x\n", (uint32) vga3);
+//  printf ("vga = %x\n", (uint32) vga);
   b2 = (uint32) (b & 0xffffffff00000000);
   b2 = (uint32) (b >> 32);
   printf ("add2 = %x\n", (uint32) b2);

@@ -596,6 +596,15 @@ extern	syscall	unsleep(pid32);
 /* in file userret.c */
 extern	void	userret(void);
 
+/* in file vga* */
+extern devcall vgaclose ( struct dentry        *devptr);
+extern devcall vgainit ( struct dentry *devptr );
+extern devcall vgaopen ( struct        dentry  *devptr, char   *name, char     *mode);
+extern devcall vgaread ( struct dentry *devptr, char          *buffer, uint32        count  );
+extern devcall vgaseek ( struct dentry *devptr, uint32 pos);
+extern devcall vgawrite ( struct dentry        *devptr, char *buffer, uint32        count );
+
+
 /* in file wait.c */
 extern	syscall	wait(sid32);
 

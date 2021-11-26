@@ -24,13 +24,14 @@ struct mbootinfo {
 	// RAFA uint32	vbe_interface_len;	/* VBE related informarion	*/
 	uint16	vbe_interface_len;	/* VBE related informarion	*/
 
-
-uint64 framebuffer_addr;
-  uint32 framebuffer_pitch;
-  uint32 framebuffer_width;
-  uint32 framebuffer_height;
-  uint8 framebuffer_bpp;
+	uint64 framebuffer_addr;
+	uint32 framebuffer_pitch;
+	uint32 framebuffer_width;
+	uint32 framebuffer_height;
+	uint8 framebuffer_bpp;
 };
+
+extern struct mbootinfo *mbi;
 
 struct mbmregion {
 	uint32	size;			/* Entry Size			*/

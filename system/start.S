@@ -43,30 +43,6 @@
  * Small relocating version for "micro" boot
  */
 
-#define	MULTIBOOT_HEADER_MAGIC  0x1BADB002
-#define	MULTIBOOT_HEADER_FLAGS  0x00000003
-#define	MULTIBOOT_SIGNATURE	0x2BADB002	/* Multiboot signature verification	*/
-#define	MULTIBOOT_BOOTINFO_MMAP	0x00000040	/* mmap_length mmap_addr valid		*/
-
-
-
-// # RAFA
-.set MAGIC, 0x1badb002
-// .set FLAGS, 7
-.set FLAGS, 0x00010007
-/*.set FLAGS, 3 */
-.set CHECKSUM, -(MAGIC + FLAGS)
-.set MODE_TYPE, 0
-.set WIDTH, 640  /* requested width */
-.set HEIGHT, 480  /* requested height */
-// /* .set WIDTH, 640
-// #.set HEIGHT, 480 */
-.set DEPTH, 8    /* requested bits per pixel BPP */
-
-
-
-
-
 
 	.data
 
@@ -92,25 +68,6 @@ cpudelay:	.long	1
  
 
 
-//mbootheader:  				# Beginning of multiboot header, embedded in ELF header
-// .section .multiboot
-//    .long MAGIC
-//    .long FLAGS
-//    .long CHECKSUM
-//	.long   mbootheader 		# Begin a.out kludge: header address
-//	.long   text			# load address
- //  	.long   bss			# load end address
-//	.long   ebss			# bss end address
-//	.long   start			# Entry address: end of multiboot header, end of a.out kludge
- //   .long MODE_TYPE
- //   .long WIDTH
- //   .long HEIGHT
- //   .long DEPTH
- //   /* enough space for the returned header */
- //   .space 4 * 13
-
-
-
 // RAFA
 #define MULTIBOOT_MAGIC         0x1BADB002
 #define MULTIBOOT_FLAGS         0x00010007
@@ -134,9 +91,6 @@ multiboot_header_struct:
         .long   32
 
 
-
-
-
     .align 2
 	.globl	_end
 	.globl	_edata
@@ -157,80 +111,17 @@ entry:	.globl	entry
 
 
 
-// RAFA
-	mov %edi, %eax
-	mov %esi, %ebx
-
-        /* Reset EFLAGS. */
-        pushl   $0
-        popf
-
-        /* Push the pointer to the Multiboot information structure. */
-        pushl   %ebx
-        /* Push the magic value. */
-        pushl   %eax
-
-//	movl	$0x10,%eax	/* DS descriptor 2 */
-//	movl	$0x22,%ebx	/* DS descriptor 2 */
-//	mov %eax, %edi
-//	mov %ebx, %esi
-//	//movl $0x02, $eax
-//	//movl $0x09, $ebx
-//	pushl %ebx
-//	pushl %eax
-//	//mov	0x4c(%ebx),%eax
-	//mov	0x28(%eax),%eax
-	
-	/* Save the stack pointer */
-
-	//movl	%esp,%esi
-	/* Initialize the stack pointer. */
-        // movl    $(stack + STACK_SIZE), %esp
-        /* Reset EFLAGS. */
-        //pushl   $0
-        //popf
-        /* Push the pointer to the Multiboot information structure. */
-        //pushl   %ebx
-        /* Push the magic value. */
-        //pushl   %eax
-        /* Now enter the C main function... */
-        // call    nulluser
-
-
-
-
-
-	movl	$BRELOC,%esi    # Move from BRELOC to 
-	movl	$0,%edi		# to relocated area
-	movl	$2000*1024,%ecx  # Size to Move (should be _edata)
-	cld
-	rep
-	movsb
-	# relocate program counter to relocation base
-	movl	$BRELOC+2000*1024, %esp	#Put Stack pointer somewhere safe.  
-	pushl	$start
-	ret
-
 start:
 
 	/* Save the stack pointer */
-
 	movl	%esp,%esi
 
 
-
 	// RAFA
-        //mov %ebx, magic2
+        /* Save the multiboot struct address. */
         mov %ebx, multiboot_addr
-        /* Push the magic value. */
-        mov %eax, magic2
-
-// Get the VBE framebuffer address into EAX
-	mov	0x4c(%ebx), %eax
-	mov	0x28(%eax), %eax
-	mov	%eax, add3
-
-
+        /* Save the magic value. */
+        mov %eax, magic
 
 	/*
 	 * Clear Bss and up to 64K heap
@@ -279,17 +170,11 @@ gdt1:
 	/*
 	 * Call the nulluser to initialize the system
 	 */
-	// RAFA
+	// RAFA: restore the values for nulluser args
 	movl multiboot_addr, %eax
 	pushl %eax
-	movl magic2, %eax
+	movl magic, %eax
 	pushl %eax
-
-	movl add3, %eax
-	pushl %eax
-
-
-
 
 
 	call	nulluser
@@ -297,9 +182,8 @@ gdt1:
 
 	.data
 //RAFA
-magic2:		.long 0
+magic:		.long 0
 multiboot_addr:		.long 0
-add3:	.long 0
 
 _bootdev:	.long	0
 _cyloffset:	.long	0
