@@ -32,7 +32,7 @@ void pixel(int x,int y, int color) {
 */
 
 
-void pixel(int x,int y, int color2)
+void pixel2(int x,int y, int color2)
 //void pixel(uint32 x, uint32 y, uint32 color)
 {
     //unsigned char* location = (unsigned char*)0xA0000 + (VGA_WIDTH * y + x)*4;
@@ -103,7 +103,7 @@ void linea()
 
 //multiboot_info_t *mbi;
 
-void pixel2(unsigned x, unsigned y, uint32 color2)
+void pixel(unsigned x, unsigned y, uint32 color2)
 {
       uint32 color;
       void *fb = (void *) (unsigned long) mbi->framebuffer_addr;

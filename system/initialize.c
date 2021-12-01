@@ -69,11 +69,12 @@ void nulluser (unsigned long magic, unsigned long addr )
   kprintf ("ad =  %x \n", addr);
   mbi = (multiboot_info_t *) addr;
 //	mbi = addr;
-	pixel2(100,400, 0xffffffff);
+	//pixel2(100,400, 0xffffffff);
+	pixel(100,400, 0xffffffff);
 
   kprintf ("ad fb =  %x \n", mbi->framebuffer_addr);
   kprintf ("ad fb+4 =  %x \n", mbi->framebuffer_addr+4);
-	linea();
+	//linea();
 
 	/* Initialize the system */
 

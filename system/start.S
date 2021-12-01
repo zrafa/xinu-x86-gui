@@ -13,6 +13,39 @@
         .globl start, _start
 start:
 _start:
+
+
+
+	movl    %esp,%ebp
+
+	// RAFA
+        mov %ebx, multiboot_addr
+        /* Push the magic value. */
+        mov %eax, magic2
+
+	call    setsegs
+
+        lgdt    gdtr
+        /*
+         * reload segment registers; we do code segment by a far
+         * jump
+         */
+        ljmp    $0x8,$gdt1      /* CS descriptor 1 */
+gdt1:
+        movl    $0x10,%eax      /* DS descriptor 2 */
+        movw    %ax,%ds
+        movw    %ax,%es
+        movl    $0x18,%eax      /* SS descriptor 3 */
+        movw    %ax,%ss
+        movl    initsp,%esp     /* set new stack pointer base */
+        movl    %esp,%ebp
+
+
+
+
+//        call    nulluser
+
+
         jmp multiboot_entry
 
 
@@ -52,6 +85,13 @@ multiboot_entry:
         pushl %eax
 
 
+        // RAFA
+        movl multiboot_addr, %eax
+        pushl %eax
+        movl magic2, %eax
+        pushl %eax
+
+
         call nulluser
 
 
@@ -69,6 +109,10 @@ halt_message:
 
 
  .data
+//RAFA
+magic2:         .long 0
+multiboot_addr:         .long 0
+
 
         .align  16
         .globl  gdt

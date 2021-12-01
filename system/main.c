@@ -143,12 +143,12 @@ process	main(void)
 	/* Run the Xinu shell */
 	printf("\n HOLA MUNDO \n");
 	linea2();
-	while(1);
-	paint2();
-	pixel(1,1, 0xffffffff );
-	pixel(10,1, 0xffffffff);
-	pixel(10,100, 0xffffffff);
-	while(1);
+//	while(1);
+//	paint2();
+//	pixel(1,1, 0xffffffff );
+//	pixel(10,1, 0xffffffff);
+//	pixel(10,100, 0xffffffff);
+//	while(1);
 
 	recvclr();
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
