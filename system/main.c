@@ -35,19 +35,15 @@ void linea2()
 
 void *fb = (void *) (uint64) mbi->framebuffer_addr;
 
-          uint32 color = 0xffffffff;
-	int i;
-      for (i = 0; i < mbi->framebuffer_width
-             && i < mbi->framebuffer_height; i++){
+          uint32 color = 0x0000ffff;
+	int i,j=0;
+      for (i = mbi->framebuffer_width; i > 0; i--){
 
-     //          uint16 *pixel = fb + mbi->framebuffer_pitch * i + 2 * i;
-      //          *pixel = color;
 
-                uint32 *pixel = fb + mbi->framebuffer_pitch * i + 3 * i;
+                uint32 *pixel = fb + mbi->framebuffer_pitch * j + 3 * i;
                *pixel = (color & 0xffffff) | (*pixel & 0xff000000);
+		j++;
 
-//                uint32 *pixel = fb + mbi->framebuffer_pitch * i + 4 * i;
- //               *pixel = color;
         }
 
 
@@ -66,13 +62,13 @@ void *fb = (void *) (uint64) mbi->framebuffer_addr;
 void paint2(){
 
 	//int color = 0x00ffff00;
-	uint32 color = 0xffffffff;
+	uint32 color = 0x00ffff00;
 	int i,j,x,y;
 	open(VGA, NULL, 0);
 	for (y=0; y<VGA_HEIGHT; y++) {
 	for (x=0; x<VGA_WIDTH; x++) {
 		pixel(x, y, color);
-		color++;
+//		color++;
 		//seek(VGA, ((y*VGA_WIDTH+x) * (VGA_BPP/8)));
 		//write(VGA, &color, (VGA_BPP/8));
 	}
@@ -142,9 +138,9 @@ process	main(void)
 
 	/* Run the Xinu shell */
 	printf("\n HOLA MUNDO \n");
-	linea2();
 //	while(1);
-//	paint2();
+	paint2();
+	linea2();
 //	pixel(1,1, 0xffffffff );
 //	pixel(10,1, 0xffffffff);
 //	pixel(10,100, 0xffffffff);

@@ -16,7 +16,7 @@ char check_bit(unsigned char c, int pos)
 /* Dibuja una letra en el buffer, comenzando con la columna [x,y]
  * para el primer pixel de la letra 
  */
-void draw_char_on_buffer(unsigned char x, unsigned char y, char c,
+void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
                             unsigned char color)
 {
 
@@ -37,9 +37,9 @@ void draw_char_on_buffer(unsigned char x, unsigned char y, char c,
                 col = *(fp+i);
                 for (j = 0; j < 7; j++) {
                         if (check_bit(col, j)) {
-                                pixel(x+i, y+j, 0x20);
+                                pixel(x+i, y+j, 0x00000000);
                         } else {
-                                pixel(x+i, y+j, 0xff);
+                                pixel(x+i, y+j, 0x00ffff00);
                         }
                 }
         }
@@ -49,7 +49,7 @@ void draw_char_on_buffer(unsigned char x, unsigned char y, char c,
  * x e y son coordenadas a resolución de pixel
  * Cada letra es de 6 columnas y 8 filas (1 columna es espacio)
  */
-void print_text_on_buffer(unsigned char x, unsigned char y, char *text)
+void print_text_on_buffer(unsigned int x, unsigned int y, char *text)
 {
         int i = 0;
         const int offset = 6;

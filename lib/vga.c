@@ -103,11 +103,11 @@ void linea()
 
 //multiboot_info_t *mbi;
 
-void pixel(unsigned x, unsigned y, uint32 color2)
+void pixel(unsigned x, unsigned y, uint32 color)
 {
-      uint32 color;
+      //uint32 color;
       void *fb = (void *) (unsigned long) mbi->framebuffer_addr;
-          color = 0x0000ffff;
+//          color = 0x0000ffff;
                 uint32 *pixel
                   = fb + mbi->framebuffer_pitch * y + 4 * x;
                 *pixel = color;

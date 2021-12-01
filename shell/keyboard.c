@@ -31,8 +31,7 @@ void keyboard_handler(struct regs *r)
      unsigned int shift_key = 0;
 	int i = 10;
      scancode = get_scancode();
-		sprintf(t, "tecla: 0x%x    \n", scancode);
-		// borrar (0,300,600,800);
+		sprintf(t, "kbd: 0x%x     ", scancode);
 		print_text_on_buffer(10, 300, t);
      if(scancode == 0x2A)     
      {
