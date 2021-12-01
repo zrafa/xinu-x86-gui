@@ -23,30 +23,60 @@ typedef unsigned short word;
 
 // volatile byte *VGA = (byte *)0xA0000;          /* this points to video memory. */
 //uint16 *VGA = (uint16 *)0xA0000;          /* this points to video memory. */
-word *my_clock = (word *)0x046C;      /* this points to the 18.2hz system
-                                         clock. */
+//word *my_clock = (word *)0x046C;      /* this points to the 18.2hz system
+           //                              clock. */
 
 
 extern unsigned char * vga;
 
-void pixel(int x, int y, uint32 color) {
-//	*(vga+(((y*1024)+x) *4)) = color;
-//	*(vga+(((y*1024)+x) *4)+1) = (color >> 8);
-//	*(vga+(((y*1024)+x) *4)+2) = (color >> 16);
-		seek(VGA, ((y*1024+x) *4));
-		write(VGA, &color, 4);
+
+void linea2()
+{
+
+void *fb = (void *) (uint64) mbi->framebuffer_addr;
+
+          uint32 color = 0xffffffff;
+	int i;
+      for (i = 0; i < mbi->framebuffer_width
+             && i < mbi->framebuffer_height; i++){
+
+     //          uint16 *pixel = fb + mbi->framebuffer_pitch * i + 2 * i;
+      //          *pixel = color;
+
+                uint32 *pixel = fb + mbi->framebuffer_pitch * i + 3 * i;
+               *pixel = (color & 0xffffff) | (*pixel & 0xff000000);
+
+//                uint32 *pixel = fb + mbi->framebuffer_pitch * i + 4 * i;
+ //               *pixel = color;
+        }
+
+
+
 }
+
+//extern void pixel(uint32 x, uint32 y, uint32 color);
+//void pixel(int x, int y, uint32 color) {
+////	*(vga+(((y*1024)+x) *4)) = color;
+////	*(vga+(((y*1024)+x) *4)+1) = (color >> 8);
+////	*(vga+(((y*1024)+x) *4)+2) = (color >> 16);
+//		seek(VGA, ((y*VGA_WIDTH+x) *1));
+//		write(VGA, &color, 1);
+//}
 
 void paint2(){
 
-	int color = 0x00ffff00;
+	//int color = 0x00ffff00;
+	uint32 color = 0xffffffff;
 	int i,j,x,y;
 	open(VGA, NULL, 0);
-	for (y=0; y<768; y++)
-	for (x=0; x<1024; x++) {
-		//pixel(x,y,color);
-		seek(VGA, ((y*1024+x) *4));
-		write(VGA, &color, 4);
+	for (y=0; y<VGA_HEIGHT; y++) {
+	for (x=0; x<VGA_WIDTH; x++) {
+		pixel(x, y, color);
+		color++;
+		//seek(VGA, ((y*VGA_WIDTH+x) * (VGA_BPP/8)));
+		//write(VGA, &color, (VGA_BPP/8));
+	}
+		sleepms(1);
 	}
 	close(VGA);
 
@@ -57,19 +87,22 @@ void paint2(){
 
 void putpixel2(int x, int y, unsigned char color)
 {
+	uint8 *vga = (uint8 *)0xA0000;          /* this points to video memory. */
 
 	uint32 * pixel;
-	pixel = (uint32) vga + (y*1024+x);
+	pixel = (uint32) vga + (y*VGA_WIDTH+x);
 	*(pixel) = color;
 }
 
 /* example for 320x200 VGA */
 void putpixel(int pos_x, int pos_y, unsigned char VGA_COLOR)
 {
-    //unsigned char* location = (unsigned char*)0xA0000 + 320 * pos_y + pos_x;
+    //unsigned char* location = (unsigned char*)0xA0000 + (VGA_WIDTH * pos_y + pos_x)*3;
+    unsigned char* location = (unsigned char*)0xA0000 + (VGA_WIDTH * pos_y + pos_x);
     //*location = VGA_COLOR;
-    unsigned char* location = vga + ((1024 * pos_y + pos_x) * 4);
     *location = 0xff;
+    *(location+1) = 0xff;
+    *(location+2) = 0xff;
 }
 
 
@@ -100,9 +133,22 @@ process	main(void)
         offset++;
     }
 
+	int x,y;
+	// for (y=0; y<VGA_HEIGHT; y++)
+	//for (x=0; x<300; x++)
+	//	pixel(x,x,0xffffffff);
+		//putpixel(x,y,0xff);
+	//while(1);
+
 	/* Run the Xinu shell */
 	printf("\n HOLA MUNDO \n");
+	linea2();
+	while(1);
 	paint2();
+	pixel(1,1, 0xffffffff );
+	pixel(10,1, 0xffffffff);
+	pixel(10,100, 0xffffffff);
+	while(1);
 
 	recvclr();
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));

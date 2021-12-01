@@ -1,193 +1,94 @@
-/*-
- * Copyright (c) 1990 The Regents of the University of California.
- * All rights reserved.
- *
- * This code is derived from software contributed to Berkeley by
- * William Jolitz.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *	This product includes software developed by the University of
- *	California, Berkeley and its contributors.
- * 4. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- *	@(#)srt0.c	5.3 (Berkeley) 4/28/91
- */
+# 0 "boot.S"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 0 "<command-line>" 2
+# 1 "boot.S"
+# 19 "boot.S"
+# 1 "multiboot.h" 1
+# 20 "boot.S" 2
+# 39 "boot.S"
+        .text
 
-/*
- * Startup code for standalone system
- * Non-relocating version -- for programs which are loaded by boot
- * Relocating version for boot
- * Small relocating version for "micro" boot
- */
-
-
-	.data
-
-	.align	16
-	.globl	gdt
-	.globl	gdtr
-	.globl	idt
-	.globl	idtr
-
-gdt:	.space	64	# must equal NGD*8 (64 = 8 segments)
-gdtr:	.word	63	# sizeof _gdt -1 (in bytes)
-	.long	gdt	# global pointer to the gdt
-idt:	.space	1024	# must equal NID*8 (1024 == 256 entries * 8 bytes per entry)
-idtr:	.word	1023	# size of _idt -1 (in bytes)
-	.long	idt
-
-	.globl	cpudelay
-cpudelay:	.long	1
-
-	.text
-
-	.align 4
- 
-
-
-// RAFA
-#define MULTIBOOT_MAGIC         0x1BADB002
-#define MULTIBOOT_FLAGS         0x00010007
-.text
-.code32
-
-.globl start, _start
-
-multiboot_header_struct:
-        .long   MULTIBOOT_MAGIC
-        .long   MULTIBOOT_FLAGS
-        .long   -(MULTIBOOT_MAGIC + MULTIBOOT_FLAGS)
-        .long   multiboot_header_struct
-        .long   text
-        .long   bss
-        .long   ebss
-        .long   start
-        .long   0
-        .long   1024
-        .long   768
-        .long   32
-
-
-    .align 2
-	.globl	_end
-	.globl	_edata
-	.globl	nulluser
-	.globl	_bootdev
-	.globl	_cyloffset
-	.globl	lidt
-	.globl  jumptocode
-	.globl  jumptobootcode
-
-	.globl	__zero			# artificial value for entry point
-	.set	__zero,0
-
-entry:	.globl	entry
-	.globl	start
-
-
-
-
-
+        .globl start, _start
 start:
-
-	/* Save the stack pointer */
-	movl	%esp,%esi
-
-
-	// RAFA
-        /* Save the multiboot struct address. */
-        mov %ebx, multiboot_addr
-        /* Save the magic value. */
-        mov %eax, magic
-
-	/*
-	 * Clear Bss and up to 64K heap
-	 */
-	movl	$64*1024,%ebx
-	movl	$_end,%eax	# should be movl $_end-_edata but ...
-	subl	$_edata,%eax
-	addl	%ebx,%eax
-	pushl	%eax
-	pushl	$_edata
-	call	bzero
-
-	/*
-	 * Clear 64K of stack
-	 */
-	movl	%esi,%eax
-	subl	%ebx,%eax
-	subl	$5*4,%ebx
-	pushl	%ebx
-	pushl	%eax
-	call	bzero
-
-	movl	%esi,%esp
-
-	pushl	$0
-	popf
-
-	movl	%esp,%ebp
-	call	setsegs
-
-	lgdt	gdtr
-	/*
-	 * reload segment registers; we do code segment by a far
-	 * jump
-	 */
-	ljmp	$0x8,$gdt1	/* CS descriptor 1 */
-gdt1:
-	movl	$0x10,%eax	/* DS descriptor 2 */
-	movw	%ax,%ds
-	movw	%ax,%es
-	movl	$0x18,%eax	/* SS descriptor 3 */
-	movw	%ax,%ss
-	movl	initsp,%esp	/* set new stack pointer base */
-	movl	%esp,%ebp
-
-	/*
-	 * Call the nulluser to initialize the system
-	 */
-	// RAFA: restore the values for nulluser args
-	movl multiboot_addr, %eax
-	pushl %eax
-	movl magic, %eax
-	pushl %eax
+_start:
+        jmp multiboot_entry
 
 
-	call	nulluser
-	call	halt
+        .align 4
 
-	.data
-//RAFA
-magic:		.long 0
-multiboot_addr:		.long 0
 
-_bootdev:	.long	0
-_cyloffset:	.long	0
-savearea:	.long	0,0	# sp & bp to return to
+multiboot_header:
+
+        .long 0x1BADB002
+
+        .long 0x00000001 | 0x00000002 | 0x00000004 | 0
+
+        .long -(0x1BADB002 + 0x00000001 | 0x00000002 | 0x00000004 | 0)
+# 69 "boot.S"
+        .long 0
+        .long 0
+        .long 0
+        .long 0
+        .long 0
+
+        .long 0
+        .long 1024
+        .long 768
+        .long 32
+
+multiboot_entry:
+
+        movl $(stack + 0x4000), %esp
+
+
+        pushl $0
+        popf
+
+
+        pushl %ebx
+
+        pushl %eax
+
+
+        call nulluser
+
+
+        pushl $halt_message
+        call printf
+
+loop: hlt
+        jmp loop
+
+halt_message:
+        .asciz "Halted."
+
+
+        .comm stack, 0x4000
+
+
+ .data
+
+        .align  16
+        .globl  gdt
+        .globl  gdtr
+        .globl  idt
+        .globl  idtr
+
+gdt:    .space  64      # must equal NGD*8 (64 = 8 segments)
+gdtr:   .word   63      # sizeof _gdt -1 (in bytes)
+        .long   gdt     # global pointer to the gdt
+idt:    .space  1024    # must equal NID*8 (1024 == 256 entries * 8 bytes per entry)
+idtr:   .word   1023    # size of _idt -1 (in bytes)
+        .long   idt
+
+        .globl  cpudelay
+cpudelay:       .long   1
+
+
+
+
 
 	.text
 	.globl delay

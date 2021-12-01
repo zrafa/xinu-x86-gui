@@ -602,6 +602,9 @@ extern devcall vgaopen ( struct        dentry  *devptr, char   *name, char     *
 extern devcall vgaread ( struct dentry *devptr, char          *buffer, uint32        count  );
 extern devcall vgaseek ( struct dentry *devptr, uint32 pos);
 extern devcall vgawrite ( struct dentry        *devptr, char *buffer, uint32        count );
+/* in lib/vga.c file */
+//extern void pixel(uint32 x, uint32 y, uint32 color);
+extern void pixel(int x,int y, int color);
 
 /* in mice* files */
 extern devcall miceclose ( struct dentry       *devptr);

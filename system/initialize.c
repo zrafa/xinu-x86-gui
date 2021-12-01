@@ -45,9 +45,14 @@ pid32	currpid;		/* ID of currently executing process	*/
  */
 
 //unsigned char * vga;
-struct mbootinfo *mbi;
+// RAFA struct mbootinfo *mbi;
+//struct multiboot_info *mbi;
+multiboot_info_t *mbi;
 
-void nulluser (unsigned long magic, unsigned long addr)
+extern void linea();
+
+
+void nulluser (unsigned long magic, unsigned long addr )
 // void	nulluser()
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
@@ -62,8 +67,13 @@ void nulluser (unsigned long magic, unsigned long addr)
   kprintf ("magic =  %i \n", magic);
 
   kprintf ("ad =  %x \n", addr);
-	mbi = (struct mbootinfo *) addr;
-  // vga = (unsigned char *) (unsigned long) mbi->framebuffer_addr;
+  mbi = (multiboot_info_t *) addr;
+//	mbi = addr;
+	pixel2(100,400, 0xffffffff);
+
+  kprintf ("ad fb =  %x \n", mbi->framebuffer_addr);
+  kprintf ("ad fb+4 =  %x \n", mbi->framebuffer_addr+4);
+	linea();
 
 	/* Initialize the system */
 

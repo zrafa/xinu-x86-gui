@@ -55,11 +55,12 @@ BOOTPLOC=	0x150000
 DEFS		= -DBRELOC=${BRELOC} -DBOOTPLOC=${BOOTPLOC} -DBSDURG -DVERSION=\""`cat $(VERSIONFILE)`"\"
 
 # Compiler flags
-CFLAGS  = -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
+# CFLAGS  = -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
+CFLAGS  = -m32 -ffreestanding -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
 SFLAGS  = ${INCLUDE}
 
 # Loader flags
-LDFLAGS = -dn -m elf_i386 -Map xinu.map -T $(LDSCRIPT)
+LDFLAGS = -dn -m elf_i386 -nostdlib -Map xinu.map -T $(LDSCRIPT)
 
 all:	xinu
 

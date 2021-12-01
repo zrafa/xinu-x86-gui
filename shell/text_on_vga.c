@@ -4,11 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <font.h>
-extern void pixel(int x, int y, uint32 color);
-
-#define WIDHT 1024
-#define HEIGHT 768
-
 
 
 char check_bit(unsigned char c, int pos)
@@ -42,9 +37,9 @@ void draw_char_on_buffer(unsigned char x, unsigned char y, char c,
                 col = *(fp+i);
                 for (j = 0; j < 7; j++) {
                         if (check_bit(col, j)) {
-                                pixel(x+i, y+j, 0x00);
+                                pixel(x+i, y+j, 0x20);
                         } else {
-                                pixel(x+i, y+j, 0x00ffff00);
+                                pixel(x+i, y+j, 0xff);
                         }
                 }
         }

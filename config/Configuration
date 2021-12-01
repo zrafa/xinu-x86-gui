@@ -184,6 +184,10 @@ nam:
 
 #define	LF_DISK_DEV	RAM0
 
+#define VGA_WIDTH	1024 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
+#define VGA_HEIGHT	768 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
+#define VGA_BPP		32 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
+
 #ifndef	ETHER0
 #define	ETHER0	0
 #endif

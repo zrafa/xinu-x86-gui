@@ -52,7 +52,10 @@ process mouse_p (
 		mouse_x = buf[1];
 		mouse_y = buf[2];
 
-		 sprintf(texto, "x: %d  y: %d \n", mouse_x, mouse_y);
+		if (buf[0] && 0x01)
+		 	sprintf(texto, "x: %d  y: %d    left : 1\n", mouse_x, mouse_y);
+		else
+		 	sprintf(texto, "x: %d  y: %d    left : 0\n", mouse_x, mouse_y);
 		pixel(old_x, old_y, 0x00ffff00);
 		pixel(mouse_x, mouse_y, 0x00ff0000);
 		print_text_on_buffer(10, 10, texto);

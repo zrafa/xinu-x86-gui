@@ -2,12 +2,13 @@
 
 /* vga screen */
 
-#define	VGA_WIDHT 1024
-#define	VGA_HEIGHT 768
-
 struct	vga_t	{
-	unsigned char *addr;
-	unsigned int pos;
+	uint8 *addr;
+	uint32 width;
+	uint32 height;
+	uint32 pitch;
+	uint8 bpp;
+	uint32 pos;
 	};
 
 extern	struct	vga_t	vga;

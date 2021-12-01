@@ -2,9 +2,9 @@
 
 /* micehandler.c - micehandler */
 
+#include <xinu.h>
 #include <mouse.h>
 #include <vga.h>
-#include <xinu.h>
 
 /*------------------------------------------------------------------------
  *  micehandler  -  Handle an interrupt for the mouse device
@@ -33,6 +33,7 @@ void micehandler(void)
 		mouse_cycle=0;
 
 		state = mouse_byte[0];
+		mouse.buttons = state;
 		d = mouse_byte[1];
 		//mouse.x = d - ((state << 4) & 0x100);
 		rel_x = d - ((state << 4) & 0x100);
@@ -47,7 +48,7 @@ void micehandler(void)
 		mouse.y = (mouse.y < 0) ? 0 : mouse.y;
 		mouse.y = (mouse.y >= VGA_HEIGHT) ? VGA_HEIGHT : mouse.y;
 		mouse.x = (mouse.x < 0) ? 0 : mouse.x;
-		mouse.x = (mouse.x >= VGA_WIDHT) ? VGA_WIDHT : mouse.x;
+		mouse.x = (mouse.x >= VGA_WIDTH) ? VGA_WIDTH : mouse.x;
 		break;
 	}
 }
