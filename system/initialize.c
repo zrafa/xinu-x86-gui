@@ -44,37 +44,29 @@ pid32	currpid;		/* ID of currently executing process	*/
  *------------------------------------------------------------------------
  */
 
-//unsigned char * vga;
-// RAFA struct mbootinfo *mbi;
-//struct multiboot_info *mbi;
 multiboot_info_t *mbi;
 
 extern void linea();
 
 
 void nulluser (unsigned long magic, unsigned long addr )
-// void	nulluser()
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
 	uint32	free_mem;		/* Total amount of free memory	*/
 	
-// RAFA
-	if (magic == 0x2BADB002)
-  		kprintf ("APAAA \n");
 
+	// RAFA : testing multiboot. pixel on buffer screen
 	int i = magic;
-  /* Set MBI to the address of the Multiboot information structure. */
-  kprintf ("magic =  %i \n", magic);
+	/* Set MBI to the address of the Multiboot information structure. */
+	kprintf ("magic =  %i \n", magic);
 
-  kprintf ("ad =  %x \n", addr);
-  mbi = (multiboot_info_t *) addr;
-//	mbi = addr;
-	//pixel2(100,400, 0xffffffff);
+	kprintf ("ad =  %x \n", addr);
+	mbi = (multiboot_info_t *) addr;
 	pixel(100,400, 0xffffffff);
 
-  kprintf ("ad fb =  %x \n", mbi->framebuffer_addr);
-  kprintf ("ad fb+4 =  %x \n", mbi->framebuffer_addr+4);
-	//linea();
+	kprintf ("ad fb =  %x \n", mbi->framebuffer_addr);
+	kprintf ("ad fb+4 =  %x \n", mbi->framebuffer_addr+4);
+
 
 	/* Initialize the system */
 

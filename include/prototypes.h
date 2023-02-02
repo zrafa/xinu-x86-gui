@@ -607,7 +607,7 @@ extern devcall vgawrite ( struct dentry        *devptr, char *buffer, uint32    
 //extern void pixel(int x,int y, int color);
 extern void pixel(unsigned x, unsigned y, uint32 color2);
 
-/* in mice* files */
+/* in device/mice* files */
 extern devcall miceclose ( struct dentry       *devptr);
 extern void micehandler(void);
 extern devcall miceinit ( struct dentry        *devptr);
@@ -615,6 +615,15 @@ extern devcall miceopen ( struct       dentry  *devptr, char   *name, char     *
 extern devcall miceread ( struct dentry        *devptr, char          *buffer, uint32        count  );
 extern devcall micewrite ( struct dentry       *devptr, char *buffer, uint32        count);
 extern	interrupt	micehandlerirq(void);
+
+/* in device/kbd* files */
+extern devcall kbdclose ( struct dentry       *devptr);
+extern void kbdhandler(void);
+extern devcall kbdinit ( struct dentry        *devptr);
+extern devcall kbdopen ( struct       dentry  *devptr, char   *name, char     *mode);
+extern devcall kbdread ( struct dentry        *devptr, char          *buffer, uint32        count  );
+extern devcall kbdwrite ( struct dentry       *devptr, char *buffer, uint32        count);
+extern	interrupt	kbdhandlerirq(void);
 
 
 /* in file wait.c */

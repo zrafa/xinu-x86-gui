@@ -49,7 +49,7 @@ void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
  * x e y son coordenadas a resolución de pixel
  * Cada letra es de 6 columnas y 8 filas (1 columna es espacio)
  */
-void print_text_on_buffer(unsigned int x, unsigned int y, char *text)
+void print_text_on_vga(unsigned int x, unsigned int y, char *text)
 {
         int i = 0;
         const int offset = 6;

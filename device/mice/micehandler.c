@@ -22,6 +22,20 @@ void micehandler(void)
 	switch(mouse_cycle) {
 	case 0:
 		mouse_byte[0]=inportb(MOUSE_DATA_PORT);
+		if (mouse_byte[0] == 0xAA) {		/* hot plug: re init mouse */
+			print_text_on_vga(10, 100, "RE INIT");
+			/*
+			mouse_byte[0]=inportb(MOUSE_DATA_PORT);
+			//Tell the mouse to use default settings
+        		mouse_write(0xF6);
+        		mouse_read();  //Acknowledge
+ 
+        		//Enable the mouse
+        		mouse_write(0xF4);
+        		mouse_read();  //Acknowledge
+			*/
+			return;
+		}
 		mouse_cycle++;
 		break;
 	case 1:

@@ -7,32 +7,10 @@
 /************************************************************************/
 /* Table of Xinu shell commands and the function associated with each	*/
 /************************************************************************/
-const	struct	cmdent	cmdtab[] = {
-	{"argecho",	TRUE,	xsh_argecho},
-	{"arp",		FALSE,	xsh_arp},
-	{"cat",		FALSE,	xsh_cat},
-	{"clear",	TRUE,	xsh_clear},
-	{"date",	FALSE,	xsh_date},
-	{"devdump",	FALSE,	xsh_devdump},
-	{"echo",	FALSE,	xsh_echo},
-	{"exit",	TRUE,	xsh_exit},
-	{"help",	FALSE,	xsh_help},
-	{"kill",	TRUE,	xsh_kill},
-	{"memdump",	FALSE,	xsh_memdump},
-	{"memstat",	FALSE,	xsh_memstat},
-	{"netinfo",	FALSE,	xsh_netinfo},
-	{"ping",	FALSE,	xsh_ping},
-	{"ps",		FALSE,	xsh_ps},
-	{"sleep",	FALSE,	xsh_sleep},
-	{"udp",		FALSE,	xsh_udpdump},
-	{"udpecho",	FALSE,	xsh_udpecho},
-	{"udpeserver",	FALSE,	xsh_udpeserver},
-	{"uptime",	FALSE,	xsh_uptime},
-	{"?",		FALSE,	xsh_help}
+extern const	struct	cmdent	cmdtab[];
 
-};
+extern uint32	ncmd;
 
-uint32	ncmd = sizeof(cmdtab) / sizeof(struct cmdent);
 
 /************************************************************************/
 /* shell  -  Provide an interactive user interface that executes	*/
@@ -94,6 +72,7 @@ process	shell (
 		SHELL_BAN5,SHELL_BAN6,SHELL_BAN7,SHELL_BAN8,SHELL_BAN9);
 
 	fprintf(dev, "%s\n\n", SHELL_STRTMSG);
+	fprintf(dev, "type   help [ENTER]   for ehhhh... help.\n\n");
 
 	/* Continually prompt the user, read input, and execute command	*/
 
@@ -279,7 +258,8 @@ process	shell (
 		/* Spawn child thread for non-built-in commands */
 
 		child = create(cmdtab[j].cfunc,
-			SHELL_CMDSTK, SHELL_CMDPRIO,
+			//SHELL_CMDSTK, SHELL_CMDPRIO,
+			16384, SHELL_CMDPRIO,
 			cmdtab[j].cname, 2, ntok, &tmparg);
 
 		/* If creation or argument copy fails, report error */

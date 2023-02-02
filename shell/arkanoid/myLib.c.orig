@@ -1,0 +1,47 @@
+
+#include <stdlib.h>
+#include "myLib.h"
+#include "sprites.h"
+#include <string.h>
+
+unsigned short *videoBuffer = (unsigned short *)0x6000000;
+
+//level design
+unsigned char levels[][75] = {
+	{9,9,9, 9,9,9, 9,9,9, 9,9,9, 9,9,9, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2,
+		6,6,6, 6,6,6, 6,6,6, 6,6,6, 6,6,6, 7,7,7, 7,7,7, 7,7,7, 7,7,7, 7,7,7},
+	{5,5,5, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2,
+		8,8,8, 8,8,8, 8,8,8, 8,8,8, 8,8,8, 7,7,7, 7,7,7, 7,7,7, 7,7,7, 7,7,7},
+	{7,7,7, 7,7,7, 7,7,7, 7,7,7, 7,7,7, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 
+		1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 8,8,8, 8,8,8, 8,8,8, 8,8,8, 8,8,8},
+	{1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2,
+		6,6,6, 6,6,6, 6,6,6, 6,6,6, 6,6,6, 7,7,7, 7,7,7, 7,7,7, 7,7,7, 7,7,7},
+	{8,8,8, 8,8,8, 8,8,8, 8,8,8, 8,8,8, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 5,5,5, 6,6,6, 6,6,6, 6,6,6, 6,6,6, 6,6,6, 
+		2,2,2, 2,2,2, 2,2,2, 2,2,2, 2,2,2, 7,7,7, 7,7,7, 7,7,7, 7,7,7, 7,7,7}	
+};
+
+struct RECT_S RECT_default = {.row = 0, .col = 0, .width = 15, .height = 7, .img = -1, .num=-1, .deleted=0};
+
+RECT *rectangles = NULL;
+int levelSize;
+u16 bgcolor = 0x2100;
+int score = 0;
+
+void drawRect(int row, int col, int height, int width, volatile unsigned short color)
+{
+	for(int r=0; r<height; r++)
+	{
+		REG_DMA3SAD = (u32)&color;
+		REG_DMA3DAD = (u32)(&videoBuffer[OFFSET(row+r, col, 240)]);
+		REG_DMA3CNT = width | DMA_ON | DMA_SOURCE_FIXED;
+	}
+}
+
+void waitForVblank()
+{
+//	while(SCANLINECOUNTER > 160);
+//	while(SCANLINECOUNTER < 160);
+}
+
+
+

@@ -1,72 +1,6 @@
 #include <xinu.h>
 #include <vga.h>
 
-/*
-void pixel(uint32 x, uint32 y, uint32 color) {
-                //seek(VGA, (y*vga.pitch+(x*(vga.bpp/8))));
-                seek(VGA, (y*vga.width+x));
-                write(VGA, &color, (vga.bpp/8));
-}
-*/
-
-//void pixel(int x,int y, int color) {
- //   uint8 * screen = vga.addr;
-  //  unsigned int where = x*(vga.bpp/8) + y*vga.pitch;
-/*
-    screen[where+1] = 0x1;
-    screen[where] = 0x1;
-    screen[where+2] = 0x1;
-*/
-   // screen[where] = color & 255;              // BLUE
-    //screen[where + 1] = (color >> 8) & 255;   // GREEN
-   // screen[where + 2] = (color >> 16) & 255;  // RED
-//}
-
-
-/*
-void pixel(int x,int y, int color) {
-	uint8 * graphics_buffer = (uint8 *)vga.addr;
-    unsigned where = x + y*vga.width;
-    graphics_buffer[where] = 0x77;
-}
-*/
-
-
-void pixel2(int x,int y, int color2)
-//void pixel(uint32 x, uint32 y, uint32 color)
-{
-    //unsigned char* location = (unsigned char*)0xA0000 + (VGA_WIDTH * y + x)*4;
-    //unsigned char* location = (unsigned char*)0xA0000 + (y*vga.pitch+(x*(vga.bpp/8)));
-int i;
-	int color = 0xffffffff;
-	for (i=0; i<10000; i++) {
-    //unsigned char* location = (unsigned char*)vga.addr + (y*vga.pitch+(x*(vga.bpp/8)));
-    unsigned char* location = (unsigned char*) (vga.addr + i);
-
-//    unsigned char* location = vga.addr + (y*vga.pitch+(x*(vga.bpp/8)));
-
-//  unsigned char* location = (unsigned char*)0xA0000 + (VGA_WIDTH * y + x);
-   // //*location = VGA_COLOR;
-  //  *location = 0xff;
-   // *(location+1) = 0xff;
-    //*(location+2) = 0xff;
-    *location = color & 255;              // BLUE
-    *(location+1) = (color >> 8) & 255;   // GREEN
-    *(location+2) = (color >> 16) & 255;  // RED
-} 
-while(1);
-/*
-    *(location+4) = (color >> 8) & 255;   // GREEN
-    *(location+5) = (color >> 16) & 255;  // RED
-    *(location+6) = (color >> 16) & 255;  // RED
-    *(location+7) = (color >> 16) & 255;  // RED
-    *(location+8) = (color >> 16) & 255;  // RED
-    *(location+9) = (color >> 16) & 255;  // RED
-*/
-}
-
-
-
 
 
 typedef struct {
@@ -81,6 +15,52 @@ typedef struct {
 } vgaframebuffer_t;
 
 vgaframebuffer_t vga2;
+
+uint32 rgb16_to_rgb32(u16 a)
+{
+/* 1. Extract the red, green and blue values */
+
+/* from rrrr rggg gggb bbbb */
+uint32 r = (a & 0xF800) >>11;
+uint32 g = (a & 0x07E0) >>5;
+uint32 b = (a & 0x001F);
+
+/* 2. Convert them to 0-255 range:
+There is more than one way. You can just shift them left:
+to 00000000 rrrrr000 gggggg00 bbbbb000
+r <<= 3;
+g <<= 2;
+b <<= 3;
+But that means your image will be slightly dark and
+off-colour as white 0xFFFF will convert to F8,FC,F8
+So instead you can scale by multiply and divide: */
+r = r * 255 / 31;
+g = g * 255 / 63;
+b = b * 255 / 31;
+/* This ensures 31/31 converts to 255/255 */
+
+/* 3. Construct your 32-bit format (this is 0RGB): */
+//return (r << 16) | (g << 8) | b;
+return (b << 16) | (g << 8) | r;
+
+
+/* Or for BGR0: */
+//return (r << 8) | (g << 16) | (b << 24);
+}
+
+
+
+void setPixel(int x, int y, u16 color) {
+	if ((x >= 240) || (y >= 160))
+		return;
+
+      void *fb = (void *) (unsigned long) mbi->framebuffer_addr;
+                uint32 *pixel
+                  = fb + mbi->framebuffer_pitch * y + 4 * x;
+//	 *pixel = color;
+		*pixel = rgb16_to_rgb32(color);
+
+}
 
 void pixeld(int x, int y, int color) {
 	if (x > vga2.width || y > vga2.height) return;
@@ -99,19 +79,30 @@ void linea()
 
 
 
-
-
-//multiboot_info_t *mbi;
-
 void pixel(unsigned x, unsigned y, uint32 color)
 {
-      //uint32 color;
       void *fb = (void *) (unsigned long) mbi->framebuffer_addr;
-//          color = 0x0000ffff;
                 uint32 *pixel
                   = fb + mbi->framebuffer_pitch * y + 4 * x;
                 *pixel = color;
-//	while(1);
 }
+
+
+void paint_screen(){
+
+        uint32 color = 0x00ffff00;
+        int i,j,x,y;
+        open(VGA, NULL, 0);
+        for (y=0; y<VGA_HEIGHT; y++) {
+        	for (x=0; x<VGA_WIDTH; x++) {
+                	pixel(x, y, color);
+        	}
+                sleepms(1);
+        }
+        close(VGA);
+
+}
+
+
 
 
