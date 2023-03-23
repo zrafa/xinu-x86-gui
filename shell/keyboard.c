@@ -18,13 +18,13 @@ process keyboard_p (
 	*/
 	
 	char texto[10];
-	unsigned char buf[1];
+	unsigned char buf;
 	
 	open(KEYBOARD, NULL, 0);
 	while(1) {
-		read(KEYBOARD, buf, 3);
+		read(KEYBOARD, &buf, 3);
 
-		unsigned char record_key = buf[0];
+		unsigned char record_key = buf;
 
 		// print message on screen
 		char message_on_screen[80];
