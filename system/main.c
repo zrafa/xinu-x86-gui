@@ -17,6 +17,7 @@ process	main(void)
 	recvclr();
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));
 	resume(create(mouse_p, 1024, 50, "mouse", 1, CONSOLE));
+	resume(create(keyboard_p, 1024, 50, "keyboard", 1, CONSOLE));
 
 	/* Wait for shell to exit and recreate it */
 

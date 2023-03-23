@@ -1,7 +1,6 @@
 /* kbdread.c  -  kbdread */
 
 #include <xinu.h>
-#include <mouse.h>
 
 /*------------------------------------------------------------------------
  * kbdread  -  Read the status of the keyboard driver
@@ -13,5 +12,6 @@ devcall	kbdread (
           uint32        count           /* Length of buffer             */
 	)
 {
+	memcpy(buffer, &key, sizeof(key));
 	return OK;
 }

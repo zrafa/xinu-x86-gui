@@ -3,7 +3,6 @@
 /* micehandler.c - micehandler */
 
 #include <xinu.h>
-#include <mouse.h>
 #include <vga.h>
 
 /*------------------------------------------------------------------------

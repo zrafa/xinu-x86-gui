@@ -6,5 +6,6 @@
 #define KEYBOARD_CMDREG 0x64   // :Command Register(Read\Write)
 
 
-extern unsigned char kblayout [128];  // { ... } Fill your layout yourself 
+//extern unsigned char kblayout [128];  // { ... } Fill your layout yourself
 
+extern unsigned char key;

@@ -1,7 +1,6 @@
 /* miceinit.c  -  miceinit */
 
 #include <xinu.h>
-#include <mouse.h>
 
 struct	mouse_t	mouse;
 

@@ -44,12 +44,12 @@ process mouse_p (
 		 	sprintf(texto, "mouse x: %d  y: %d    left : 1       ", mouse_x, mouse_y);
 		else
 		 	sprintf(texto, "mouse x: %d  y: %d    left : 0       ", mouse_x, mouse_y);
-		pixel(old_x, old_y, 0x00ffff00);
+		//pixel(old_x, old_y, 0x00ffff00);
 		pixel(mouse_x, mouse_y, 0x00ff0000);
 		print_text_on_vga(10, 10, texto);
 		old_x = mouse_x; old_y = mouse_y;
 		c = 0;
-		sleepms(10);
+		sleepms(1);
 
 	}
 	close(MOUSE);

@@ -1,0 +1,2989 @@
+ascdate.o: ../system/ascdate.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+bufinit.o: ../system/bufinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+chprio.o: ../system/chprio.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+clkhandler.o: ../system/clkhandler.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+clkinit.o: ../system/clkinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+close.o: ../system/close.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+conf.o: ../system/conf.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+control.o: ../system/control.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+create.o: ../system/create.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+evec.o: ../system/evec.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+exit.o: ../system/exit.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+freebuf.o: ../system/freebuf.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+freemem.o: ../system/freemem.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+getbuf.o: ../system/getbuf.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getc.o: ../system/getc.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getdev.o: ../system/getdev.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getitem.o: ../system/getitem.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+getmem.o: ../system/getmem.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getpid.o: ../system/getpid.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getprio.o: ../system/getprio.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+getstk.o: ../system/getstk.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+getticks.o: ../system/getticks.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+gettime.o: ../system/gettime.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+getutime.o: ../system/getutime.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+i386.o: ../system/i386.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/icu.h
+init.o: ../system/init.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+initialize.o: ../system/initialize.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+insert.o: ../system/insert.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+insertd.o: ../system/insertd.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ioerr.o: ../system/ioerr.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ionull.o: ../system/ionull.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+kill.o: ../system/kill.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+kprintf.o: ../system/kprintf.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/stdarg.h
+main.o: ../system/main.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+mark.o: ../system/mark.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+meminit.o: ../system/meminit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+mkbufpool.o: ../system/mkbufpool.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+newqueue.o: ../system/newqueue.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+open.o: ../system/open.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+panic.o: ../system/panic.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+pci.o: ../system/pci.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ptclear.o: ../system/ptclear.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ptcount.o: ../system/ptcount.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ptcreate.o: ../system/ptcreate.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ptdelete.o: ../system/ptdelete.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ptinit.o: ../system/ptinit.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ptrecv.o: ../system/ptrecv.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ptreset.o: ../system/ptreset.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ptsend.o: ../system/ptsend.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+putc.o: ../system/putc.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+queue.o: ../system/queue.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+read.o: ../system/read.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ready.o: ../system/ready.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+receive.o: ../system/receive.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+recvclr.o: ../system/recvclr.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+recvtime.o: ../system/recvtime.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+resched.o: ../system/resched.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+resume.o: ../system/resume.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+seek.o: ../system/seek.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+semcount.o: ../system/semcount.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+semcreate.o: ../system/semcreate.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+semdelete.o: ../system/semdelete.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+semreset.o: ../system/semreset.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+send.o: ../system/send.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+signal.o: ../system/signal.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+signaln.o: ../system/signaln.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+sleep.o: ../system/sleep.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+stacktrace.o: ../system/stacktrace.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+suspend.o: ../system/suspend.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+unsleep.o: ../system/unsleep.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+userret.o: ../system/userret.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+wait.o: ../system/wait.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+wakeup.o: ../system/wakeup.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+write.o: ../system/write.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+xdone.o: ../system/xdone.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+yield.o: ../system/yield.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+abs.o: ../lib/abs.c /usr/include/stdc-predef.h
+atoi.o: ../lib/atoi.c /usr/include/stdc-predef.h
+atol.o: ../lib/atol.c /usr/include/stdc-predef.h
+bzero.o: ../lib/bzero.c /usr/include/stdc-predef.h
+ctype_.o: ../lib/ctype_.c /usr/include/stdc-predef.h ../include/ctype.h
+doprnt.o: ../lib/doprnt.c /usr/include/stdc-predef.h ../include/stdarg.h
+doscan.o: ../lib/doscan.c /usr/include/stdc-predef.h ../include/ctype.h
+fdoprnt.o: ../lib/fdoprnt.c /usr/include/stdc-predef.h \
+ ../include/stdarg.h
+fgetc.o: ../lib/fgetc.c /usr/include/stdc-predef.h
+fgets.o: ../lib/fgets.c /usr/include/stdc-predef.h
+fprintf.o: ../lib/fprintf.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/stdarg.h
+fputc.o: ../lib/fputc.c /usr/include/stdc-predef.h
+fputs.o: ../lib/fputs.c /usr/include/stdc-predef.h
+fscanf.o: ../lib/fscanf.c /usr/include/stdc-predef.h
+getchar.o: ../lib/getchar.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+labs.o: ../lib/labs.c /usr/include/stdc-predef.h
+memchr.o: ../lib/memchr.c /usr/include/stdc-predef.h
+memcmp.o: ../lib/memcmp.c /usr/include/stdc-predef.h
+memcpy.o: ../lib/memcpy.c /usr/include/stdc-predef.h
+memset.o: ../lib/memset.c /usr/include/stdc-predef.h
+printf.o: ../lib/printf.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/stdarg.h
+putchar.o: ../lib/putchar.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+qsort.o: ../lib/qsort.c /usr/include/stdc-predef.h
+rand.o: ../lib/rand.c /usr/include/stdc-predef.h ../include/stdlib.h
+sprintf.o: ../lib/sprintf.c /usr/include/stdc-predef.h \
+ ../include/stdarg.h
+sscanf.o: ../lib/sscanf.c /usr/include/stdc-predef.h
+strchr.o: ../lib/strchr.c /usr/include/stdc-predef.h
+strcmp.o: ../lib/strcmp.c /usr/include/stdc-predef.h
+strcpy.o: ../lib/strcpy.c /usr/include/stdc-predef.h
+strlen.o: ../lib/strlen.c /usr/include/stdc-predef.h
+strncat.o: ../lib/strncat.c /usr/include/stdc-predef.h
+strncmp.o: ../lib/strncmp.c /usr/include/stdc-predef.h
+strncpy.o: ../lib/strncpy.c /usr/include/stdc-predef.h
+strnlen.o: ../lib/strnlen.c /usr/include/stdc-predef.h
+strrchr.o: ../lib/strrchr.c /usr/include/stdc-predef.h
+strstr.o: ../lib/strstr.c /usr/include/stdc-predef.h
+text_on_vga.o: ../lib/text_on_vga.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/font.h
+vga.o: ../lib/vga.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/vga.h
+ttycontrol.o: ../device/tty/ttycontrol.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttygetc.o: ../device/tty/ttygetc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyhandle_in.o: ../device/tty/ttyhandle_in.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyhandle_out.o: ../device/tty/ttyhandle_out.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyhandler.o: ../device/tty/ttyhandler.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyinit.o: ../device/tty/ttyinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttykickout.o: ../device/tty/ttykickout.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyputc.o: ../device/tty/ttyputc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttyread.o: ../device/tty/ttyread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ttywrite.o: ../device/tty/ttywrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+mount.o: ../device/nam/mount.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+naminit.o: ../device/nam/naminit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+nammap.o: ../device/nam/nammap.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+namopen.o: ../device/nam/namopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+82545EMInit.o: ../device/eth/82545EMInit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ethcontrol.o: ../device/eth/ethcontrol.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ethhandler.o: ../device/eth/ethhandler.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ethinit.o: ../device/eth/ethinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ethread.o: ../device/eth/ethread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ethwrite.o: ../device/eth/ethwrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsbufalloc.o: ../device/rds/rdsbufalloc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsclose.o: ../device/rds/rdsclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdscomm.o: ../device/rds/rdscomm.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdscontrol.o: ../device/rds/rdscontrol.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsinit.o: ../device/rds/rdsinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsopen.o: ../device/rds/rdsopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsprocess.o: ../device/rds/rdsprocess.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdsread.o: ../device/rds/rdsread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rdswrite.o: ../device/rds/rdswrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ramclose.o: ../device/ram/ramclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+raminit.o: ../device/ram/raminit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+ramopen.o: ../device/ram/ramopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+ramread.o: ../device/ram/ramread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+ramwrite.o: ../device/ram/ramwrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+lfdballoc.o: ../device/lfs/lfdballoc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfdbfree.o: ../device/lfs/lfdbfree.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfflush.o: ../device/lfs/lfflush.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfgetmode.o: ../device/lfs/lfgetmode.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfiballoc.o: ../device/lfs/lfiballoc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfibclear.o: ../device/lfs/lfibclear.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfibget.o: ../device/lfs/lfibget.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfibput.o: ../device/lfs/lfibput.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflclose.o: ../device/lfs/lflclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflcontrol.o: ../device/lfs/lflcontrol.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflgetc.o: ../device/lfs/lflgetc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflinit.o: ../device/lfs/lflinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflputc.o: ../device/lfs/lflputc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflread.o: ../device/lfs/lflread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflseek.o: ../device/lfs/lflseek.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lflwrite.o: ../device/lfs/lflwrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfscheck.o: ../device/lfs/lfscheck.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+lfsckfmt.o: ../device/lfs/lfsckfmt.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+lfscreate.o: ../device/lfs/lfscreate.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/ramdisk.h
+lfsetup.o: ../device/lfs/lfsetup.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfsinit.o: ../device/lfs/lfsinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lfsopen.o: ../device/lfs/lfsopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+lftruncate.o: ../device/lfs/lftruncate.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflclose.o: ../device/rfs/rflclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflgetc.o: ../device/rfs/rflgetc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflinit.o: ../device/rfs/rflinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflputc.o: ../device/rfs/rflputc.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflread.o: ../device/rfs/rflread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflseek.o: ../device/rfs/rflseek.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rflwrite.o: ../device/rfs/rflwrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfscomm.o: ../device/rfs/rfscomm.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfscontrol.o: ../device/rfs/rfscontrol.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfsgetmode.o: ../device/rfs/rfsgetmode.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfsinit.o: ../device/rfs/rfsinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfsndmsg.o: ../device/rfs/rfsndmsg.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+rfsopen.o: ../device/rfs/rfsopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+vgaclose.o: ../device/vga/vgaclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+vgainit.o: ../device/vga/vgainit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/vga.h
+vgaopen.o: ../device/vga/vgaopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+vgaread.o: ../device/vga/vgaread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/vga.h
+vgaseek.o: ../device/vga/vgaseek.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/vga.h
+vgawrite.o: ../device/vga/vgawrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/vga.h
+miceclose.o: ../device/mice/miceclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+micehandler.o: ../device/mice/micehandler.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/mouse.h ../include/vga.h
+miceinit.o: ../device/mice/miceinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/mouse.h
+miceopen.o: ../device/mice/miceopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+miceread.o: ../device/mice/miceread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/mouse.h
+miceutils.o: ../device/mice/miceutils.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/mouse.h
+micewrite.o: ../device/mice/micewrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+kbdclose.o: ../device/kbd/kbdclose.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+kbdhandler.o: ../device/kbd/kbdhandler.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/keyboard.h
+kbdinit.o: ../device/kbd/kbdinit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/keyboard.h
+kbdopen.o: ../device/kbd/kbdopen.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+kbdread.o: ../device/kbd/kbdread.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/mouse.h
+kbdwrite.o: ../device/kbd/kbdwrite.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+arp.o: ../net/arp.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+dhcp.o: ../net/dhcp.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+dns.o: ../net/dns.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/dns.h
+dot2ip.o: ../net/dot2ip.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+hexdump.o: ../net/hexdump.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+icmp.o: ../net/icmp.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+ip.o: ../net/ip.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+net.o: ../net/net.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+pdump.o: ../net/pdump.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+tftp.o: ../net/tftp.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/stdlib.h
+udp.o: ../net/udp.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+boss.o: ../shell/galaga/boss.c /usr/include/stdc-predef.h
+enemy.o: ../shell/galaga/enemy.c /usr/include/stdc-predef.h
+galaga.o: ../shell/galaga/galaga.c /usr/include/stdc-predef.h \
+ ../shell/galaga/titlescreen.h ../shell/galaga/playerImage.h \
+ ../shell/galaga/enemy.h ../shell/galaga/boss.h \
+ ../shell/galaga/gameover.h ../shell/galaga/shoot.h
+gameover.o: ../shell/galaga/gameover.c /usr/include/stdc-predef.h
+mylib.o: ../shell/galaga/mylib.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+playerImage.o: ../shell/galaga/playerImage.c /usr/include/stdc-predef.h
+shoot.o: ../shell/galaga/shoot.c /usr/include/stdc-predef.h
+titlescreen.o: ../shell/galaga/titlescreen.c /usr/include/stdc-predef.h
+addargs.o: ../shell/addargs.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h \
+ ../include/shprototypes.h
+cmdtab.o: ../shell/cmdtab.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/shprototypes.h
+lexan.o: ../shell/lexan.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+mouse.o: ../shell/mouse.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/vga.h
+shell.o: ../shell/shell.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h ../include/shprototypes.h
+xsh_argecho.o: ../shell/xsh_argecho.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_arp.o: ../shell/xsh_arp.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_cat.o: ../shell/xsh_cat.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_clear.o: ../shell/xsh_clear.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_date.o: ../shell/xsh_date.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_devdump.o: ../shell/xsh_devdump.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_echo.o: ../shell/xsh_echo.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_exit.o: ../shell/xsh_exit.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_help.o: ../shell/xsh_help.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_kill.o: ../shell/xsh_kill.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_memdump.o: ../shell/xsh_memdump.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_memstat.o: ../shell/xsh_memstat.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_netinfo.o: ../shell/xsh_netinfo.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_ping.o: ../shell/xsh_ping.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_ps.o: ../shell/xsh_ps.c /usr/include/stdc-predef.h ../include/xinu.h \
+ ../include/kernel.h ../include/conf.h ../include/process.h \
+ ../include/queue.h ../include/resched.h ../include/mark.h \
+ ../include/semaphore.h ../include/memory.h ../include/bufpool.h \
+ ../include/clock.h ../include/ports.h ../include/io.h ../include/uart.h \
+ ../include/tty.h ../include/device.h ../include/interrupt.h \
+ ../include/file.h ../include/rfilesys.h ../include/rdisksys.h \
+ ../include/lfilesys.h ../include/ether.h ../include/net.h \
+ ../include/ip.h ../include/arp.h ../include/udp.h ../include/dhcp.h \
+ ../include/icmp.h ../include/tftp.h ../include/name.h ../include/shell.h \
+ ../include/date.h ../include/prototypes.h ../include/delay.h \
+ ../include/i386.h ../include/pci.h ../include/e1000e.h \
+ ../include/quark_pdat.h ../include/quark_irq.h ../include/multiboot.h \
+ ../include/stdio.h ../include/string.h
+xsh_sleep.o: ../shell/xsh_sleep.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_udpdump.o: ../shell/xsh_udpdump.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_udpecho.o: ../shell/xsh_udpecho.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_udpserver.o: ../shell/xsh_udpserver.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+xsh_uptime.o: ../shell/xsh_uptime.c /usr/include/stdc-predef.h \
+ ../include/xinu.h ../include/kernel.h ../include/conf.h \
+ ../include/process.h ../include/queue.h ../include/resched.h \
+ ../include/mark.h ../include/semaphore.h ../include/memory.h \
+ ../include/bufpool.h ../include/clock.h ../include/ports.h \
+ ../include/io.h ../include/uart.h ../include/tty.h ../include/device.h \
+ ../include/interrupt.h ../include/file.h ../include/rfilesys.h \
+ ../include/rdisksys.h ../include/lfilesys.h ../include/ether.h \
+ ../include/net.h ../include/ip.h ../include/arp.h ../include/udp.h \
+ ../include/dhcp.h ../include/icmp.h ../include/tftp.h ../include/name.h \
+ ../include/shell.h ../include/date.h ../include/prototypes.h \
+ ../include/delay.h ../include/i386.h ../include/pci.h \
+ ../include/e1000e.h ../include/quark_pdat.h ../include/quark_irq.h \
+ ../include/multiboot.h ../include/stdio.h ../include/string.h
+clkdisp.o: ../system/clkdisp.S /usr/include/stdc-predef.h \
+ ../include/icu.s
+ctxsw.o: ../system/ctxsw.S /usr/include/stdc-predef.h
+intr.o: ../system/intr.S /usr/include/stdc-predef.h ../include/icu.s
+start.o: ../system/start.S /usr/include/stdc-predef.h
+ttydispatch.o: ../device/tty/ttydispatch.S /usr/include/stdc-predef.h \
+ ../include/icu.s
+ethdispatch.o: ../device/eth/ethdispatch.S /usr/include/stdc-predef.h \
+ ../include/icu.s
+micedispatch.o: ../device/mice/micedispatch.S /usr/include/stdc-predef.h \
+ ../include/icu.s
+kbddispatch.o: ../device/kbd/kbddispatch.S /usr/include/stdc-predef.h \
+ ../include/icu.s

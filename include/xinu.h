@@ -41,3 +41,7 @@
 #include <multiboot.h>
 #include <stdio.h>
 #include <string.h>
+
+/* for GUI */
+#include <mouse.h>
+#include <keyboard.h>

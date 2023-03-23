@@ -516,7 +516,7 @@ extern	syscall	send(pid32, umsg32);
 /* in file shell.c */
 extern 	process shell(did32);
 extern 	process mouse_p(did32);
-extern 	process keyboard(did32);
+extern 	process keyboard_p(did32);
 
 /* in file signal.c */
 extern	syscall	signal(sid32);

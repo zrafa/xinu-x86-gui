@@ -1,7 +1,6 @@
 /* source: https://forum.osdev.org/viewtopic.php?t=10247 */
 
 #include <xinu.h>
-#include <mouse.h>
 
 //Mouse.inc by SANiK
 //License: Use as you wish, except to cause damage

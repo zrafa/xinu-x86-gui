@@ -1,10 +1,9 @@
 /* kbdinit.c  -  kbdinit */
 
 #include <xinu.h>
-#include <keyboard.h>
 
-unsigned char kblayout [128];  // { ... } Fill your layout yourself 
-
+//unsigned char kblayout [128];  // { ... } Fill your layout yourself 
+unsigned char key;
 
 void keyboard_wait(byte a_type) //unsigned char
 {
@@ -45,9 +44,9 @@ devcall	kbdinit (
 	)
 {
 
-	int i;
-	for (i=0; i<128; i++)
-		kblayout[i] = i;
+	// int i;
+	// for (i=0; i<128; i++)
+	// 	kblayout[i] = i;
 	//keyboard_restart();
 
 

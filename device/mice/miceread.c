@@ -1,7 +1,6 @@
 /* miceread.c  -  miceread */
 
 #include <xinu.h>
-#include <mouse.h>
 
 /*------------------------------------------------------------------------
  * miceread  -  Read the status of the mouse driver
