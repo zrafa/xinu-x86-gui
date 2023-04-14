@@ -4,8 +4,6 @@
 
 #include <xinu.h>
 
-unsigned char tecla_actual;
-
 unsigned char get_scancode()
 {
     unsigned char inputdata;
@@ -20,28 +18,12 @@ unsigned char get_scancode()
  */
 void kbdhandler(void)
 {
-	key = get_scancode();
+	int n;
+
+	kbdc.key = get_scancode();
+	n = semcount(kbdc.kbdsem);
+	if (n < 1)
+		signal(kbdc.kbdsem);
 	
-	// char t[80];
-	// unsigned char scancode;
-
-	// unsigned int shift_key = 0;
-	// int i = 10;
-
-	// scancode = get_scancode();
-	// tecla_actual = scancode;
-	// sprintf(t, "kbd: 0x%x     ", scancode);
-	// print_text_on_vga(10, 300, t);
-
-	// if(scancode == 0x2A) {
-	// 	shift_key = 1;//Shift key is pressed
-	// } else if(scancode & 0xAA) {
-	// 	shift_key = 0;//Shift Key is not pressed
-	// } else {          
-	// 	if (scancode & 0x80) {
-	// 		int shiftaltctrl = 1;//Put anything to see what special keys were pressed
-	// 	} else {
-	// 	}
-	// }
 }
 

@@ -12,6 +12,7 @@ devcall	kbdread (
           uint32        count           /* Length of buffer             */
 	)
 {
-	memcpy(buffer, &key, sizeof(key));
+	wait(kbdc.kbdsem);
+	memcpy(buffer, &(kbdc.key), sizeof(kbdc.key));
 	return OK;
 }

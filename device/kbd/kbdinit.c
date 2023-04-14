@@ -3,7 +3,8 @@
 #include <xinu.h>
 
 //unsigned char kblayout [128];  // { ... } Fill your layout yourself 
-unsigned char key;
+//unsigned char key;
+struct  kbdcblk kbdc;
 
 void keyboard_wait(byte a_type) //unsigned char
 {
@@ -44,10 +45,9 @@ devcall	kbdinit (
 	)
 {
 
-	// int i;
-	// for (i=0; i<128; i++)
-	// 	kblayout[i] = i;
-	//keyboard_restart();
+        /* Initialize values in the kbd control block */
+        kbdc.kbdsem = semcreate(0);
+        kbdc.key = 0;
 
 
 	byte _status;  //unsigned char

@@ -1,3 +1,4 @@
+/* kbd.h : ps/2 keyboard struct for kbd control driver */
 
 #define inportb(p)      inb(p)
 #define outportb(p,v)   outb(p,v)
@@ -8,4 +9,9 @@
 
 //extern unsigned char kblayout [128];  // { ... } Fill your layout yourself
 
-extern unsigned char key;
+struct  kbdcblk {                       /* Kbd line control block       */
+        unsigned char   key;            /* key data */
+        sid32   kbdsem;                 /* Input semaphore              */
+};
+
+extern  struct  kbdcblk kbdc;

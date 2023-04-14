@@ -6,7 +6,7 @@
 #include "gameover.h"
 #include "shoot.h"
 
-extern unsigned char tecla_actual;
+unsigned char tecla_actual;
 typedef unsigned short u16;
 #define RGB(r, g, b) (r | (g << 5) | (b << 10))
 // #define REG_DISPCNT *(u16 *)0x4000000
