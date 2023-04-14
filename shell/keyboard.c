@@ -22,7 +22,7 @@ process keyboard_p (
 	
 	open(KEYBOARD, NULL, 0);
 	while(1) {
-		read(KEYBOARD, &buf, 3);
+		read(KEYBOARD, &buf, 1);
 
 		unsigned char record_key = buf;
 

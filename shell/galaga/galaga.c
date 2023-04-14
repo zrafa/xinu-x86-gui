@@ -1,3 +1,4 @@
+#include <xinu.h>
 
 #include "titlescreen.h"
 #include "playerImage.h"
@@ -35,13 +36,14 @@ typedef unsigned short u16;
 #define BUTTON_B	0x25 
 #define BUTTON_SELECT	0x03
 #define BUTTON_START	0x2c
+#define BUTTON_QUIT	0x07
 #define BUTTON_RIGHT	0x1f
 #define BUTTON_LEFT	0x1e	
 #define BUTTON_UP	'w'
 #define BUTTON_DOWN 	's'	
 #define BUTTON_R	'1'
 #define BUTTON_L	'2'
-#define KEY_DOWN_NOW(key)  (tecla_actual == key)
+//#define KEY_DOWN_NOW(key)  (tecla_actual == key)
 
 //variable definitions
 #define playerspeed 2
@@ -49,6 +51,24 @@ typedef unsigned short u16;
 #define fastXSpeed 3
 #define fastYSpeed 2
 
+void reading_keys()
+{
+        
+        open(KEYBOARD, NULL, 0);
+        while(1) {
+                read(KEYBOARD, &tecla_actual, 1);
+	}
+}
+
+int KEY_DOWN_NOW(char key)
+{
+	if (tecla_actual == key) {
+		tecla_actual = -1;
+		return 1;
+	}
+	
+	return 0;
+}
 
 void setPixel(int x, int y, u16 color);
 void drawRect(int x, int y, int width, int height, u16 color);
@@ -81,7 +101,7 @@ int shoots[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 int curr_shot = 0;
 #define N_SHOOTS 10
 
-int galaga(void) {
+void initialize(void) {
 	//easy enemy wave set setup
 	struct Enemy easyEnemies[9];
 	for (int a = 0; a < 9; a++) {
@@ -108,15 +128,6 @@ int galaga(void) {
 	fast.fastX = 0;
 	fast.fastY = 30;
 
-	// REG_DISPCNT = MODE3 | BG2_ENABLE;
-	//initalize title screen
-	print_text_on_vga(10, 20, "GALAGA ");
-	drawImage3(0, 0, 240, 160, titlescreen);
-	while(1) {
-		if (KEY_DOWN_NOW(BUTTON_START)) {
-			break;
-		}
-	}	
 	//start black screen for drawing
 	for (int i = 0; i < 240; i++) {
 		for (int j = 0; j < 160; j++) {
@@ -163,6 +174,7 @@ int galaga(void) {
 			drawImage3(easyEnemies[a].enemyX, easyEnemies[a].enemyY, 20, 20, enemy);
 			if (collision(easyEnemies[a].enemyX, easyEnemies[a].enemyY, 20, 20, player.playerX, player.playerY)) {
 				endGame();
+				return;
 			}	
 			if (easyEnemies[a].enemyY >= 160) {
 				easyEnemies[a].enemyY = 0;
@@ -195,6 +207,7 @@ int galaga(void) {
 			drawImage3(hardEnemies[a].enemyX, hardEnemies[a].enemyY, 20, 20, enemy);
 			if (collision(hardEnemies[a].enemyX, hardEnemies[a].enemyY, 20, 20, player.playerX, player.playerY)) {
 				endGame();
+				return;
 			}	
 			if (hardEnemies[a].enemyY >= 228) {
 				hardEnemies[a].enemyY = 0;
@@ -216,6 +229,7 @@ int galaga(void) {
 		drawHollowRect(fast.fastX - 2, fast.fastY - 2, 19, 19, BLACK);
 		if(collision(fast.fastX, fast.fastY, 15, 15, player.playerX, player.playerY)) {
 			endGame();
+			return;
 		}		
 //RAFA		fast.fastX += fastXSpeed;
 //RAFA		fast.fastY += fastYSpeed;
@@ -268,12 +282,35 @@ void endGame() {
 	//start Game Over State
 	drawImage3(0, 0, 240, 160, gameover);
 	drawHollowRect(0, 0, 240, 160, WHITE);
+
+	while(! (KEY_DOWN_NOW(BUTTON_SELECT))); 
+}
+
+void galaga()
+{
+	int pid;
+	pid = create(reading_keys, 1024, 20, "keys", 0);
+	resume(pid);
+
 	while(1) {
-		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
-			galaga();
-		}
-		if (KEY_DOWN_NOW(BUTTON_START))	{
-			galaga();
+		//initalize title screen
+		print_text_on_vga(10, 20, "GALAGA ");
+		drawImage3(0, 0, 240, 160, titlescreen);
+
+		while(1) {
+			if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+				initialize();
+				break;
+
+			} else if (KEY_DOWN_NOW(BUTTON_QUIT)) {
+				drawHollowRect(0, 0, 240, 160, BLACK);
+        			close(KEYBOARD);
+				kill(pid);	
+				kill(getpid());
+			}
+			
 		}
 	}
+
+
 }
