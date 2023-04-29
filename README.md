@@ -26,13 +26,10 @@ grub-pc-bin
 
 ```
 # download the source code
-wget http://se.fi.uncoma.edu.ar/so/misc/xinu-pc.tar.gz
-
-# unpackage
-tar xvf xinu-pc.tar.gz
+git clone https://github.com/zrafa/xinu-x86-gui
 
 # building
-cd xinu-pc/compile/
+cd xinu-x86-gui/compile
 make clean
 make
 
