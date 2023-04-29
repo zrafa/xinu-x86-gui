@@ -5,7 +5,7 @@ Xinu OS for x86 with graphical vga, mouse and keyboard environment (gui)
 
 (in Debian, Ubuntu, Linux Minut or alike)
 
-Install the below required packages firts
+Install the below required packages firt:
 
 ```
 bison
