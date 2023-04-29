@@ -1,6 +1,8 @@
 # xinu-x86-gui
 Xinu OS for x86 with graphical vga, mouse and keyboard environment (gui)
 
+![xinu x86 gui block diagram (blue fonts indicate software developed/added to Xinu on this project).](https://github.com/assets/images/base-octocat.svg)
+
 ## Instructions to run xinu-x86-gui on QEMU
 
 (in Debian, Ubuntu, Linux Minut or alike)
