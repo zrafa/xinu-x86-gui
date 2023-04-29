@@ -7,7 +7,7 @@ Xinu OS for x86 with graphical vga, mouse and keyboard environment (gui)
 
 Install the below required packages firts
 
-``
+```
 bison
 flex
 gawk
@@ -16,13 +16,13 @@ qemu-system-x86
 xorriso
 grub-common
 grub-pc-bin
-``
+```
 
 
 
 ### Download, build and test Xinu
 
-``
+```
 # download the source code
 wget http://se.fi.uncoma.edu.ar/so/misc/xinu-pc.tar.gz
 
@@ -39,7 +39,7 @@ make run-qemu
 
 # if you want to get the qemu console (shell)
 CTRL+ALT+3
-``
+```
 
 
 
