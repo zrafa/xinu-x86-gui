@@ -1,7 +1,8 @@
 # xinu-x86-gui
 Xinu OS for x86 with graphical vga, mouse and keyboard environment (gui)
 
-# Instructions to run xinu-x86-gui on QEMU
+Instructions to run xinu-x86-gui on QEMU
+----------------------------------------
 
 (in Debian, Ubuntu, Linux Minut or alike)
 
