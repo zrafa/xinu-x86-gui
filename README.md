@@ -8,6 +8,7 @@ Instructions to run xinu-x86-gui on QEMU
 
 Install the below required packages firts
 
+`code`
 bison
 flex
 gawk
@@ -16,12 +17,14 @@ qemu-system-x86
 xorriso
 grub-common
 grub-pc-bin
+`code`
 
 
 
 Download, build and test Xinu
 -----------------------------
 
+`code`
 # download the source code
 wget http://se.fi.uncoma.edu.ar/so/misc/xinu-pc.tar.gz
 
@@ -39,5 +42,6 @@ make run-qemu
 # if you want to get the qemu console (shell)
 CTRL+ALT+3
 
+`code`
 
 
