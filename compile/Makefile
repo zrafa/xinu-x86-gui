@@ -164,7 +164,8 @@ qemu-iso-pre: xinu test/grub/grub.cfg
 # Generates the Grub2-based ISO - see bochsrc.txt for info.
 # Requires grub2-mkrescue and xorriso be installed!
 run-qemu: qemu-iso-pre
-	grub-mkrescue -o disk.iso test/img 
+	echo OTRO GRUB PARA PROBAR: grub-mkrescue -o disk.iso test/img
+	grub-mkrescue -d /usr/lib/grub/i386-pc -o disk.iso test/img
 	qemu-system-i386 -cdrom disk.iso
 
 
