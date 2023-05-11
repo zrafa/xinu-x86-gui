@@ -1,6 +1,6 @@
 /* uart.h - definintions for the NS16550 uart serial hardware */
 
-#define UART_BAUD	115200	/* Default console baud rate.		*/
+#define UART_BAUD	9600	/* Default console baud rate.		*/
 #define	UART_OUT_IDLE	0x0016	/* determine if transmit idle		*/
 #define	UART_FIFO_SIZE	16	/* chars in UART onboard output FIFO	*/
 				/* (16 for later UART chips)		*/

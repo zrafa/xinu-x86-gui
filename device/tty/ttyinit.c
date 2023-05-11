@@ -56,7 +56,7 @@ devcall	ttyinit(
 	/* Set baud rate */
 	io_outb(uptr->lcr, UART_LCR_DLAB);
 	io_outb(uptr->dlm, 0x00);
-	io_outb(uptr->dll, 0x18);
+	io_outb(uptr->dll, 0x0c);
 
 	io_outb(uptr->lcr,UART_LCR_8N1);/* 8 bit char, No Parity, 1 Stop*/
 	io_outb(uptr->fcr, 0x00);	/* Disable FIFO for now		*/
