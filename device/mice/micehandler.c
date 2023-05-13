@@ -10,29 +10,16 @@
  *------------------------------------------------------------------------
  */
 
+extern int mouse_mode;
+
 int mouse_cycle = 0;
 unsigned char mouse_byte[3];
 
-void micehandler(uint8 data)
+void finish_mice(void)
 {
 	uint8 d, state;
-	int i, rel_x, rel_y;
+	int rel_x, rel_y;
 
-	switch(mouse_cycle) {
-	case 0:
-		//mouse_byte[0]=inportb(MOUSE_DATA_PORT);
-		mouse_byte[0]=data;
-		if (mouse_byte[0] == 0xAA) {		/* hot plug: re init mouse */
-			return;
-		}
-		mouse_cycle++;
-		break;
-	case 1:
-		mouse_byte[1]=data;
-		mouse_cycle++;
-		break;
-	case 2:
-		mouse_byte[2]=data;
 		mouse_cycle=0;
 
 		state = mouse_byte[0];
@@ -52,6 +39,31 @@ void micehandler(uint8 data)
 		mouse.y = (mouse.y >= VGA_HEIGHT) ? VGA_HEIGHT : mouse.y;
 		mouse.x = (mouse.x < 0) ? 0 : mouse.x;
 		mouse.x = (mouse.x >= VGA_WIDTH) ? VGA_WIDTH : mouse.x;
+}
+
+void micehandler(uint8 data)
+{
+
+	switch(mouse_cycle) {
+	case 0:
+		//mouse_byte[0]=inportb(MOUSE_DATA_PORT);
+		mouse_byte[0]=data;
+		if (mouse_byte[0] == 0xAA) {		/* hot plug: re init mouse */
+			return;
+		}
+		mouse_cycle++;
+		break;
+	case 1:
+		mouse_byte[1]=data;
+		mouse_cycle++;
+		break;
+	case 2:
+		mouse_byte[2]=data;
+		finish_mice();
+		break;
+	case 3:
+		mouse_byte[3]=data;
+		finish_mice();
 		break;
 	}
 }
