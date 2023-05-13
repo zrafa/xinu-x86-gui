@@ -609,7 +609,8 @@ extern void pixel(unsigned x, unsigned y, uint32 color2);
 
 /* in device/mice* files */
 extern devcall miceclose ( struct dentry       *devptr);
-extern void micehandler(void);
+// extern void micehandler(void);
+extern void micehandler(uint8 data);
 extern devcall miceinit ( struct dentry        *devptr);
 extern devcall miceopen ( struct       dentry  *devptr, char   *name, char     *mode);
 extern devcall miceread ( struct dentry        *devptr, char          *buffer, uint32        count  );
@@ -618,7 +619,9 @@ extern	interrupt	micehandlerirq(void);
 
 /* in device/kbd* files */
 extern devcall kbdclose ( struct dentry       *devptr);
-extern void kbdhandler(void);
+//extern void kbdhandler(void);
+extern void kbdhandler(uint8 data);
+extern void ps2_shared_handler(void);
 extern devcall kbdinit ( struct dentry        *devptr);
 extern devcall kbdopen ( struct       dentry  *devptr, char   *name, char     *mode);
 extern devcall kbdread ( struct dentry        *devptr, char          *buffer, uint32        count  );

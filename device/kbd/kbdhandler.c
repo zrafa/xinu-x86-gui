@@ -16,11 +16,12 @@ unsigned char get_scancode()
  *  kbdhandler  -  Handle an interrupt for the keyboard device
  *------------------------------------------------------------------------
  */
-void kbdhandler(void)
+void kbdhandler(uint8 data)
 {
 	int n;
 
-	kbdc.key = get_scancode();
+	// kbdc.key = get_scancode();
+	kbdc.key = data;
 	n = semcount(kbdc.kbdsem);
 	if (n < 1)
 		signal(kbdc.kbdsem);

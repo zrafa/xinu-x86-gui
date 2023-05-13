@@ -9,7 +9,7 @@
  *  micehandler  -  Handle an interrupt for the mouse device
  *------------------------------------------------------------------------
  */
-void micehandler(void)
+void micehandler(uint8 data)
 {
 	uint8 d, state;
 	int i, rel_x, rel_y;
@@ -20,7 +20,8 @@ void micehandler(void)
 	for (i=0; i<3; i++)
 	switch(mouse_cycle) {
 	case 0:
-		mouse_byte[0]=inportb(MOUSE_DATA_PORT);
+		//mouse_byte[0]=inportb(MOUSE_DATA_PORT);
+		mouse_byte[0]=data;
 		if (mouse_byte[0] == 0xAA) {		/* hot plug: re init mouse */
 			print_text_on_vga(10, 100, "RE INIT");
 			/*
