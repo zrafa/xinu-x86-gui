@@ -40,12 +40,21 @@ process mouse_p (
 		mouse_x = buf[1];
 		mouse_y = buf[2];
 
-		if (buf[0] && 0x01)
-		 	sprintf(texto, "mouse x: %d  y: %d    left : 1       ", mouse_x, mouse_y);
+		if (buf[0] & 0x01)
+		 	sprintf(texto, "mouse x: %d  y: %d    left click       ", mouse_x, mouse_y);
+		else if (buf[0] & 0x02)
+		 	sprintf(texto, "mouse x: %d  y: %d    right click       ", mouse_x, mouse_y);
+		else if (buf[0] & 0x04)
+		 	sprintf(texto, "mouse x: %d  y: %d    middle click       ", mouse_x, mouse_y);
 		else
-		 	sprintf(texto, "mouse x: %d  y: %d    left : 0       ", mouse_x, mouse_y);
-		//pixel(old_x, old_y, 0x00ffff00);
+		 	sprintf(texto, "mouse x: %d  y: %d                      ", mouse_x, mouse_y);
+
+
 		pixel(mouse_x, mouse_y, 0x00ff0000);
+		pixel(mouse_x+1, mouse_y, 0x00ff0000);
+		pixel(mouse_x-1, mouse_y, 0x00ff0000);
+		pixel(mouse_x, mouse_y-1, 0x00ff0000);
+		pixel(mouse_x, mouse_y+1, 0x00ff0000);
 		print_text_on_vga(10, 10, texto);
 		old_x = mouse_x; old_y = mouse_y;
 		c = 0;

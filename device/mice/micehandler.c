@@ -22,17 +22,21 @@ void finish_mice(void)
 
 		mouse_cycle=0;
 
+		if (mouse_byte[0] & 0x80 || mouse_byte[0] & 0x40) {
+			/* x/y overflow? bad packet! */
+			return;
+		}
+
 		state = mouse_byte[0];
+
 		mouse.buttons = state;
+
 		d = mouse_byte[1];
-		//mouse.x = d - ((state << 4) & 0x100);
 		rel_x = d - ((state << 4) & 0x100);
-		d = mouse_byte[2];
-		//mouse.y = d - ((state << 3) & 0x100);
-		rel_y = d - ((state << 3) & 0x100);
-		//mouse.x = rel_x;
-		//mouse.y = rel_y;
 		mouse.x = mouse.x + rel_x;
+
+		d = mouse_byte[2];
+		rel_y = d - ((state << 3) & 0x100);
 		mouse.y = mouse.y + (-1)*rel_y;
 
 		mouse.y = (mouse.y < 0) ? 0 : mouse.y;
@@ -40,6 +44,7 @@ void finish_mice(void)
 		mouse.x = (mouse.x < 0) ? 0 : mouse.x;
 		mouse.x = (mouse.x >= VGA_WIDTH) ? VGA_WIDTH : mouse.x;
 }
+
 
 void micehandler(uint8 data)
 {
