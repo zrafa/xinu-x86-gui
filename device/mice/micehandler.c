@@ -9,41 +9,30 @@
  *  micehandler  -  Handle an interrupt for the mouse device
  *------------------------------------------------------------------------
  */
+
+int mouse_cycle = 0;
+unsigned char mouse_byte[3];
+
 void micehandler(uint8 data)
 {
 	uint8 d, state;
 	int i, rel_x, rel_y;
-	unsigned char mouse_byte[3];
 
-	int mouse_cycle = 0;
-
-	for (i=0; i<3; i++)
 	switch(mouse_cycle) {
 	case 0:
 		//mouse_byte[0]=inportb(MOUSE_DATA_PORT);
 		mouse_byte[0]=data;
 		if (mouse_byte[0] == 0xAA) {		/* hot plug: re init mouse */
-			print_text_on_vga(10, 100, "RE INIT");
-			/*
-			mouse_byte[0]=inportb(MOUSE_DATA_PORT);
-			//Tell the mouse to use default settings
-        		mouse_write(0xF6);
-        		mouse_read();  //Acknowledge
- 
-        		//Enable the mouse
-        		mouse_write(0xF4);
-        		mouse_read();  //Acknowledge
-			*/
 			return;
 		}
 		mouse_cycle++;
 		break;
 	case 1:
-		mouse_byte[1]=inportb(MOUSE_DATA_PORT);
+		mouse_byte[1]=data;
 		mouse_cycle++;
 		break;
 	case 2:
-		mouse_byte[2]=inportb(MOUSE_DATA_PORT);
+		mouse_byte[2]=data;
 		mouse_cycle=0;
 
 		state = mouse_byte[0];
