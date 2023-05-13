@@ -43,7 +43,7 @@ devcall	miceinit (
 	mouse_read();  //Acknowledge
 
 	//Setup the mouse handler: IRQ 12 for mouse
-        set_evec(12 + IRQBASE, (uint32)micehandlerirq);
+        set_evec(12 + IRQBASE, (uint32)ps2handlerirq);
 
 	return OK;
 }

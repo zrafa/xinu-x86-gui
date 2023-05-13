@@ -77,7 +77,7 @@ devcall	kbdinit (
 	}; 
 
 
-	set_evec(1 + IRQBASE, (uint32)kbdhandlerirq);
+	set_evec(1 + IRQBASE, (uint32)ps2handlerirq);
 	//outportb(0x64, 0xF4);
 	//keyboard_read();  //Acknowledge
 
