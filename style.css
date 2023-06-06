@@ -1,0 +1,44 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: right;
+  width: 20%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  float: right;
+  content: "";
+  clear: both;
+  display: table;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 90%;
+  margin: auto;
+  max-width: 800px;
+}
+
+.navbar {
+  background-color: #313236;
+  border-radius: 2px;
+  max-width: 800px;
+}
+
+.navbar a {
+  color: #aaa;
+  display: inline-block;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #ffffff;
+}
+

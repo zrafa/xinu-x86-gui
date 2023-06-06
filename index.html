@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="generator" content="Xinu Visual Interface">
+    <title>Xinu Visual Interface for x86/amd64 platform PC</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="#goasl">Goals</a>
+      <a href="#we-have-we-need">What we need</a>
+      <a href="#tasks">Tasks (TODO)</a>
+      <a href="#references">References</a>
+    </div>
+
+    <h1>Xinu Visual Interface for the x86/amd64 platform PC</h1>
+
+<!--div class="row"-->
+  <div class="column">
+    <img src="xinu-pc4.jpg" alt="Forest" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="sur3.gif" alt="Snow" style="width:100%">
+  </div>
+<!--/div-->
+
+<h3 id="goals">Goals</h3>
+    <p>
+This project aims to add an extension to the Xinu Operating System, whose purpose is to provide a visual interface to the OS, running on current PC platform. 
+</p>
+
+    <p>
+A second goal is be able to run Xinu OS on REAL notebooks and PCs (no just on QEMU, virtualbox, whatever emulator).
+
+<h3 id="we-have-we-need">What we have - What we need </h3>
+<ul>
+<li>Official Xinu runs on x86 Galileo boards, ARM Beagleboard board, and VMs (virtualbox, qemu, tec)</li>
+<li>We have a qemu/PC initial Xinu OS with draft drivers for GUI</li>
+<li>We need some extra pieces to complete the goals</li>
+<ul>
+<li>The system will consist of a few new drivers (vga, keyboard, mouse, vtty).</li>
+<li>Also a GUI layer, which controls the  windows for different processes running on the visual interface.</li>
+<li>Finally, we need a killer app to test everything. Maybe, that "hello world" application, which could have the role of "system testing" or "validation testing", is a virtual terminal where the Xinu Shell runs without any modification.</li>
+</ul>
+</ul>
+
+<h3 id="tasks">Objetives (mostly programming tasks) </h3>
+<ul>
+<li><a href="doc/vga_task.txt">Finish the VGA driver</a> - Jeremias</li>
+<li><a href="doc/xinu_boot_task.txt">Test this Xinu in different PCs/notebooks</a>
+(and fix the boot problems) - Franco </li>
+<li><a href="doc/microui_task.txt">Port microui</a> - JianJun - Leonardo - Facundo</li>
+<li><a href="doc/virtual_terminal_task.txt">Develop a virtual terminal on microui</a> - Jeremias</li>
+<li><a href="doc/vtty_task.txt">Add vtty to lower-half tty?</a> - Nika</li>
+<li><a href="doc/test_everything_task.txt">Test Xinu Shell on virtual terminal</a> (test everything) (fun) </li>
+<li><a href="doc/develop_on_microui_task.txt">Document how easy or hard is 
+	to develop an application on a microui window</a></li>
+<li><a href="doc/mouse_bug_task.txt">Fix Mouse bug on real PC/notebok</a> - Jeremias</li>
+<li><a href="doc/mate_and_coffee_task.txt">Drink mate and coffee</a> (and answer/help on questions) - Doug - Rafa</li>
+</ul>
+
+<img src="pieces.jpg" alt="Blue labels are the needed pieces" style="width:100%;">
+
+<h3 id="references">References</h3>
+<ul>
+<li> <a href="doc/slides.pdf">Slides from first meeting</a></li>
+<li> Xinu Book </li>
+<li> <a href="https://github.com/zrafa/xinu-x86-gui">Source Code of this project</a></li>
+<li> <a href="https://github.com/rxi/microui">Microui</a>
+
+
+
+  </body>
+</html>
+
