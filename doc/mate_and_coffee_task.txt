@@ -1,0 +1,7 @@
+Drin mate and coffee task
+-------------------------
+
+We are dealing with the mate recipe in order to have some relax.
+
+We are modifying this file on the project, with extras bits
+about how to prepare mate, and coffee.
