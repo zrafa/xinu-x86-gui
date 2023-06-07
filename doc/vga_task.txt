@@ -1,0 +1,35 @@
+
+VGA driver task
+---------------
+
+The current driver is a couple of lib functions we added, which are able to
+paint/put pixels with the required colors.
+We must move that VGA code into the proper place (vga driver, using open,
+read, write, close.. primitives).
+On runtime one process will control the display (probably the window manager/
+isual interface, so far, microui).
+
+One option of abstract operations for the vga driver might be:
+
+microui draft code:
+
+open(VGA);
+seek(VGA, 2048);       /* if the screen is 1024x768, 2048 position might be the
+			  first pixel on 3rd line */
+write(VGA, buf, 128);   /* the buf buffer contains the colors of the next  
+                         * pixels to paint on screen, starting at 2048 pixel.
+			 * As we are using 32bpp we would paint the next 32
+			 * pixels. 
+                         */
+
+/* when microui finishes */
+close(VGA);
+
+
+Files
+-----
+
+/device/vga/vga_open.c
+/device/vga/vga_write.c
+....
+
