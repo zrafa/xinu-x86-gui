@@ -3,9 +3,6 @@
 #include <string.h>
 #include <vga.h>
 
-extern void print_text_on_vga(unsigned int x, unsigned int y, const char *text);
-extern void borrar(int x1, int y1, int x2, int y2);
-
 process keyboard_p (
                 did32   dev             /* ID of tty device from which  */
         )                               /*   to accept commands         */

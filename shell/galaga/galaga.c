@@ -70,7 +70,6 @@ int KEY_DOWN_NOW(char key)
 	return 0;
 }
 
-void setPixel(int x, int y, u16 color);
 void drawRect(int x, int y, int width, int height, u16 color);
 void drawHollowRect(int x, int y, int width, int height, u16 color);
 void drawImage3(int x, int y, int width, int height, const u16* image);
