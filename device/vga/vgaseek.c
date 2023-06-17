@@ -12,7 +12,7 @@ devcall	vgaseek (
 	  uint32 pos			/* New file position		*/
 	)
 {
-	vga.pos = pos;
+	vga->pos = pos;
 
 	return OK;
 }

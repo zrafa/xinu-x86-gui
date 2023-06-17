@@ -13,12 +13,18 @@ devcall	vgawrite (
 	uint32        count  /* Length of buffer             */
 	)
 {
- 	//memcpy((vga.addr + vga.pos + 1), buffer, count);
-	//*(vga.addr + vga.pos + 3) = *buffer;
-	*(uint8 *)(vga.addr + vga.pos+1) = 0x1f;
-	//*buffer;
-	//*(vga.addr + vga.pos+2) = *buffer;
-	//*(vga.addr + vga.pos+3) = *buffer;
-	//*(vga.addr + vga.pos+4) = *buffer;
+	/* Find the pixel position in memory */
+	void *fb = ((void *) (uint32) (vga->addr + vga->pos));
+
+	for(uint32 i = 0; i < count; i += sizeof(uint32)){
+		uint32 *pixel = fb;
+
+		/* Take 4 bytes from the buffer to create the color */
+		uint32 color = *((uint32 *)(buffer + i));
+		*pixel = color;
+		
+		fb = fb + (vga->bpp/8);
+	}
+
 	return OK;
 }
