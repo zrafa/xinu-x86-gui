@@ -28,7 +28,7 @@ struct	dentry	devtab[NDEVS] =
 
 /* VGA is vga */
 	{ 1, 0, "VGA",
-	  (void *)vgainit, (void *)ioerr, (void *)vgaclose,
+	  (void *)vgainit, (void *)vgaopen, (void *)vgaclose,
 	  (void *)vgaread, (void *)vgawrite, (void *)vgaseek,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
 	  (void *)0x0, (void *)ionull, 0 },
@@ -38,14 +38,14 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)miceinit, (void *)miceopen, (void *)miceclose,
 	  (void *)miceread, (void *)micewrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x0, (void *)micehandlerirq, 0 },
+	  (void *)0x0, (void *)ps2handlerirq, 0 },
 
 /* KEYBOARD is kbd */
 	{ 3, 0, "KEYBOARD",
 	  (void *)kbdinit, (void *)kbdopen, (void *)kbdclose,
 	  (void *)kbdread, (void *)kbdwrite, (void *)ioerr,
 	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x0, (void *)kbdhandlerirq, 0 },
+	  (void *)0x0, (void *)ps2handlerirq, 0 },
 
 /* NULLDEV is null */
 	{ 4, 0, "NULLDEV",
@@ -56,10 +56,10 @@ struct	dentry	devtab[NDEVS] =
 
 /* ETHER0 is eth */
 	{ 5, 0, "ETHER0",
-	  (void *)ethinit, (void *)ioerr, (void *)ioerr,
-	  (void *)ethread, (void *)ethwrite, (void *)ioerr,
-	  (void *)ioerr, (void *)ioerr, (void *)ethcontrol,
-	  (void *)0x0, (void *)ethdispatch, 0 },
+	  (void *)ionull, (void *)ionull, (void *)ionull,
+	  (void *)ionull, (void *)ionull, (void *)ioerr,
+	  (void *)ionull, (void *)ionull, (void *)ioerr,
+	  (void *)0x0, (void *)ionull, 0 },
 
 /* NAMESPACE is nam */
 	{ 6, 0, "NAMESPACE",
