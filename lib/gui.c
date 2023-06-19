@@ -38,17 +38,12 @@ uint32 rgb16_to_rgb32(u16 a)
     //return (r << 8) | (g << 16) | (b << 24);
 }
 
-void gui_set_pixel(int x, int y, u16 color) {
+void gui_set_pixel(unsigned x, unsigned y, u16 color) {
 	if ((x >= 240) || (y >= 160))
 		return;
 
-	uint32 buffer = rgb16_to_rgb32(color);
-	uint32 new_pos = y * vga->pitch + x*(vga->bpp/8);
-	open(VGA, 0, 0);
-	seek(VGA, new_pos);
-	char *ptr = &buffer;
-	write(VGA, ptr, 4);
-    close(VGA);
+	uint32 color32 = rgb16_to_rgb32(color);
+	gui_pixel(x, y, color32);
 }
 
 /*
