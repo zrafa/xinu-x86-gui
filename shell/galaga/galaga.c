@@ -70,7 +70,7 @@ int KEY_DOWN_NOW(char key)
 	return 0;
 }
 
-void setPixel(int x, int y, u16 color);
+void gui_set_pixel(int x, int y, u16 color);
 void drawRect(int x, int y, int width, int height, u16 color);
 void drawHollowRect(int x, int y, int width, int height, u16 color);
 void drawImage3(int x, int y, int width, int height, const u16* image);
@@ -131,7 +131,7 @@ void initialize(void) {
 	//start black screen for drawing
 	for (int i = 0; i < 240; i++) {
 		for (int j = 0; j < 160; j++) {
-			setPixel(i, j, BLACK);
+			gui_set_pixel(i, j, BLACK);
 		}
 	}	
 	while(1) {
@@ -294,7 +294,7 @@ void galaga()
 
 	while(1) {
 		//initalize title screen
-		print_text_on_vga(10, 20, "GALAGA ");
+		gui_print_text_on_vga(10, 20, "GALAGA ");
 		drawImage3(0, 0, 240, 160, titlescreen);
 
 		while(1) {

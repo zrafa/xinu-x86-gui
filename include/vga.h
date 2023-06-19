@@ -11,4 +11,4 @@ struct	vga_t	{
 	uint32 pos;
 	};
 
-extern	struct	vga_t	vga;
+extern	struct	vga_t	*vga;

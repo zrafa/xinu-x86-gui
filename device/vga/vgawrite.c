@@ -13,12 +13,9 @@ devcall	vgawrite (
 	uint32        count  /* Length of buffer             */
 	)
 {
- 	//memcpy((vga.addr + vga.pos + 1), buffer, count);
-	//*(vga.addr + vga.pos + 3) = *buffer;
-	*(uint8 *)(vga.addr + vga.pos+1) = 0x1f;
-	//*buffer;
-	//*(vga.addr + vga.pos+2) = *buffer;
-	//*(vga.addr + vga.pos+3) = *buffer;
-	//*(vga.addr + vga.pos+4) = *buffer;
+	/* Find the pixel position in memory */
+	void *fb = ((void *) (uint32) (vga->addr + vga->pos));
+	memcpy(fb, buffer, count);
+	
 	return OK;
 }

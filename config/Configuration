@@ -99,7 +99,7 @@ lfl:
 /* type of the vga screen framebuffer */
 vga:
 	on nothing
-		-i vgainit	-o ioerr	-c vgaclose
+		-i vgainit	-o vgaopen	-c vgaclose
 		-r vgaread	-g ioerr	-p ioerr
 		-w vgawrite	-s vgaseek	-n ioerr
 		-intr ionull
