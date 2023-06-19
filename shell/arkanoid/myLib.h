@@ -127,7 +127,7 @@ void drawSpriteImage(int row, int col, int height, int width, int imageWidth, co
 int detectCollision(MOVOBJ *ball, MOVOBJ *paddle);
 int detectCollisionRect(MOVOBJ *ball, RECT *rect);
 void waitForVblank();
-void setPixel(int row, int col, unsigned short color);
+void gui_set_pixel(int row, int col, unsigned short color);
 RECT* createLevel(short level);
 void drawLevel();
 void freeRectangles();

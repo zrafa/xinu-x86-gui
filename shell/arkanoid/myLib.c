@@ -32,7 +32,7 @@ int score = 0;
 void drawRect(int x, int y, int width, int height, volatile unsigned short color) {
 	for (int i = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
-			setPixel(x + i, y + j, color);
+			gui_set_pixel(x + i, y + j, color);
 		}
 	}
 }
@@ -68,7 +68,7 @@ void drawImage3(int x, int y, int width, int height, const u16* image) {
 	for (int i = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
 			u16 color = *(image + i + (width * j));
-			setPixel(x + i, y + j, color);
+			gui_set_pixel(x + i, y + j, color);
 		}
 	}
 }
@@ -90,7 +90,7 @@ void drawSpriteImage(int y, int x, int height, int width, int imageWidth, const 
 	for (int i = 0; i < width; i++) {
 		for (int j = 0; j < height; j++) {
 			u16 color = *(image + i + (width * j));
-			setPixel(x + i, y + j, color);
+			gui_set_pixel(x + i, y + j, color);
 		}
 	}
 */
@@ -193,7 +193,7 @@ int detectCollisionRect(MOVOBJ *ball, RECT *rect)
 }
 
 /*
-void setPixel(int row, int col, unsigned short color)
+void gui_set_pixel(int row, int col, unsigned short color)
 {
 	videoBuffer[OFFSET(row, col, 240)] = color;
 }

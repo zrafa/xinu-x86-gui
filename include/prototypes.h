@@ -642,13 +642,6 @@ extern	void	xdone(void);
 /* in file yield.c */
 extern	syscall	yield(void);
 
-/* in file temporary_gui.c */
-extern void paint_screen();
-extern void print_text_on_vga(unsigned int, unsigned int, char *);
-extern void setPixel(int, int, u16);
-extern void pixel(unsigned, unsigned, uint32);
-
-
 /* NETWORK BYTE ORDER CONVERSION NOT NEEDED ON A BIG-ENDIAN COMPUTER */
 #define	htons(x)  ((0xff & ((x)>>8)) | ((0xff & (x)) << 8))
 #define	htonl(x)  ((((x)>>24) & 0x000000ff) | (((x)>> 8) & 0x0000ff00) | \

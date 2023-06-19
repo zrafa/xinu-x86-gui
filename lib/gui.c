@@ -6,11 +6,6 @@
 #include <font.h>
 #include <vga.h>
 
-/*
-Why this is here?
-idk, 
-*/
-
 uint32 rgb16_to_rgb32(u16 a)
 {
     /* 1. Extract the red, green and blue values */
@@ -43,7 +38,7 @@ uint32 rgb16_to_rgb32(u16 a)
     //return (r << 8) | (g << 16) | (b << 24);
 }
 
-void setPixel(int x, int y, u16 color) {
+void gui_set_pixel(int x, int y, u16 color) {
 	if ((x >= 240) || (y >= 160))
 		return;
 
@@ -56,28 +51,29 @@ void setPixel(int x, int y, u16 color) {
     close(VGA);
 }
 
-void pixel(unsigned x, unsigned y, uint32 color)
+/*
+    The new position is calculated by doing
+y*(the total number of pixels in a line) +
+x*(the number of bits per pixel divided by 8)
+*/
+void gui_pixel(unsigned x, unsigned y, uint32 color)
 {
 	uint32 buffer = color;
-	/*
-	the new position is calculated by doing
-	y*(the total number of pixels in a line) +
-	x*(the number of bits per pixel divided by 8)
-	*/
 	uint32 new_pos = y * vga->pitch + x*(vga->bpp/8);
 	char *ptr = &buffer;
 	open(VGA, 0, 0);
 	seek(VGA, new_pos);
-	write(VGA, ptr, 4);
+        write(VGA, ptr, 4);
     close(VGA);
 }
 
 
-void paint_screen(){
+void gui_paint_screen(){
 	uint32 total_x = 1024,
-			total_y = 768*4,
-			actual_x = 0,
-			actual_y = 0;
+		total_y = 768*4,
+		actual_x = 0,
+		actual_y = 0,
+                new_pos;
 	
 
 	uint32 buffer[total_x];
@@ -85,7 +81,7 @@ void paint_screen(){
 		for(int x = 0; x < total_x; x++){
 			buffer[x] = 0x00ffff00;
 		}
-		uint32 new_pos = 0 + y * total_x;
+		new_pos = 0 + y * total_x;
 		actual_x++;
 		open(VGA, 0, 0);
 		seek(VGA, new_pos);
@@ -126,9 +122,9 @@ void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
                 col = *(fp+i);
                 for (j = 0; j < 7; j++) {
                         if (check_bit(col, j)) {
-                                pixel(x+i, y+j, 0x00000000);
+                                gui_pixel(x+i, y+j, 0x00000000);
                         } else {
-                                pixel(x+i, y+j, 0x00ffff00);
+                                gui_pixel(x+i, y+j, 0x00ffff00);
                         }
                 }
         }
@@ -138,7 +134,7 @@ void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
 //  * x e y son coordenadas a resolución de pixel
 //  * Cada letra es de 6 columnas y 8 filas (1 columna es espacio)
 //  */
-void print_text_on_vga(unsigned int x, unsigned int y, char *text)
+void gui_print_text_on_vga(unsigned int x, unsigned int y, char *text)
 {
         int i = 0;
         const int offset = 6;
