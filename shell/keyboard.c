@@ -3,7 +3,7 @@
 #include <string.h>
 #include <vga.h>
 
-extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text);
+extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text, uint32 color, uint32 backgroundColor);
 extern void borrar(int x1, int y1, int x2, int y2);
 
 process keyboard_p (
@@ -29,7 +29,7 @@ process keyboard_p (
 		// print message on screen
 		char message_on_screen[80];
 		sprintf(message_on_screen, "kbd: 0x%x     ", record_key);
-		gui_print_text_on_vga(10, 300, message_on_screen);
+		gui_print_text_on_vga(10, 300, message_on_screen, 0x00303030, 0x00ffff00);
 
 
 		unsigned int shift_key = 0;

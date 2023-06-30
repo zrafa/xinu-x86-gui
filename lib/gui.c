@@ -6,36 +6,23 @@
 #include <font.h>
 #include <vga.h>
 
-uint32 rgb16_to_rgb32(u16 a)
+uint32 rgb16_to_rgb32(u16 color)
 {
-    /* 1. Extract the red, green and blue values */
+	/* 1. Extract the red, green and blue values */
 
-    /* from rrrr rggg gggb bbbb */
-    uint32 r = (a & 0xF800) >>11;
-    uint32 g = (a & 0x07E0) >>5;
-    uint32 b = (a & 0x001F);
+	// From rrrr rggg gggb bbbb, get r5, g6 and b5
+	uint32 r = (color >> 11) & 0x1F;
+	uint32 g = (color >> 5) & 0x3F;
+	uint32 b = (color & 0x1F);
 
-    /* 2. Convert them to 0-255 range:
-    There is more than one way. You can just shift them left:
-    to 00000000 rrrrr000 gggggg00 bbbbb000
-    r <<= 3;
-    g <<= 2;
-    b <<= 3;
-    But that means your image will be slightly dark and
-    off-colour as white 0xFFFF will convert to F8,FC,F8
-    So instead you can scale by multiply and divide: */
-    r = r * 255 / 31;
-    g = g * 255 / 63;
-    b = b * 255 / 31;
-    /* This ensures 31/31 converts to 255/255 */
+	/* 2. Convert them to r8, g8 and b8 (0-255 value), applying rule of three */
+	r = (r * 255) / 31;
+	g = (g * 255) / 63;
+	b = (b * 255) / 31;
 
-    /* 3. Construct your 32-bit format (this is 0RGB): */
-    //return (r << 16) | (g << 8) | b;
-    return (b << 16) | (g << 8) | r;
-
-
-    /* Or for BGR0: */
-    //return (r << 8) | (g << 16) | (b << 24);
+	/* 3. Construct 32-bit format, we get 0x00RRGGBB by shifting bits */
+	uint32 color32 = 0x00ffffff & ((r << 16) | (g << 8) | b);
+	return color32;
 }
 
 void gui_set_pixel(unsigned x, unsigned y, u16 color) {
@@ -96,8 +83,8 @@ char check_bit(unsigned char c, int pos)
 /* Dibuja una letra en el buffer, comenzando con la columna [x,y]
  * para el primer pixel de la letra 
  */
-void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
-                            unsigned char color)
+void draw_char_on_buffer(unsigned int x, unsigned int y, char c, uint32 color,
+                            uint32 backgroundColor)
 {
 
         int i; /* para recorrer el font por columnas */
@@ -117,10 +104,10 @@ void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
                 col = *(fp+i);
                 for (j = 0; j < 7; j++) {
                         if (check_bit(col, j)) {
-                                gui_pixel(x+i, y+j, 0x00000000);
+                                gui_pixel(x+i, y+j, color);
                         } else {
-                                gui_pixel(x+i, y+j, 0x00ffff00);
-                        }
+							gui_pixel(x+i, y+j, backgroundColor);
+						}
                 }
         }
 }
@@ -129,7 +116,7 @@ void draw_char_on_buffer(unsigned int x, unsigned int y, char c,
 //  * x e y son coordenadas a resolución de pixel
 //  * Cada letra es de 6 columnas y 8 filas (1 columna es espacio)
 //  */
-void gui_print_text_on_vga(unsigned int x, unsigned int y, char *text)
+void gui_print_text_on_vga(unsigned int x, unsigned int y, char *text, uint32 color, uint32 backgroundColor)
 {
         int i = 0;
         const int offset = 6;
@@ -143,10 +130,50 @@ void gui_print_text_on_vga(unsigned int x, unsigned int y, char *text)
          * respecto a la letra anterior (5 columnas + 1 espacio extra)
          */
         while (*c) {
-                draw_char_on_buffer(x, y, *c, 0);
+                draw_char_on_buffer(x, y, *c, color, backgroundColor);
                 x = x + offset;
                 c++;
         }
 }
 
+void gui_draw_image(int x, int y, int height, int width, const u16 image[])
+{
+	// 'image' MUST be a byte array with the 565 color format (performance)
+	int colorPos = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			//  Join bytes into u16 by shifting the fist byte left
+			u16 color = 0xffff & ((image[colorPos] << 8) | image[colorPos + 1]);
+			gui_pixel(x + j, y + i, rgb16_to_rgb32(color));
+			// Move by 2 bytes (1 color)
+			colorPos += 2;
+		}
+	}
+}
 
+void gui_draw_rect(int x, int y, int width, int height, uint32 color)
+{
+	for (int i = 0; i < width; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			gui_pixel(x + i, y + j, color);
+		}
+	}
+}
+
+void gui_draw_hollow_rect(int x, int y, int width, int height, uint32 color)
+{
+	for (int i = 0; i < width; i++)
+	{
+		gui_pixel(x + i, y, color);
+		gui_pixel(x + i, y + (height - 1), color);
+	}
+	for (int j = 0; j < height; j++)
+	{
+		gui_pixel(x, y + j, color);
+		gui_pixel(x + (width - 1), y + j, color);
+	}
+}

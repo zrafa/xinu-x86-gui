@@ -5,8 +5,8 @@
 process	main(void)
 {
 	gui_paint_screen();
-	  gui_print_text_on_vga(10, 200, "Xinu OS for PC with VGA support");
-	  gui_print_text_on_vga(10, 220, "Sistemas Operativos I");
+	  gui_print_text_on_vga(10, 200, "Xinu OS for PC with VGA support", 0x00303030, 0x00ffff00);
+	  gui_print_text_on_vga(10, 220, "Sistemas Operativos I", 0x00303030, 0x00ffff00);
 	
 	recvclr();
 	resume(create(shell, 8192, 50, "shell", 1, CONSOLE));

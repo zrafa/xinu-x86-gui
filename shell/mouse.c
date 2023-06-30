@@ -19,7 +19,7 @@
 int mouse_x=0;         //signed char
 int mouse_y=0;         //signed char
 
-extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text);
+extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text, uint32 color, uint32 backgroundColor);
 extern void borrar(int x1, int y1, int x2, int y2);
 
 process mouse_p (
@@ -30,7 +30,7 @@ process mouse_p (
 	int old_y=0;;
 	unsigned char c;
 	char * h = "Xinu x86 GUI experiments: VGA display, mouse and kbd";
-	gui_print_text_on_vga(10, 500, h);
+	gui_print_text_on_vga(10, 500, h, 0x00303030, 0x00ffff00);
 	char texto[10];
 	int buf[3];
 	
@@ -55,7 +55,7 @@ process mouse_p (
 		gui_pixel(mouse_x-1, mouse_y, 0x00ff0000);
 		gui_pixel(mouse_x, mouse_y-1, 0x00ff0000);
 		gui_pixel(mouse_x, mouse_y+1, 0x00ff0000);
-		gui_print_text_on_vga(10, 10, texto);
+		gui_print_text_on_vga(10, 10, texto, 0x00303030, 0x00ffff00);
 		old_x = mouse_x; old_y = mouse_y;
 		c = 0;
 		sleepms(1);
