@@ -294,7 +294,7 @@ void galaga()
 
 	while(1) {
 		//initalize title screen
-		gui_print_text_on_vga(10, 20, "GALAGA ");
+		gui_print_text(10, 20, "GALAGA ");
 		drawImage3(0, 0, 240, 160, titlescreen);
 
 		while(1) {

@@ -1,7 +1,6 @@
 /* vgaread.c  -  vgaread */
 
 #include <xinu.h>
-#include <vga.h>
 
 /*------------------------------------------------------------------------
  * vgaread  -  Read a block from the vga screen

@@ -1,7 +1,6 @@
 /* vgainit.c  -  vgainit */
 
 #include <xinu.h>
-#include <vga.h>
 
 struct	vga_t	*vga;
 

@@ -1,7 +1,6 @@
 /* vgaseek.c - vgaseek */
 
 #include <xinu.h>
-#include <vga.h>
 
 /*------------------------------------------------------------------------
  * vgaseek  -  Change the current position in the vga screen
