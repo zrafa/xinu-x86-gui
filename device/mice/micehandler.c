@@ -3,7 +3,6 @@
 /* micehandler.c - micehandler */
 
 #include <xinu.h>
-#include <vga.h>
 
 /*------------------------------------------------------------------------
  *  micehandler  -  Handle an interrupt for the mouse device

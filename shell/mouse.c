@@ -3,7 +3,11 @@
 #include <xinu.h>
 #include <stdio.h>
 #include <string.h>
-#include <vga.h>
+#include <gui.h>
+
+#define YELLOW 0x00ffff00
+#define BLACK 0x00303030
+#define RED 0x00ff0000
 
 /*
 #define inportb(p)      inb(p)
@@ -19,9 +23,6 @@
 int mouse_x=0;         //signed char
 int mouse_y=0;         //signed char
 
-extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text);
-extern void borrar(int x1, int y1, int x2, int y2);
-
 process mouse_p (
                 did32   dev             /* ID of tty device from which  */
         )                               /*   to accept commands         */
@@ -30,7 +31,7 @@ process mouse_p (
 	int old_y=0;;
 	unsigned char c;
 	char * h = "Xinu x86 GUI experiments: VGA display, mouse and kbd";
-	gui_print_text_on_vga(10, 500, h);
+	gui_print_text(10, 500, h, BLACK, YELLOW);
 	char texto[10];
 	int buf[3];
 	
@@ -50,12 +51,12 @@ process mouse_p (
 		 	sprintf(texto, "mouse x: %d  y: %d                      ", mouse_x, mouse_y);
 
 
-		gui_pixel(mouse_x, mouse_y, 0x00ff0000);
-		gui_pixel(mouse_x+1, mouse_y, 0x00ff0000);
-		gui_pixel(mouse_x-1, mouse_y, 0x00ff0000);
-		gui_pixel(mouse_x, mouse_y-1, 0x00ff0000);
-		gui_pixel(mouse_x, mouse_y+1, 0x00ff0000);
-		gui_print_text_on_vga(10, 10, texto);
+		gui_pixel(mouse_x, mouse_y, RED);
+		gui_pixel(mouse_x+1, mouse_y, RED);
+		gui_pixel(mouse_x-1, mouse_y, RED);
+		gui_pixel(mouse_x, mouse_y-1, RED);
+		gui_pixel(mouse_x, mouse_y+1, RED);
+		gui_print_text(10, 10, texto, BLACK, YELLOW);
 		old_x = mouse_x; old_y = mouse_y;
 		c = 0;
 		sleepms(1);

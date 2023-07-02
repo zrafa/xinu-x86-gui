@@ -1,0 +1,1 @@
+extern void gui_print_text(unsigned int x, unsigned int y, const char *text, uint32 color, uint32 backgroundColor);

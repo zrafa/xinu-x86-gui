@@ -1,7 +1,6 @@
 /* vgawrite.c  -  vgawrite */
 
 #include <xinu.h>
-#include <vga.h>
 
 /*------------------------------------------------------------------------
  * vgawrite  -  Write a block to vga screen

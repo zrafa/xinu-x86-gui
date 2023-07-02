@@ -1,10 +1,10 @@
 #include <xinu.h>
 #include <stdio.h>
 #include <string.h>
-#include <vga.h>
+#include <gui.h>
 
-extern void gui_print_text_on_vga(unsigned int x, unsigned int y, const char *text);
-extern void borrar(int x1, int y1, int x2, int y2);
+#define YELLOW 0x00ffff00
+#define BLACK 0x00303030
 
 process keyboard_p (
                 did32   dev             /* ID of tty device from which  */
@@ -29,7 +29,7 @@ process keyboard_p (
 		// print message on screen
 		char message_on_screen[80];
 		sprintf(message_on_screen, "kbd: 0x%x     ", record_key);
-		gui_print_text_on_vga(10, 300, message_on_screen);
+		gui_print_text(10, 300, message_on_screen, BLACK, YELLOW);
 
 
 		unsigned int shift_key = 0;
