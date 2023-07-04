@@ -7,7 +7,7 @@
 
 process main(void)
 {
-	gui_paint_screen();
+	gui_paint_screen(YELLOW);
 	gui_print_text(10, 200, "Xinu OS for x86 PC with VGA, mouse and keyboard support.", BLACK, YELLOW);
 
 	recvclr();

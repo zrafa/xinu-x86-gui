@@ -24,7 +24,7 @@ uint32 rgb16_to_rgb32(uint16 color)
 	return color32;
 }
 
-void gui_set_pixel(unsigned x, unsigned y, uint16 color)
+void gui_set_pixel(int x, int y, uint16 color)
 {
 	if ((x >= 240) || (y >= 160))
 		return;
@@ -38,42 +38,36 @@ void gui_set_pixel(unsigned x, unsigned y, uint16 color)
  *	y * (the total number of pixels in a line) +
  *	x * (the number of bits per pixel divided by 8)
  */
-void gui_pixel(unsigned x, unsigned y, uint32 color)
+void gui_pixel(int x, int y, uint32 color)
 {
 	uint32 buffer = color;
-	uint32 new_pos = y * vga->pitch + x * (vga->bpp / 8);
+	// uint32 new_pos = y * vga->pitch + x * (vga->bpp / 8);
+	uint8 bpp;
+	uint32 pitch;
+	uint32 new_pos;
 	char *ptr = &buffer;
+
+	control(VGA, VGA_GET_BPP, &bpp, NULL);
+	control(VGA, VGA_GET_PITCH, &pitch, NULL);
+	new_pos = y * pitch + x * (bpp / 8);
 
 	open(VGA, 0, 0);
 	seek(VGA, new_pos);
-	write(VGA, ptr, 4);
+	write(VGA, ptr, (bpp / 8));
 	close(VGA);
 }
 
-void gui_paint_screen()
+void gui_paint_screen(uint32 color)
 {
-	uint32 total_x = 1024,
-		   total_y = 768 * 4,
-		   actual_x = 0,
-		   actual_y = 0,
-		   new_pos;
+	uint32 total_x, total_y;
+	int x, y;
 
-	uint32 buffer[total_x];
+	control(VGA, VGA_GET_WIDTH, &total_x, NULL);
+	control(VGA, VGA_GET_HEIGHT, &total_y, NULL);
 
-	open(VGA, 0, 0);
-	for (uint32 y = actual_y; y < total_y; y++) {
-
-		for (int x = 0; x < total_x; x++)
-			buffer[x] = 0x00ffff00;
-
-		new_pos = 0 + y * total_x;
-		actual_x++;
-
-		seek(VGA, new_pos);
-		char *ptr = &buffer;
-		write(VGA, ptr, total_x * 4);
-	}
-	close(VGA);
+	for (y = 0; y < total_y; y++)
+	for (x = 0; x < total_x; x++)
+		gui_pixel(x, y, color);
 }
 
 char check_bit(unsigned char c, int pos)
@@ -86,7 +80,7 @@ char check_bit(unsigned char c, int pos)
 /* Dibuja una letra en el buffer, comenzando con la columna [x,y]
  * para el primer pixel de la letra
  */
-void gui_draw_char(unsigned int x, unsigned int y, char c, uint32 color,
+void gui_draw_char(int x, int y, char c, uint32 color,
 				   uint32 bg_color)
 {
 
@@ -120,7 +114,7 @@ void gui_draw_char(unsigned int x, unsigned int y, char c, uint32 color,
  * x e y son coordenadas a resolución de pixel
  * Cada letra es de 6 columnas y 8 filas (1 columna es espacio)
  */
-void gui_print_text(unsigned int x, unsigned int y, char *text, uint32 color, uint32 bg_color)
+void gui_print_text(int x, int y, char *text, uint32 color, uint32 bg_color)
 {
 	int i = 0;
 	const int offset = 6;
