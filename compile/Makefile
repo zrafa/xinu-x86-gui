@@ -1,7 +1,8 @@
 #########################################################################
 #									#
 #									#
-#  Makefile for the VBOX version of Xinu, using as much as possible	#
+#  Makefile for the i386_amd64_qemu_pc version of Xinu			#
+#             Ex VBOX version of Xinu, using as much as possible	#
 #			from the Galileo code				#
 #									#
 #  includes: .deps and .defs						#
@@ -10,7 +11,7 @@
 #########################################################################
 
 COMPILER_ROOT	=	/usr/bin/
-PNAME		=	Vbox
+PNAME		=	i386_amd64_qemu_pc
 PLAT		=	Platform_$(PNAME)
 TOPDIR		=	..
 
