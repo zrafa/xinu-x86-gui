@@ -101,7 +101,7 @@ vga:
 	on nothing
 		-i vgainit	-o vgaopen	-c vgaclose
 		-r vgaread	-g ioerr	-p ioerr
-		-w vgawrite	-s vgaseek	-n ioerr
+		-w vgawrite	-s vgaseek	-n vgacontrol
 		-intr ionull
 		
 /* type of the mouse */
