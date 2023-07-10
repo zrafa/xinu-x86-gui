@@ -47,6 +47,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/shell/galaga		\
 			-s $(TOPDIR)/shell/apps			\
+			-s $(TOPDIR)/shell/apps/microui		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
 INCLUDE		=	-I$(TOPDIR)/include
@@ -62,6 +63,9 @@ DEFS		= -DBRELOC=${BRELOC} -DBOOTPLOC=${BOOTPLOC} -DBSDURG -DVERSION=\""`cat $(V
 # CFLAGS  = -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
 CFLAGS  = -m32 -ffreestanding -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
 SFLAGS  = ${INCLUDE}
+
+TMP_FILES = .defs .vers_num disk.is test/img/xinu.elf version xinu.map
+
 
 # Loader flags
 LDFLAGS = -dn -m elf_i386 -nostdlib -Map xinu.map -T $(LDSCRIPT)
@@ -153,6 +157,7 @@ clean:
 	@echo removing xinu ...
 	@rm -f $(XINU)
 	@rm -f $(XINUXBIN)
+	@rm -f $(TMP_FILES)
 
 #--------------------------------------------------------------------------------
 # QEMU grub system image test
