@@ -1,60 +1,57 @@
-/*
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-#include <assert.h>
-*/
 #include "xinu.h"
 #include "renderer.h"
 #include "atlas.inl"
 
 #define BUFFER_SIZE 16384
 
-/*
-static GLfloat   tex_buf[BUFFER_SIZE *  8];
-static GLfloat  vert_buf[BUFFER_SIZE *  8];
-static GLubyte color_buf[BUFFER_SIZE * 16];
-static GLuint  index_buf[BUFFER_SIZE *  6];
-*/
-
 static int width  = 800;
 static int height = 600;
 static int buf_idx;
 
-/*
-static SDL_Window *window;
-*/
-
-
-void r_init(void) {
+uint32 mu_color_to_rgb32(mu_Color color)
+{
+	/* Construct 32-bit format, we get 0x00RRGGBB by shifting bits */
+	uint32 color32 = 0x00ffffff & ((color.r << 16) | (color.g << 8) | color.b);
+	return color32;
 }
-
-
-static void flush(void) {
-}
-
-
-static void push_quad(mu_Rect dst, mu_Rect src, mu_Color color) {
-}
-
 
 void r_draw_rect(mu_Rect rect, mu_Color color) {
+  gui_draw_rect(rect.x, rect.y, rect.w, rect.h, mu_color_to_rgb32(color));
 }
 
 
 void r_draw_text(const char *text, mu_Vec2 pos, mu_Color color) {
+  gui_print_text(pos.x, pos.y, text, mu_color_to_rgb32(color), 0);
 }
 
 
 void r_draw_icon(int id, mu_Rect rect, mu_Color color) {
+  int c, w, h;
+	mu_Vec2 pos;
+	char buf[2];
+	switch (id) {
+	  case MU_ICON_CLOSE:		c = 'x'; break;
+	  case MU_ICON_CHECK:		c = 'X'; break;
+	  case MU_ICON_COLLAPSED:	c = '>'; break;
+	  case MU_ICON_EXPANDED:	c = 'v'; break;
+  }
+	buf[0] = c;
+	buf[1] = 0;
+	w = r_get_text_width(buf, 1);
+	h = r_get_text_height();
+	pos.x = rect.x + (rect.w - w) / 2;
+	pos.y = rect.y + (rect.h - h) / 2;
+	r_draw_text(buf, pos, color);
 }
 
 
 int r_get_text_width(const char *text, int len) {
+  return strlen(text) * 6;
 }
 
 
 int r_get_text_height(void) {
-  return 18;
+  return 8;
 }
 
 

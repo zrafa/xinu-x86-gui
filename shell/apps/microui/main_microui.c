@@ -1,7 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
-
 #include "xinu.h"
 #include "renderer.h"
 #include "microui.h"
@@ -257,9 +253,6 @@ static int text_height(mu_Font font) {
 
 
 int microui() {
-  /* init renderer */
-  r_init();
-
   /* init microui */
   mu_Context *ctx = malloc(sizeof(mu_Context));
   mu_init(ctx);
