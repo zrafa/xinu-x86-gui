@@ -104,8 +104,11 @@ void gui_draw_char(int x, int y, char c, uint32 color,
 
 			if (check_bit(col, j))
 				gui_pixel(x + i, y + j, color);
-			else
-				gui_pixel(x + i, y + j, bg_color);
+			else {
+				if(bg_color != 0){
+					gui_pixel(x + i, y + j, bg_color);
+				}
+			}
 		}
 	}
 }
