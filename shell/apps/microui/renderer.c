@@ -46,7 +46,7 @@ void r_draw_icon(int id, mu_Rect rect, mu_Color color) {
 
 
 int r_get_text_width(const char *text, int len) {
-  return strlen(text) * 6;
+  return len * 6;
 }
 
 

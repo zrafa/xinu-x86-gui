@@ -948,7 +948,7 @@ int mu_slider_ex(mu_Context *ctx, mu_Real *value, mu_Real low, mu_Real high,
   thumb = mu_rect(base.x + x, base.y, w, base.h);
   mu_draw_control_frame(ctx, id, thumb, MU_COLOR_BUTTON, opt);
   /* draw text  */
-  sprintf(buf, fmt, v);
+  sprintf(buf, fmt, (int)v);
   mu_draw_control_text(ctx, buf, base, MU_COLOR_TEXT, opt);
 
   return res;

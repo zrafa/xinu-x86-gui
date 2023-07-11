@@ -20,8 +20,10 @@
 #define MU_TREENODEPOOL_SIZE    48
 #define MU_MAX_WIDTHS           16
 #define MU_REAL                 float
-#define MU_REAL_FMT             "%.3g"
-#define MU_SLIDER_FMT           "%.2f"
+//#define MU_REAL_FMT             "%.3g"
+//#define MU_SLIDER_FMT           "%.2f"
+#define MU_REAL_FMT             "%d"
+#define MU_SLIDER_FMT           "%d"
 #define MU_MAX_FMT              127
 
 #define mu_stack(T, n)          struct { int idx; T items[n]; }
