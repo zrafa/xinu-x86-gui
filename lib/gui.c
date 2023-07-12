@@ -5,6 +5,14 @@
 #include <string.h>
 #include <font.h>
 
+/* software double buffering for graphics */
+uint32 * gui_buf;
+
+int gui_buf_size;
+int gui_width;
+int gui_heigth;
+int gui_bpp;
+
 uint32 rgb16_to_rgb32(uint16 color)
 {
 	/* 1. Extract the red, green and blue values */
@@ -40,21 +48,7 @@ void gui_set_pixel(int x, int y, uint16 color)
  */
 void gui_pixel(int x, int y, uint32 color)
 {
-	uint32 buffer = color;
-	// uint32 new_pos = y * vga->pitch + x * (vga->bpp / 8);
-	uint8 bpp;
-	uint32 pitch;
-	uint32 new_pos;
-	char *ptr = &buffer;
-
-	control(VGA, VGA_GET_BPP, &bpp, NULL);
-	control(VGA, VGA_GET_PITCH, &pitch, NULL);
-	new_pos = y * pitch + x * (bpp / 8);
-
-	open(VGA, 0, 0);
-	seek(VGA, new_pos);
-	write(VGA, ptr, (bpp / 8));
-	close(VGA);
+	gui_buf[y * gui_width + x] = color;
 }
 
 void gui_paint_screen(uint32 color)
@@ -62,11 +56,8 @@ void gui_paint_screen(uint32 color)
 	uint32 total_x, total_y;
 	int x, y;
 
-	control(VGA, VGA_GET_WIDTH, &total_x, NULL);
-	control(VGA, VGA_GET_HEIGHT, &total_y, NULL);
-
-	for (y = 0; y < total_y; y++)
-	for (x = 0; x < total_x; x++)
+	for (y = 0; y < gui_heigth; y++)
+	for (x = 0; x < gui_width; x++)
 		gui_pixel(x, y, color);
 }
 
@@ -96,21 +87,21 @@ void gui_draw_char(int x, int y, char c, uint32 color,
 
 	const char *fp = &font[5 * c];
 
-	for (i = 0; i < 5; i++) {
+        for (i = 0; i < 5; i++) {
 
-		col = *(fp + i);
+                col = *(fp + i);
 
-		for (j = 0; j < 7; j++) {
+                for (j = 0; j < 7; j++) {
 
-			if (check_bit(col, j))
-				gui_pixel(x + i, y + j, color);
-			else {
-				if(bg_color != 0){
-					gui_pixel(x + i, y + j, bg_color);
-				}
-			}
-		}
-	}
+                        if (check_bit(col, j))
+                                gui_pixel(x + i, y + j, color);
+                        else {
+                                if (bg_color) {
+                                        gui_pixel(x + i, y + j, bg_color);
+                                }
+                        }
+                }
+        }
 }
 
 /* Muestra un texto en pantalla
@@ -153,9 +144,10 @@ void gui_draw_image(int x, int y, int h, int w, uint32 *image)
 
 void gui_draw_rect(int x, int y, int w, int h, uint32 color)
 {
-	for (int i = 0; i < w; i++)
-		for (int j = 0; j < h; j++)
-			gui_pixel(x + i, y + j, color);
+
+	for (int j = 0; j < h; j++)
+		for (int i = 0; i < w; i++)
+			gui_buf[(y+j) * gui_width + x + i] = color;
 }
 
 void gui_draw_hollow_rect(int x, int y, int w, int h, uint32 color)
@@ -169,4 +161,19 @@ void gui_draw_hollow_rect(int x, int y, int w, int h, uint32 color)
 		gui_pixel(x, y + j, color);
 		gui_pixel(x + (w - 1), y + j, color);
 	}
+}
+
+void gui_flush(void)
+{
+	seek(VGA, 0);
+	write(VGA, gui_buf, gui_buf_size);
+}
+
+void gui_init(void)
+{
+	control(VGA, VGA_GET_WIDTH, &gui_width, NULL);
+	control(VGA, VGA_GET_HEIGHT, &gui_heigth, NULL);
+	control(VGA, VGA_GET_BPP, &gui_bpp, NULL);
+	gui_buf_size = gui_width * gui_heigth * (gui_bpp/8);
+	gui_buf = getmem(gui_buf_size);
 }

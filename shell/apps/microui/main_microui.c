@@ -34,7 +34,8 @@ char* strcat(char* destination, const char* source)
     return destination;
 }
 
-static void write_log(const char *text) {
+// static void write_log(const char *text) {
+void write_log(char *text) {
   if (logbuf[0]) { strcat(logbuf, "\n"); }
   strcat(logbuf, text);
   logbuf_updated = 1;

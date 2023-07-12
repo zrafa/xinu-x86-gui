@@ -1,4 +1,5 @@
-#include "xinu.h"
+#include <xinu.h>
+#include <gui.h>
 #include "renderer.h"
 #include "atlas.inl"
 
@@ -62,11 +63,18 @@ void r_set_clip_rect(mu_Rect rect) {
 void r_clear(mu_Color clr) {
 }
 
-
 void r_present(void) {
+	gui_flush();
 }
 
 
+extern void write_log(char * );
+
+char cc;
 void r_handle_input(mu_Context *ctx)
 {
+	char buf[2];
+	buf[0] = cc++;
+	buf[1] = 0;
+	write_log(buf);
 }
