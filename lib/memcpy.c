@@ -6,8 +6,8 @@
  *------------------------------------------------------------------------
  */
 void	*memcpy(
-	  void		*s,	/* Destination address			*/
-	  const void	*ct,	/* source address			*/
+	  void * restrict s,	/* Destination address			*/
+	  const void * restrict ct,	/* source address			*/
 	  int		n	/* number of bytes to copy		*/
 	)
 {
