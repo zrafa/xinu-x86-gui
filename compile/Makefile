@@ -61,7 +61,7 @@ DEFS		= -DBRELOC=${BRELOC} -DBOOTPLOC=${BOOTPLOC} -DBSDURG -DVERSION=\""`cat $(V
 
 # Compiler flags
 # CFLAGS  = -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
-CFLAGS  = -m32 -ffreestanding -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
+CFLAGS  = -m32 -ffreestanding -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O3 ${DEFS} ${INCLUDE}
 SFLAGS  = ${INCLUDE}
 
 TMP_FILES = .defs .vers_num disk.is test/img/xinu.elf version xinu.map
