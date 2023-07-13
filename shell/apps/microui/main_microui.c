@@ -261,6 +261,12 @@ int microui() {
   ctx->text_width = text_width;
   ctx->text_height = text_height;
 
+  /* get mouse position */
+  open(MOUSE, NULL, 0);
+  int mouse_x = 0;
+  int mouse_y = 0;
+  int mouse_buf[3];
+
   /* main loop */
   for (;;) {
         r_handle_input(ctx);
@@ -279,6 +285,13 @@ int microui() {
         case MU_COMMAND_CLIP: r_set_clip_rect(cmd->clip.rect); break;
       }
     }
+
+    /* read mouse and render it */
+    read(MOUSE, mouse_buf, 3);
+		mouse_x = mouse_buf[1];
+		mouse_y = mouse_buf[2];
+    gui_draw_image(mouse_x,mouse_y,18,11,pointer);
+
     r_present();
   }
 
