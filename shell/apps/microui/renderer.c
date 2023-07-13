@@ -35,7 +35,7 @@ void r_draw_icon(int id, mu_Rect rect, mu_Color color) {
 	  case MU_ICON_CHECK:		c = 'X'; break;
 	  case MU_ICON_COLLAPSED:	c = '>'; break;
 	  case MU_ICON_EXPANDED:	c = 'v'; break;
-  }
+  	}
 	buf[0] = c;
 	buf[1] = 0;
 	w = r_get_text_width(buf, 1);
@@ -61,6 +61,7 @@ void r_set_clip_rect(mu_Rect rect) {
 
 
 void r_clear(mu_Color clr) {
+	gui_paint_screen(mu_color_to_rgb32(clr));
 }
 
 void r_present(void) {

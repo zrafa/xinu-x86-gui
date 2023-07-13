@@ -48,7 +48,8 @@ void gui_set_pixel(int x, int y, uint16 color)
  */
 void gui_pixel(int x, int y, uint32 color)
 {
-	gui_buf[y * gui_width + x] = color;
+	if(x >= 0 && x < gui_width && y >= 0 && y < gui_heigth)
+		gui_buf[y * gui_width + x] = color;
 }
 
 void gui_paint_screen(uint32 color)
@@ -135,8 +136,9 @@ void gui_draw_image(int x, int y, int h, int w, uint32 *image)
 
 	for (int i = 0; i < h; i++) {
 		for (int j = 0; j < w; j++) {
-			// Draw using each pixel color
-			gui_pixel(x + j, y + i, image[colorPos]);
+			// Draw using each pixel color (if not black)
+			if(image[colorPos])
+				gui_pixel(x + j, y + i, image[colorPos]);
 			colorPos++;
 		}
 	}
