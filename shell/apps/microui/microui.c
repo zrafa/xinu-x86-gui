@@ -23,8 +23,9 @@
 //#include <stdio.h>
 //#include <stdlib.h>
 //#include <string.h>
-#include "xinu.h"
-#include "microui.h"
+#include <xinu.h>
+#include <gui.h>
+#include <microui.h>
 
 #define unused(x) ((void) (x))
 
@@ -191,11 +192,38 @@ static void draw_frame(mu_Context *ctx, mu_Rect rect, int colorid) {
 }
 
 
+win_t windows[N_WIN];
+
+int mu_add_win(void (* func)(mu_Context *ctx))
+{
+	int i;
+
+	for (i=0; i<N_WIN; i++) {
+		if (windows[i].valid == 0) {	/* we found an available win */
+			windows[i].valid = 1;
+			windows[i].win = func;
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void mu_free_win(uint8 n) {
+	windows[n].valid = 0;
+}
+
+
 void mu_init(mu_Context *ctx) {
   memset(ctx, 0, sizeof(*ctx));
   ctx->draw_frame = draw_frame;
   ctx->_style = default_style;
   ctx->style = &ctx->_style;
+
+  int i;
+  for (i=0; i<N_WIN; i++)
+	  windows[i].valid = 0;
+	  
 }
 
 
@@ -563,6 +591,20 @@ void mu_draw_text(mu_Context *ctx, mu_Font font, const char *str, int len,
   cmd->text.pos = pos;
   cmd->text.color = color;
   cmd->text.font = font;
+  /* reset clipping if it was set */
+  if (clipped) { mu_set_clip(ctx, unclipped_rect); }
+}
+
+void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect) {
+  mu_Command *cmd;
+  /* do clip command if the rect isn't fully contained within the cliprect */
+  int clipped = mu_check_clip(ctx, rect);
+  if (clipped == MU_CLIP_ALL ) { return; }
+  if (clipped == MU_CLIP_PART) { mu_set_clip(ctx, mu_get_clip_rect(ctx)); }
+  /* do image command */
+  cmd = mu_push_command(ctx, MU_COMMAND_IMAGE, sizeof(mu_ImageCommand));
+  cmd->image.addr = addr;
+  cmd->image.rect = rect;
   /* reset clipping if it was set */
   if (clipped) { mu_set_clip(ctx, unclipped_rect); }
 }

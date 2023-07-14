@@ -1,6 +1,6 @@
 #include <xinu.h>
 #include <gui.h>
-#include "renderer.h"
+#include <renderer.h>
 #include "atlas.inl"
 
 #define BUFFER_SIZE 16384
@@ -43,6 +43,11 @@ void r_draw_icon(int id, mu_Rect rect, mu_Color color) {
 	pos.x = rect.x + (rect.w - w) / 2;
 	pos.y = rect.y + (rect.h - h) / 2;
 	r_draw_text(buf, pos, color);
+}
+
+
+void r_draw_image(void * addr, mu_Rect rect) {
+  gui_draw_image(rect.x, rect.y, rect.w, rect.h, (uint32 *) addr);
 }
 
 

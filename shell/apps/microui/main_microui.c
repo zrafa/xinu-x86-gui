@@ -1,6 +1,6 @@
-#include "xinu.h"
-#include "renderer.h"
-#include "microui.h"
+#include <xinu.h>
+#include <renderer.h>
+#include <microui.h>
 
 #define NULL 0
 
@@ -238,6 +238,13 @@ static void process_frame(mu_Context *ctx) {
   style_window(ctx);
   log_window(ctx);
   test_window(ctx);
+
+	int i;
+	for (i=0; i<N_WIN; i++) {
+		if (windows[i].valid)
+			windows[i].win(ctx);
+	}
+
   mu_end(ctx);
 }
 
@@ -283,6 +290,8 @@ int microui() {
         case MU_COMMAND_RECT: r_draw_rect(cmd->rect.rect, cmd->rect.color); break;
         case MU_COMMAND_ICON: r_draw_icon(cmd->icon.id, cmd->icon.rect, cmd->icon.color); break;
         case MU_COMMAND_CLIP: r_set_clip_rect(cmd->clip.rect); break;
+	case MU_COMMAND_IMAGE: r_draw_image(cmd->image.addr, cmd->image.rect); break;
+
       }
     }
 

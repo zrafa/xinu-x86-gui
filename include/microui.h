@@ -42,6 +42,7 @@ enum {
   MU_COMMAND_RECT,
   MU_COMMAND_TEXT,
   MU_COMMAND_ICON,
+  MU_COMMAND_IMAGE,
   MU_COMMAND_MAX
 };
 
@@ -124,6 +125,7 @@ typedef struct { mu_BaseCommand base; mu_Rect rect; } mu_ClipCommand;
 typedef struct { mu_BaseCommand base; mu_Rect rect; mu_Color color; } mu_RectCommand;
 typedef struct { mu_BaseCommand base; mu_Font font; mu_Vec2 pos; mu_Color color; char str[1]; } mu_TextCommand;
 typedef struct { mu_BaseCommand base; mu_Rect rect; int id; mu_Color color; } mu_IconCommand;
+typedef struct { mu_BaseCommand base; mu_Rect rect; void * addr; } mu_ImageCommand;
 
 typedef union {
   int type;
@@ -133,6 +135,7 @@ typedef union {
   mu_RectCommand rect;
   mu_TextCommand text;
   mu_IconCommand icon;
+  mu_ImageCommand image;
 } mu_Command;
 
 typedef struct {
@@ -275,6 +278,22 @@ void mu_update_control(mu_Context *ctx, mu_Id id, mu_Rect rect, int opt);
 #define mu_begin_treenode(ctx, label)     mu_begin_treenode_ex(ctx, label, 0)
 #define mu_begin_window(ctx, title, rect) mu_begin_window_ex(ctx, title, rect, 0)
 #define mu_begin_panel(ctx, name)         mu_begin_panel_ex(ctx, name, 0)
+
+
+/* dynamic windows */
+#define N_WIN 256
+typedef struct {
+        uint8 valid;
+        void (*win) (mu_Context *ctx);
+} win_t;
+
+extern win_t windows[N_WIN];
+
+int mu_add_win(void (* func)(mu_Context *ctx));
+void mu_free_win(uint8 n); 
+
+
+
 
 void mu_text(mu_Context *ctx, const char *text);
 void mu_label(mu_Context *ctx, const char *text);

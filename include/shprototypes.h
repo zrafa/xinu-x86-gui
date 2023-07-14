@@ -73,8 +73,7 @@ extern	shellcmd  xsh_udpeserver (int32, char *[]);
 /* in file xsh_uptime.c */
 extern	shellcmd  xsh_uptime	(int32, char *[]);
 extern	shellcmd  galaga	(int32, char *[]);
-extern	shellcmd  microui	();
-//extern	shellcmd  arkanoid	(int32, char *[]);
+extern	shellcmd  mu_gui_demo	(int32, char *[]);
 
 /* in file xsh_help.c */
 extern	shellcmd  xsh_help	(int32, char *[]);

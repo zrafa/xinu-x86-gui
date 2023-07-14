@@ -518,6 +518,7 @@ extern 	process shell(did32);
 extern 	process mouse_p(did32);
 extern 	process keyboard_p(did32);
 extern 	process gui_test(void);
+extern 	process microui(void);
 
 /* in file signal.c */
 extern	syscall	signal(sid32);
