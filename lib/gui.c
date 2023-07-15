@@ -4,14 +4,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <font.h>
+#include <gui.h>
 
 /* software double buffering for graphics */
 uint32 * gui_buf;
 
-int gui_buf_size;
-int gui_width;
-int gui_heigth;
-int gui_bpp;
+int32 gui_buf_size;
+int32 gui_width;
+int32 gui_heigth;
+int32 gui_bpp;
 
 uint32 rgb16_to_rgb32(uint16 color)
 {
@@ -54,7 +55,6 @@ void gui_pixel(int x, int y, uint32 color)
 
 void gui_paint_screen(uint32 color)
 {
-	uint32 total_x, total_y;
 	int x, y;
 
 	for (y = 0; y < gui_heigth; y++)
@@ -111,7 +111,6 @@ void gui_draw_char(int x, int y, char c, uint32 color,
  */
 void gui_print_text(int x, int y, char *text, uint32 color, uint32 bg_color)
 {
-	int i = 0;
 	const int offset = 6;
 	char *c = text;
 
@@ -168,14 +167,14 @@ void gui_draw_hollow_rect(int x, int y, int w, int h, uint32 color)
 void gui_flush(void)
 {
 	seek(VGA, 0);
-	write(VGA, gui_buf, gui_buf_size);
+	write(VGA, (char *)gui_buf, gui_buf_size);
 }
 
 void gui_init(void)
 {
-	control(VGA, VGA_GET_WIDTH, &gui_width, NULL);
-	control(VGA, VGA_GET_HEIGHT, &gui_heigth, NULL);
-	control(VGA, VGA_GET_BPP, &gui_bpp, NULL);
+	control(VGA, VGA_GET_WIDTH, (int32) &gui_width, NULL);
+	control(VGA, VGA_GET_HEIGHT, (int32) &gui_heigth, NULL);
+	control(VGA, VGA_GET_BPP, (int32) &gui_bpp, NULL);
 	gui_buf_size = gui_width * gui_heigth * (gui_bpp/8);
-	gui_buf = getmem(gui_buf_size);
+	gui_buf = (uint32 *)getmem(gui_buf_size);
 }

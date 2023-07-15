@@ -4,11 +4,11 @@
 
 #define GUI_FLUSH	seek(VGA, 0); write(VGA, gui_buf, gui_width * gui_heigth * gui_bpp);
 
-extern uint32 gui_buf;
-extern int gui_buf_size;
-extern int gui_bpp;
-extern int gui_width;
-extern int gui_heigth;
+extern uint32 *gui_buf;
+extern int32 gui_buf_size;
+extern int32 gui_bpp;
+extern int32 gui_width;
+extern int32 gui_heigth;
 
 
 uint32 rgb16_to_rgb32(uint16 color);
@@ -22,6 +22,6 @@ void gui_draw_image(int x, int y, int h, int w, uint32 *image);
 void gui_draw_rect(int x, int y, int w, int h, uint32 color);
 void gui_draw_hollow_rect(int x, int y, int w, int h, uint32 color);
 void gui_init(void);
-gui_flush(void);
+void gui_flush(void);
 
 #endif
