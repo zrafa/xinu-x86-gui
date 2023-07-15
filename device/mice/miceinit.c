@@ -12,7 +12,6 @@ devcall	miceinit (
 	  struct dentry	*devptr		/* Entry in device switch table	*/
 	)
 {
-	unsigned char result;
 	unsigned char _status;
 
 	mouse.buttons = 0;
