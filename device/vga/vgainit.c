@@ -12,7 +12,7 @@ devcall	vgainit (
 	  struct dentry	*devptr		/* Entry in device switch table	*/
 	)
 {
-	vga->addr = (unsigned char *) (mbi->framebuffer_addr);
+	vga->addr = (uint8 *) (mbi->framebuffer_addr);
 	vga->width = mbi->framebuffer_width;
 	vga->height = mbi->framebuffer_height;
 	vga->pitch = mbi->framebuffer_pitch;
