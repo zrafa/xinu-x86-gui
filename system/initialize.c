@@ -55,14 +55,11 @@ void nulluser (unsigned long magic, unsigned long addr )
 	uint32	free_mem;		/* Total amount of free memory	*/
 	
 
-	// RAFA : testing multiboot. pixel on buffer screen
-	int i = magic;
 	/* Set MBI to the address of the Multiboot information structure. */
 	kprintf ("magic =  %i \n", magic);
 
 	kprintf ("ad =  %x \n", addr);
 	mbi = (multiboot_info_t *) addr;
-	gui_pixel(100,400, 0xffffffff);
 
 	kprintf ("ad fb =  %x \n", mbi->framebuffer_addr);
 	kprintf ("ad fb+4 =  %x \n", mbi->framebuffer_addr+4);
