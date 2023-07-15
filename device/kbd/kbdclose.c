@@ -10,4 +10,5 @@ devcall	kbdclose (
 	  struct dentry	*devptr		/* Entry in device switch table	*/
 	)
 {
+	return OK;
 }

@@ -13,4 +13,5 @@ devcall	kbdopen (
 	 char	*mode			/* Unused for a kbd */
 	)
 {
+	return OK;
 }
