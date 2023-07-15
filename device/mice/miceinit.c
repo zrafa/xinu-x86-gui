@@ -13,12 +13,12 @@ devcall	miceinit (
 	)
 {
 	unsigned char result;
+	unsigned char _status;
 
 	mouse.buttons = 0;
 	mouse.x = 0;
 	mouse.y = 0;
 
-	unsigned char _status;  //unsigned char
 
 	//Enable the auxiliary mouse device
 	mouse_wait(1);

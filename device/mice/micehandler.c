@@ -12,7 +12,7 @@
 extern int mouse_mode;
 
 int mouse_cycle = 0;
-unsigned char mouse_byte[3];
+unsigned char mouse_byte[4];
 
 void finish_mice(void)
 {
