@@ -270,8 +270,9 @@ int microui() {
   ctx->text_width = text_width;
   ctx->text_height = text_height;
 
-  /* use mouse */
+  /* use mouse and keyboard for r_handle_input */
   open(MOUSE, NULL, 0);
+  open(KEYBOARD, NULL, 0);
 
   /* main loop */
   for (;;) {

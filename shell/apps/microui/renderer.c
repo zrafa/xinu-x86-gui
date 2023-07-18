@@ -101,7 +101,7 @@ void r_draw_mouse() {
 	m_state.pos_x = mouse_buf[1];
 	m_state.pos_y = mouse_buf[2];
 	/* render */
-    gui_draw_image(m_state.pos_x,m_state.pos_y,18,11,pointer);
+    gui_draw_image(m_state.pos_x, m_state.pos_y, 18, 11, pointer);
 }
 
 char cc;
@@ -114,6 +114,7 @@ void r_handle_input(mu_Context *ctx)
 	/* keep mouse position updated in microui */
 	mu_input_mousemove(ctx, m_state.pos_x, m_state.pos_y);
 	if(prev_m_state.left_mouse != m_state.left_mouse) {
+		/* check if mouse click was recently pressed */
 		if(m_state.left_mouse) {
 			mu_input_mousedown(ctx, m_state.pos_x, m_state.pos_y, 0x01);
 		} else {

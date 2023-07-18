@@ -8,7 +8,7 @@ extern uint32 *gui_buf;
 extern int32 gui_buf_size;
 extern int32 gui_bpp;
 extern int32 gui_width;
-extern int32 gui_heigth;
+extern int32 gui_height;
 
 
 uint32 rgb16_to_rgb32(uint16 color);
