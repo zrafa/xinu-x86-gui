@@ -11,7 +11,7 @@ uint32 * gui_buf;
 
 int32 gui_buf_size;
 int32 gui_width;
-int32 gui_heigth;
+int32 gui_height;
 int32 gui_bpp;
 
 uint32 rgb16_to_rgb32(uint16 color)
@@ -49,7 +49,7 @@ void gui_set_pixel(int x, int y, uint16 color)
  */
 void gui_pixel(int x, int y, uint32 color)
 {
-	if(x >= 0 && x < gui_width && y >= 0 && y < gui_heigth)
+	if(x >= 0 && x < gui_width && y >= 0 && y < gui_height)
 		gui_buf[y * gui_width + x] = color;
 }
 
@@ -57,7 +57,7 @@ void gui_paint_screen(uint32 color)
 {
 	int x, y;
 
-	for (y = 0; y < gui_heigth; y++)
+	for (y = 0; y < gui_height; y++)
 	for (x = 0; x < gui_width; x++)
 		gui_pixel(x, y, color);
 }
@@ -145,9 +145,10 @@ void gui_draw_image(int x, int y, int h, int w, uint32 *image)
 
 void gui_draw_rect(int x, int y, int w, int h, uint32 color)
 {
-
-	for (int j = 0; j < h; j++)
-		for (int i = 0; i < w; i++)
+	int clamped_w = ((x + w) > gui_width) ? w - (x + w - gui_width) : w;
+	int clamped_h = ((y + h) > gui_height) ? h - (y + h - gui_height) : h;
+	for (int j = 0; j < clamped_h; j++)
+		for (int i = 0; i < clamped_w; i++)
 			gui_buf[(y+j) * gui_width + x + i] = color;
 }
 
@@ -173,8 +174,8 @@ void gui_flush(void)
 void gui_init(void)
 {
 	control(VGA, VGA_GET_WIDTH, (int32) &gui_width, NULL);
-	control(VGA, VGA_GET_HEIGHT, (int32) &gui_heigth, NULL);
+	control(VGA, VGA_GET_HEIGHT, (int32) &gui_height, NULL);
 	control(VGA, VGA_GET_BPP, (int32) &gui_bpp, NULL);
-	gui_buf_size = gui_width * gui_heigth * (gui_bpp/8);
+	gui_buf_size = gui_width * gui_height * (gui_bpp/8);
 	gui_buf = (uint32 *)getmem(gui_buf_size);
 }

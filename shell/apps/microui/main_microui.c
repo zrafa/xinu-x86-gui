@@ -262,17 +262,17 @@ static int text_height(mu_Font font) {
 
 
 int microui() {
+  /* init renderer */
+  r_init();
   /* init microui */
   mu_Context *ctx = malloc(sizeof(mu_Context));
   mu_init(ctx);
   ctx->text_width = text_width;
   ctx->text_height = text_height;
 
-  /* get mouse position */
+  /* use mouse and keyboard for r_handle_input */
   open(MOUSE, NULL, 0);
-  int mouse_x = 0;
-  int mouse_y = 0;
-  int mouse_buf[3];
+  open(KEYBOARD, NULL, 0);
 
   /* main loop */
   for (;;) {
@@ -290,17 +290,11 @@ int microui() {
         case MU_COMMAND_RECT: r_draw_rect(cmd->rect.rect, cmd->rect.color); break;
         case MU_COMMAND_ICON: r_draw_icon(cmd->icon.id, cmd->icon.rect, cmd->icon.color); break;
         case MU_COMMAND_CLIP: r_set_clip_rect(cmd->clip.rect); break;
-	case MU_COMMAND_IMAGE: r_draw_image(cmd->image.addr, cmd->image.rect); break;
-
+	      case MU_COMMAND_IMAGE: r_draw_image(cmd->image.addr, cmd->image.rect); break;
       }
     }
 
-    /* read mouse and render it */
-    read(MOUSE, mouse_buf, 3);
-		mouse_x = mouse_buf[1];
-		mouse_y = mouse_buf[2];
-    gui_draw_image(mouse_x,mouse_y,18,11,pointer);
-
+    r_draw_mouse();
     r_present();
   }
 

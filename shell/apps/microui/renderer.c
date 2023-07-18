@@ -8,6 +8,8 @@
 static int width  = 800;
 static int height = 600;
 static int buf_idx;
+struct mouse_state prev_m_state;
+struct mouse_state m_state;
 
 uint32 mu_color_to_rgb32(mu_Color color)
 {
@@ -15,6 +17,20 @@ uint32 mu_color_to_rgb32(mu_Color color)
 	uint32 color32 = 0x00ffffff & ((color.r << 16) | (color.g << 8) | color.b);
 	return color32;
 }
+
+
+void r_init() {
+	/* init mouse states */
+	prev_m_state.pos_x = 0;
+	prev_m_state.pos_y = 0;
+	prev_m_state.left_mouse = 0;
+	prev_m_state.left_mouse = 0;
+	m_state.pos_x = 0;
+	m_state.pos_y = 0;
+	m_state.left_mouse = 0;
+	m_state.left_mouse = 0;
+}
+
 
 void r_draw_rect(mu_Rect rect, mu_Color color) {
   gui_draw_rect(rect.x, rect.y, rect.w, rect.h, mu_color_to_rgb32(color));
@@ -76,6 +92,18 @@ void r_present(void) {
 
 extern void write_log(char * );
 
+int mouse_buf[3];
+void r_draw_mouse() {
+    read(MOUSE, mouse_buf, 3);
+	/* check left mouse being pressed */
+	m_state.left_mouse = (mouse_buf[0] & 0x01) ? 1 : 0;
+	/* update mouse position */
+	m_state.pos_x = mouse_buf[1];
+	m_state.pos_y = mouse_buf[2];
+	/* render */
+    gui_draw_image(m_state.pos_x, m_state.pos_y, 18, 11, pointer);
+}
+
 char cc;
 void r_handle_input(mu_Context *ctx)
 {
@@ -83,4 +111,16 @@ void r_handle_input(mu_Context *ctx)
 	buf[0] = cc++;
 	buf[1] = 0;
 	write_log(buf);
+	/* keep mouse position updated in microui */
+	mu_input_mousemove(ctx, m_state.pos_x, m_state.pos_y);
+	if(prev_m_state.left_mouse != m_state.left_mouse) {
+		/* check if mouse click was recently pressed */
+		if(m_state.left_mouse) {
+			mu_input_mousedown(ctx, m_state.pos_x, m_state.pos_y, 0x01);
+		} else {
+			mu_input_mouseup(ctx, m_state.pos_x, m_state.pos_y, 0x01);
+		}
+		/* update previous mouse state once used*/
+		prev_m_state.left_mouse = m_state.left_mouse;
+	}
 }

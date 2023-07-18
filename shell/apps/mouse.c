@@ -20,13 +20,13 @@
 //License: Use as you wish, except to cause damage
 // byte mouse_cycle=0;     //unsigned char
 // unsigned char mouse_byte[3];    //signed char
-int mouse_x=0;         //signed char
-int mouse_y=0;         //signed char
 
 process mouse_p (
                 did32   dev             /* ID of tty device from which  */
         )                               /*   to accept commands         */
 {
+	int mouse_x=0;         //signed char
+	int mouse_y=0;         //signed char
 	int old_x=0;
 	int old_y=0;;
 	unsigned char c;
