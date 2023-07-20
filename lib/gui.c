@@ -128,7 +128,7 @@ void gui_print_text(int x, int y, char *text, uint32 color, uint32 bg_color)
 	}
 }
 
-void gui_draw_image(int x, int y, int h, int w, uint32 *image)
+void gui_draw_image(int x, int y, int w, int h, uint32 *image)
 {
 	// Each image[] position is a pixel color
 	int clr_pos = 0;

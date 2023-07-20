@@ -18,7 +18,7 @@ process gui_test(void)
 
 	gui_draw_hollow_rect(290, 90, 400, 380, GREY);
 	gui_draw_rect(300, 100, 380, 360, GREY);
-	gui_draw_image(380, 200, 185, 200, nina);
+	gui_draw_image(380, 200, 200, 185, nina);
 	gui_print_text(320, 120, "Window", WHITE, GREY);
 
 	close(VGA);

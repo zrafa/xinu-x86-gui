@@ -101,7 +101,7 @@ void r_draw_mouse() {
 	m_state.pos_x = mouse_buf[1];
 	m_state.pos_y = mouse_buf[2];
 	/* render */
-    gui_draw_image(m_state.pos_x, m_state.pos_y, 18, 11, pointer);
+    gui_draw_image(m_state.pos_x, m_state.pos_y, 11, 18, pointer);
 }
 
 char cc;
