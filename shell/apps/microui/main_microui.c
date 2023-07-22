@@ -290,7 +290,7 @@ int microui() {
         case MU_COMMAND_RECT: r_draw_rect(cmd->rect.rect, cmd->rect.color); break;
         case MU_COMMAND_ICON: r_draw_icon(cmd->icon.id, cmd->icon.rect, cmd->icon.color); break;
         case MU_COMMAND_CLIP: r_set_clip_rect(cmd->clip.rect); break;
-	      case MU_COMMAND_IMAGE: r_draw_image(cmd->image.addr, cmd->image.rect); break;
+	case MU_COMMAND_IMAGE: r_draw_image(cmd->image.addr, cmd->image.rect, cmd->image.w, cmd->image.h); break;
       }
     }
 

@@ -62,8 +62,13 @@ void r_draw_icon(int id, mu_Rect rect, mu_Color color) {
 }
 
 
-void r_draw_image(void * addr, mu_Rect rect) {
-  gui_draw_image(rect.x, rect.y, rect.w, rect.h, (uint32 *) addr);
+void r_draw_image(void * addr, mu_Rect rect, int w, int h) {
+	int i;
+
+        for (i=0; i<h; i++) {
+		gui_draw_image(rect.x, rect.y+i, w, 1, (uint32 *) addr);
+		addr = addr + rect.w*4;		/* 4 because 32bpp */
+	}
 }
 
 

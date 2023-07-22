@@ -595,7 +595,7 @@ void mu_draw_text(mu_Context *ctx, mu_Font font, const char *str, int len,
   if (clipped) { mu_set_clip(ctx, unclipped_rect); }
 }
 
-void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect) {
+void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect, int w, int h) {
   mu_Command *cmd;
   /* do clip command if the rect isn't fully contained within the cliprect */
   int clipped = mu_check_clip(ctx, rect);
@@ -605,6 +605,8 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect) {
   cmd = mu_push_command(ctx, MU_COMMAND_IMAGE, sizeof(mu_ImageCommand));
   cmd->image.addr = addr;
   cmd->image.rect = rect;
+  cmd->image.w = w;
+  cmd->image.h = h;
   /* reset clipping if it was set */
   if (clipped) { mu_set_clip(ctx, unclipped_rect); }
 }

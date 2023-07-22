@@ -7,19 +7,6 @@
 #define FRAME_SPACE_H 35
 
 extern uint32 nina[];
-uint8 * buf_nina;
-
-void copy_to_buf(void * dest, void * orig, int w_orig, int w, int h)
-{
-	int i;
-
-	for (i=0; i<h; i++) {
-		memcpy(dest, orig, w*4);	/* 4 because 32bpp */
-	        dest = dest + w*4;
-		orig = orig + w_orig*4;
-	}
-}
-
 
 /* window of this program, called by microui.
  * It draws an image surface (buf_nina).
@@ -40,9 +27,8 @@ void nina_window(mu_Context *ctx) {
 		if (h > NINA_H)
 			h = NINA_H;
 
-		copy_to_buf(buf_nina, nina, NINA_W, w, h);
 		rect = mu_layout_next(ctx);
-		mu_draw_image(ctx, buf_nina, mu_rect(rect.x, rect.y, w, h));
+		mu_draw_image(ctx, nina, mu_rect(rect.x, rect.y, NINA_W, NINA_H), w, h);
 
 		mu_end_window(ctx);
 	}
@@ -52,7 +38,6 @@ process mu_gui_demo(void)
 {
 	int n;
 
-	buf_nina = getmem(NINA_W * NINA_H * 4);  /* 4 is size for uint32 */
 	n = mu_add_win(nina_window);
 
 	/* program source code (for example, modify surface
@@ -63,6 +48,5 @@ process mu_gui_demo(void)
 	sleep(100);	
 
 	mu_free_win(n) ;
-	freemem(buf_nina, NINA_W * NINA_H * 4);  /* 4 is size for uint32 */
 }
 

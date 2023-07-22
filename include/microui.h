@@ -125,7 +125,7 @@ typedef struct { mu_BaseCommand base; mu_Rect rect; } mu_ClipCommand;
 typedef struct { mu_BaseCommand base; mu_Rect rect; mu_Color color; } mu_RectCommand;
 typedef struct { mu_BaseCommand base; mu_Font font; mu_Vec2 pos; mu_Color color; char str[1]; } mu_TextCommand;
 typedef struct { mu_BaseCommand base; mu_Rect rect; int id; mu_Color color; } mu_IconCommand;
-typedef struct { mu_BaseCommand base; mu_Rect rect; void * addr; } mu_ImageCommand;
+typedef struct { mu_BaseCommand base; mu_Rect rect; void * addr; int w; int h} mu_ImageCommand;
 
 typedef union {
   int type;
