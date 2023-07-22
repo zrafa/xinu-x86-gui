@@ -109,13 +109,33 @@ void r_draw_mouse() {
     gui_draw_image(m_state.pos_x, m_state.pos_y, 11, 18, pointer);
 }
 
-char cc;
+char new_key;
+unsigned char prev_key;
+unsigned char curr_key;
 void r_handle_input(mu_Context *ctx)
 {
+	read(KEYBOARD, &curr_key, 1);
+	/* get ascii code */
+	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
+	/* make text for mu_input_text */
 	char buf[2];
-	buf[0] = cc++;
-	buf[1] = 0;
-	write_log(buf);
+	buf[0] = new_key;
+	buf[1] = '\0';
+	if(prev_key != new_key) {
+		if(new_key > 31 && new_key < 127) {
+			/* a key was just pressed */
+			mu_input_text(ctx, buf);
+		} else if (new_key == 13) {
+			/* enter */
+			mu_input_keydown(ctx, MU_KEY_RETURN);
+			mu_input_keyup(ctx, MU_KEY_RETURN);
+		} else if (new_key == 8) {
+			/* backspace */
+			mu_input_keydown(ctx, MU_KEY_BACKSPACE);
+			mu_input_keyup(ctx, MU_KEY_BACKSPACE);
+		}
+		prev_key = new_key;
+	}
 	/* keep mouse position updated in microui */
 	mu_input_mousemove(ctx, m_state.pos_x, m_state.pos_y);
 	if(prev_m_state.left_mouse != m_state.left_mouse) {
