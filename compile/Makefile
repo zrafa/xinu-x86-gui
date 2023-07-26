@@ -58,6 +58,7 @@ BRELOC  =	0x150000
 BOOTPLOC=	0x150000
 
 DEFS		= -DBRELOC=${BRELOC} -DBOOTPLOC=${BOOTPLOC} -DBSDURG -DVERSION=\""`cat $(VERSIONFILE)`"\"
+DEFS       += -DX86_QEMU
 
 # Compiler flags
 # CFLAGS  = -march=i586 -m32 -fno-builtin -fno-stack-protector -nostdlib -c -Wall -O0 ${DEFS} ${INCLUDE}
@@ -158,6 +159,7 @@ clean:
 	@rm -f $(XINU)
 	@rm -f $(XINUXBIN)
 	@rm -f $(TMP_FILES)
+	@rm -f disk.iso
 
 #--------------------------------------------------------------------------------
 # QEMU grub system image test
@@ -173,7 +175,7 @@ qemu-iso-pre: xinu test/grub/grub.cfg
 run-qemu: qemu-iso-pre
 	echo OTRO GRUB PARA PROBAR: grub-mkrescue -o disk.iso test/img
 	grub-mkrescue -d /usr/lib/grub/i386-pc -o disk.iso test/img
-	qemu-system-i386 -cdrom disk.iso
+	qemu-system-i386 -machine accel=kvm -enable-kvm -drive file=disk.iso,index=0,media=cdrom -netdev user,id=u0 -device e1000-82545em,netdev=u0
 
 
 #--------------------------------------------------------------------------------

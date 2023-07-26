@@ -33,20 +33,12 @@ tty:
 		-intr ttydispatch
 
 /* type of a ethernet device */
-/*
 eth:
 	on e1000e
 		-i ethinit	-o ioerr	-c ioerr
 		-r ethread	-g ioerr	-p ioerr
 		-w ethwrite	-s ioerr	-n ethcontrol
 		-intr ethdispatch
-*/
-eth:
-	on nothing
-		-i ionull	-o ionull	-c ionull
-		-r ionull	-g ionull	-p ionull
-		-w ionull	-s ioerr
-		-intr ionull
 
 /* type of a remote disk system device */
 rds:
@@ -149,8 +141,7 @@ nam:
    NULLDEV is null on nothing
 
    /* Physical Ethernet (raw packet transfer) */
-   /* ETHER0 is eth   on e1000e csr 0 -irq 0 */
-   ETHER0 is eth   on nothing
+   ETHER0 is eth   on e1000e csr 0 -irq 0
 
    /* Define a namespace device */
    NAMESPACE is nam on top

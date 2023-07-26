@@ -61,9 +61,9 @@ devcall	ethwrite(
 
 	/* Add descriptor by advancing the tail pointer */
 	
-	tdt = eth_io_readl(ethptr->iobase, E1000_TDT(0));
+	tdt = eth_dev_readl(ethptr->iobase, E1000_TDT(0));
 	tdt = (tdt + 1) % ethptr->txRingSize;
-	eth_io_writel(ethptr->iobase, E1000_TDT(0), tdt);
+	eth_dev_writel(ethptr->iobase, E1000_TDT(0), tdt);
 
 	/* Advance the ring tail pointing to the next available ring 	*/
 	/* 	descriptor 						*/

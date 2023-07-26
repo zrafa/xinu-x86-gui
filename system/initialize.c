@@ -53,6 +53,7 @@ void nulluser (unsigned long magic, unsigned long addr )
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
 	uint32	free_mem;		/* Total amount of free memory	*/
+	int32 dinfo; /* ethernet device info */
 	
 
 	/* Set MBI to the address of the Multiboot information structure. */
@@ -96,7 +97,11 @@ void nulluser (unsigned long magic, unsigned long addr )
 
 	/* Initialize the network stack and start processes */
 
-	// net_init();
+	dinfo = find_pci_device(INTEL_82545EM_DEVICE_ID,
+                                     INTEL_VENDOR_ID, 0);
+        if (dinfo != SYSERR) {
+		net_init();
+        }
 
 	/* Create a process to finish startup and start main */
 
@@ -124,23 +129,28 @@ local process	startup(void)
 {
 	uint32	ipaddr;			/* Computer's IP address	*/
 	char	str[128];		/* String used to format output	*/
+	int32 dinfo; /* ethernet device info */
 
 
 	/* Use DHCP to obtain an IP address and format it */
 
-//	ipaddr = getlocalip();
-//	if ((int32)ipaddr == SYSERR) {
-//		kprintf("Cannot obtain an IP address\n");
-//	} else {
-//		/* Print the IP in dotted decimal and hex */
-//		ipaddr = NetData.ipucast;
-//		sprintf(str, "%d.%d.%d.%d",
-//			(ipaddr>>24)&0xff, (ipaddr>>16)&0xff,
-//			(ipaddr>>8)&0xff,        ipaddr&0xff);
-//	
-//		kprintf("Obtained IP address  %s   (0x%08x)\n", str,
-//								ipaddr);
-//	}
+	dinfo = find_pci_device(INTEL_82545EM_DEVICE_ID,
+                                     INTEL_VENDOR_ID, 0);
+        if (dinfo != SYSERR) {
+		ipaddr = getlocalip();
+	}
+	if ((int32)ipaddr == SYSERR) {
+		kprintf("Cannot obtain an IP address\n");
+	} else if (dinfo != SYSERR) {
+		/* Print the IP in dotted decimal and hex */
+		ipaddr = NetData.ipucast;
+		sprintf(str, "%d.%d.%d.%d",
+			(ipaddr>>24)&0xff, (ipaddr>>16)&0xff,
+			(ipaddr>>8)&0xff,        ipaddr&0xff);
+	
+		kprintf("Obtained IP address  %s   (0x%08x)\n", str,
+								ipaddr);
+	}
 
 	/* Create a process to execute function main() */
 

@@ -61,9 +61,9 @@ devcall	ethread(
 	/* Add newly reclaimed descriptor to the ring */
 
 	if (ethptr->rxHead % E1000_RING_BOUNDARY == 0) {
-		rdt = eth_io_readl(ethptr->iobase, E1000_RDT(0));
+		rdt = eth_dev_readl(ethptr->iobase, E1000_RDT(0));
 		rdt = (rdt + E1000_RING_BOUNDARY) % ethptr->rxRingSize;
-		eth_io_writel(ethptr->iobase, E1000_RDT(0), rdt);
+		eth_dev_writel(ethptr->iobase, E1000_RDT(0), rdt);
 	}
 
 	/* Advance the head pointing to the next ring descriptor which 	*/

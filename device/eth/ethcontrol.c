@@ -42,12 +42,12 @@ devcall	ethcontrol(
 			if (rar_low || rar_high)
 				rar_high |= E1000_RAH_AV;
 
-			eth_io_writel(ethptr->iobase, E1000_RAL(arg2), 
+			eth_dev_writel(ethptr->iobase, E1000_RAL(arg2), 
 					rar_low);
-			eth_io_flush(ethptr->iobase);
-			eth_io_writel(ethptr->iobase, E1000_RAH(arg2), 
+			eth_dev_flush(ethptr->iobase);
+			eth_dev_writel(ethptr->iobase, E1000_RAH(arg2), 
 					rar_high);
-			eth_io_flush(ethptr->iobase);
+			eth_dev_flush(ethptr->iobase);
 			
 			break;
 
@@ -66,9 +66,9 @@ void ethIrqDisable(
 	struct 	ethcblk	*ethptr
 	)
 {
-	eth_io_writel(ethptr->iobase, E1000_IMC, ~0);
+	eth_dev_writel(ethptr->iobase, E1000_IMC, ~0);
 
-	eth_io_flush(ethptr->iobase);
+	eth_dev_flush(ethptr->iobase);
 }
 
 /*------------------------------------------------------------------------
@@ -79,7 +79,7 @@ void ethIrqEnable(
 	struct 	ethcblk	*ethptr
 	)
 {
-	eth_io_writel(ethptr->iobase, E1000_IMS, E1000_IMS_ENABLE_MASK);
+	eth_dev_writel(ethptr->iobase, E1000_IMS, E1000_IMS_ENABLE_MASK);
 
-	eth_io_flush(ethptr->iobase);
+	eth_dev_flush(ethptr->iobase);
 }

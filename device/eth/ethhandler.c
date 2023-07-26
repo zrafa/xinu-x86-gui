@@ -100,7 +100,7 @@ interrupt ethhandler(void)
 
 	/* Obtain status bits from device */
 
-	status = eth_io_readl(ethptr->iobase, E1000_ICR);
+	status = eth_dev_readl(ethptr->iobase, E1000_ICR);
 
 	/* Not our interrupt */
 

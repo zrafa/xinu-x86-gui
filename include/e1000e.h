@@ -21,6 +21,16 @@
 #define E1000_TX_RING_SIZE 	16
 #define E1000_RING_BOUNDARY 	16
 
+#ifdef X86_QEMU
+#define eth_dev_writel(b,r,v) eth_mmio_writel(b,r,v)
+#define eth_dev_readl(b,r) eth_mmio_readl(b,r)
+#define eth_dev_flush(b) eth_mmio_flush(b)
+#else
+#define eth_dev_writel(b,r,v) eth_io_writel(b,r,v)
+#define eth_dev_readl(b,r) eth_io_readl(b,r)
+#define eth_dev_flush(b) eth_io_flush(b)
+#endif
+
 /* Receive Descriptor */
 
 struct	eth_rx_desc {
@@ -60,6 +70,23 @@ struct	eth_tx_desc {
 #define E1000_RDSIZE 		sizeof(struct 	eth_rx_desc)
 #define E1000_TDSIZE 		sizeof(struct 	eth_tx_desc)
 
+static 	inline 	void 	eth_mmio_writel(
+	uint32 	iobase,
+	uint32 	reg,
+	uint32 	val
+	)
+{
+	*(int32*)(iobase+reg) = (val);
+}
+
+static 	inline 	uint32 	eth_mmio_readl(
+	uint32 	iobase,
+	uint32 	reg
+	)
+{
+	return *(int32*)(iobase+reg);
+}
+
 static 	inline 	void 	eth_io_writel(
 	uint32 	iobase,
 	uint32 	reg,
@@ -78,6 +105,9 @@ static 	inline 	uint32 	eth_io_readl(
 	outl(iobase + E1000_IO_IOADDR, reg);
 	return inl(iobase + E1000_IO_IODATA);
 }
+
+#define eth_mmio_flush(iobase)                                          \
+	eth_mmio_readl((iobase), E1000_STATUS);
 
 #define eth_io_flush(iobase)  						\
 	eth_io_readl((iobase), E1000_STATUS);

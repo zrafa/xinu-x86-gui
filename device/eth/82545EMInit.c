@@ -9,7 +9,6 @@ local 	void 	_82545EM_configure_tx(struct ethcblk *);
 status 	_82545EM_read_phy_reg(struct ethcblk *, uint32, uint16 *);
 status 	_82545EM_write_phy_reg(struct ethcblk *, uint32, uint16);
 
-
 /*------------------------------------------------------------------------
  * _82545EMInit - initialize Intel 82545EM Ethernet NIC
  *------------------------------------------------------------------------
@@ -25,12 +24,17 @@ status 	_82545EMInit(
 	uint32  rar_low, rar_high, bufptr;
 
 	/* Read PCI configuration information */
+#ifdef X86_QEMU
+	/* Use MMIO for QEMU net device */
+	pci_bios_read_config_dword(ethptr->pcidev, E1000_PCI_MEMBASE,
+				   (uint32 *)&ethptr->iobase);
+#else
 	/* Read I/O base address */
-
 	pci_bios_read_config_dword(ethptr->pcidev, E1000_PCI_IOBASE,
-			(uint32 *)&ethptr->iobase);
+			       (uint32 *)&ethptr->iobase);
 	ethptr->iobase &= ~1;
 	ethptr->iobase &= 0xffff; /* the low bit is set to indicate I/O */
+#endif
 
 	/* Read interrupt line number */
 
@@ -47,8 +51,8 @@ status 	_82545EMInit(
 
 	/* Read the MAC address */
 	
-	rar_low = eth_io_readl(ethptr->iobase, E1000_RAL(0));
-	rar_high = eth_io_readl(ethptr->iobase, E1000_RAH(0));
+	rar_low = eth_dev_readl(ethptr->iobase, E1000_RAL(0));
+	rar_high = eth_dev_readl(ethptr->iobase, E1000_RAH(0));
 
 	for (i = 0; i < ETH_ADDR_LEN; i++) 
 		ethptr->devAddress[i] = (byte)(rar_low >> (i*8));
@@ -91,11 +95,9 @@ status 	_82545EMInit(
 	ethptr->txBufs = (void *)(((uint32)ethptr->txBufs + 0x3f) 
 			& ~0x3f);
 
-	printf("rxbuf: %x \n", (uint32)ethptr->rxBufs);
-	printf("txbuf: %x \n", (uint32)ethptr->txBufs);
 	if ( (SYSERR == (uint32)ethptr->rxBufs) || 
 	     (SYSERR == (uint32)ethptr->txBufs) ) {
-		return SYSERR;
+	  return SYSERR;
 	}
 
 	/* Set buffer pointers and rings to zero */
@@ -125,7 +127,7 @@ status 	_82545EMInit(
 
 	/* Reset packet buffer allocation to default */
 
-	eth_io_writel(ethptr->iobase, E1000_PBA, E1000_PBA_48K);
+	eth_dev_writel(ethptr->iobase, E1000_PBA, E1000_PBA_48K);
 
 	/* Reset the NIC to bring it into a known state and initialize it */
 
@@ -133,14 +135,12 @@ status 	_82545EMInit(
 
 	/* Initialize the hardware */
 
-	printf("ok1\n");
 	if (_82545EM_init_hw(ethptr) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	/* Configure the NIC */
 
-	eth_io_writel(ethptr->iobase, E1000_AIT, 0);
+	eth_dev_writel(ethptr->iobase, E1000_AIT, 0);
 
 	/* Configure the RX */
 
@@ -170,24 +170,24 @@ local void _82545EM_reset_hw(
 
 	/* Masking off all interrupts */
 
-	eth_io_writel(ethptr->iobase, E1000_IMC, 0xffffffff);
+	eth_dev_writel(ethptr->iobase, E1000_IMC, 0xffffffff);
 
 	/* Disable the Transmit and Receive units. */
 
-	eth_io_writel(ethptr->iobase, E1000_RCTL, 0);
-	eth_io_writel(ethptr->iobase, E1000_TCTL, E1000_TCTL_PSP);
-	eth_io_flush(ethptr->iobase);
+	eth_dev_writel(ethptr->iobase, E1000_RCTL, 0);
+	eth_dev_writel(ethptr->iobase, E1000_TCTL, E1000_TCTL_PSP);
+	eth_dev_flush(ethptr->iobase);
 	MDELAY(10);
 	
-	ctrl = eth_io_readl(ethptr->iobase, E1000_CTRL);
+	ctrl = eth_dev_readl(ethptr->iobase, E1000_CTRL);
 
 	/* Issuing a global reset */
 
-	eth_io_writel(ethptr->iobase, E1000_CTRL, ctrl | E1000_CTRL_RST);
+	eth_dev_writel(ethptr->iobase, E1000_CTRL, ctrl | E1000_CTRL_RST);
 	MDELAY(5);
 
-	eth_io_writel(ethptr->iobase, E1000_IMC, 0xffffffff);
-	eth_io_readl(ethptr->iobase, E1000_ICR);
+	eth_dev_writel(ethptr->iobase, E1000_IMC, 0xffffffff);
+	eth_dev_readl(ethptr->iobase, E1000_ICR);
 }
 
 /*------------------------------------------------------------------------
@@ -207,31 +207,30 @@ local status _82545EM_init_hw(
 	/* Zero out the other receive addresses */
 
 	for (i = 1; i < E1000_82545EM_RAR_ENTRIES; i++) {
-		eth_io_writel(ethptr->iobase, E1000_RAL(i), 0);
-	    	eth_io_flush(ethptr->iobase);
-	    	eth_io_writel(ethptr->iobase, E1000_RAH(i), 0);
-	    	eth_io_flush(ethptr->iobase);
+		eth_dev_writel(ethptr->iobase, E1000_RAL(i), 0);
+	    	eth_dev_flush(ethptr->iobase);
+	    	eth_dev_writel(ethptr->iobase, E1000_RAH(i), 0);
+	    	eth_dev_flush(ethptr->iobase);
 	}
 
 	/* Zero out the Multicast HASH table */
 
 	for (i = 0; i < E1000_82545EM_MTA_ENTRIES; i++) {
-		eth_io_writel(ethptr->iobase, E1000_MTA + (i << 2), 0);
-	    	eth_io_flush(ethptr->iobase);
+		eth_dev_writel(ethptr->iobase, E1000_MTA + (i << 2), 0);
+	    	eth_dev_flush(ethptr->iobase);
 	}
 
 	/* Configure copper link settings */
 
-	ctrl = eth_io_readl(ethptr->iobase, E1000_CTRL);
+	ctrl = eth_dev_readl(ethptr->iobase, E1000_CTRL);
 	ctrl |= E1000_CTRL_SLU;
 	ctrl &= ~(E1000_CTRL_FRCSPD | E1000_CTRL_FRCDPX);
-	eth_io_writel(ethptr->iobase, E1000_CTRL, ctrl);
+	eth_dev_writel(ethptr->iobase, E1000_CTRL, ctrl);
 
-	printf("ok2\n");
     	if (_82545EM_read_phy_reg(ethptr, M88E1000_PHY_SPEC_CTRL, 
-			       &phy_data) != OK)
-		return SYSERR;
-	printf("ok2\n");
+			      &phy_data) != OK) {
+		    return SYSERR;
+    }
 
 	phy_data |= M88E1000_PSCR_AUTO_X_MODE;
 	phy_data &= ~M88E1000_PSCR_POLARITY_REVERSAL;
@@ -239,21 +238,18 @@ local status _82545EM_init_hw(
 	if (_82545EM_write_phy_reg(ethptr, M88E1000_PHY_SPEC_CTRL, 
 				phy_data) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	/* Commit the changes. */
 
     	if (_82545EM_read_phy_reg(ethptr, E1000_PHY_CONTROL, 
 				  &phy_ctrl) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	phy_ctrl |= E1000_MII_CR_RESET;
 	
 	if (_82545EM_write_phy_reg(ethptr, E1000_PHY_CONTROL, 
 				   phy_ctrl) != OK)
 		return SYSERR;
-	printf("ok2\n");
 	
 	DELAY(1);
 
@@ -263,12 +259,10 @@ local status _82545EM_init_hw(
 	if (_82545EM_read_phy_reg(ethptr, E1000_PHY_AUTONEG_ADV, 
 			       &mii_autoneg_adv_reg) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
     	if (_82545EM_read_phy_reg(ethptr, E1000_PHY_1000T_CTRL, 
 			       &mii_1000t_ctrl_reg) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	mii_autoneg_adv_reg |= (E1000_NWAY_AR_100TX_FD_CAPS |
 				E1000_NWAY_AR_100TX_HD_CAPS |
@@ -283,19 +277,16 @@ local status _82545EM_init_hw(
 	if (_82545EM_write_phy_reg(ethptr, E1000_PHY_AUTONEG_ADV, 
 				mii_autoneg_adv_reg) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	if (_82545EM_write_phy_reg(ethptr, E1000_PHY_1000T_CTRL, 
 				mii_1000t_ctrl_reg) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	/* Restart auto-negotiation. */
 
 	if (_82545EM_read_phy_reg(ethptr, E1000_PHY_CONTROL, 
 				  &phy_ctrl) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
     	phy_ctrl |= (E1000_MII_CR_AUTO_NEG_EN | 
 		     E1000_MII_CR_RESTART_AUTO_NEG);
@@ -303,7 +294,6 @@ local status _82545EM_init_hw(
 	if (_82545EM_write_phy_reg(ethptr, E1000_PHY_CONTROL, 
 				   phy_ctrl) != OK)
 		return SYSERR;
-	printf("ok2\n");
 
 	/* Wait for auto-negotiation to complete */
 
@@ -315,7 +305,6 @@ local status _82545EM_init_hw(
 		if (_82545EM_read_phy_reg(ethptr, E1000_PHY_STATUS, 
 				       &phy_status) != OK)
 			return SYSERR;
-	printf("ok2\n");
 		
 		if ((phy_status & E1000_MII_SR_LINK_STATUS) && 
 		    (phy_status & E1000_MII_SR_AUTONEG_COMPLETE)) {
@@ -325,9 +314,9 @@ local status _82545EM_init_hw(
 		MDELAY(100);
 	}
 
-	ctrl = eth_io_readl(ethptr->iobase, E1000_CTRL);
+	ctrl = eth_dev_readl(ethptr->iobase, E1000_CTRL);
 	ctrl &= (~(E1000_CTRL_TFCE | E1000_CTRL_RFCE));
-	eth_io_writel(ethptr->iobase, E1000_CTRL, ctrl);
+	eth_dev_writel(ethptr->iobase, E1000_CTRL, ctrl);
 
 	return OK;
 }
@@ -342,11 +331,11 @@ local void _82545EM_configure_rx(
 {
 	uint32 rctl, rxcsum;
 
-	rctl = eth_io_readl(ethptr->iobase, E1000_RCTL);
+	rctl = eth_dev_readl(ethptr->iobase, E1000_RCTL);
 
 	/* Disable receiver while configuring. */
 
-	eth_io_writel(ethptr->iobase, E1000_RCTL, rctl & ~E1000_RCTL_EN);
+	eth_dev_writel(ethptr->iobase, E1000_RCTL, rctl & ~E1000_RCTL_EN);
 
 	/* Enable receiver, accept broadcast packets, no loopback, and 	*/
 	/* 	free buffer threshold is set to 1/2 RDLEN. 		*/
@@ -375,35 +364,35 @@ local void _82545EM_configure_rx(
 	/* 	immediately each time a new packet has been stored in 	*/
 	/* 	memory 							*/
 
-	eth_io_writel(ethptr->iobase, E1000_RDTR, E1000_RDTR_DEFAULT);
-	eth_io_writel(ethptr->iobase, E1000_RADV, E1000_RADV_DEFAULT);
+	eth_dev_writel(ethptr->iobase, E1000_RDTR, E1000_RDTR_DEFAULT);
+	eth_dev_writel(ethptr->iobase, E1000_RADV, E1000_RADV_DEFAULT);
 
 	/* IRQ moderation */
 
-	eth_io_writel(ethptr->iobase, E1000_ITR, 
+	eth_dev_writel(ethptr->iobase, E1000_ITR, 
 			1000000000 / (E1000_ITR_DEFAULT * 256));
 
 	/* Setup the HW Rx Head and Tail Descriptor Pointers, the Base 	*/
 	/* 	and Length of the Rx Descriptor Ring 			*/
 
-	eth_io_writel(ethptr->iobase, E1000_RDBAL(0), 
+	eth_dev_writel(ethptr->iobase, E1000_RDBAL(0), 
 			(uint32)ethptr->rxRing);
-	eth_io_writel(ethptr->iobase, E1000_RDBAH(0), 0);
-	eth_io_writel(ethptr->iobase, E1000_RDLEN(0), 
+	eth_dev_writel(ethptr->iobase, E1000_RDBAH(0), 0);
+	eth_dev_writel(ethptr->iobase, E1000_RDLEN(0), 
 			E1000_RDSIZE * ethptr->rxRingSize);
-	eth_io_writel(ethptr->iobase, E1000_RDH(0), 0);
-	eth_io_writel(ethptr->iobase, E1000_RDT(0), 
+	eth_dev_writel(ethptr->iobase, E1000_RDH(0), 0);
+	eth_dev_writel(ethptr->iobase, E1000_RDT(0), 
 			ethptr->rxRingSize - E1000_RING_BOUNDARY);
 
 	/* Disable Receive Checksum Offload for IPv4, TCP and UDP. */
 
-	rxcsum = eth_io_readl(ethptr->iobase, E1000_RXCSUM);
+	rxcsum = eth_dev_readl(ethptr->iobase, E1000_RXCSUM);
 	rxcsum &= ~(E1000_RXCSUM_TUOFL | E1000_RXCSUM_IPOFL);
-	eth_io_writel(ethptr->iobase, E1000_RXCSUM, rxcsum);
+	eth_dev_writel(ethptr->iobase, E1000_RXCSUM, rxcsum);
 
 	/* Enable receiver. */
 
-	eth_io_writel(ethptr->iobase, E1000_RCTL, rctl);
+	eth_dev_writel(ethptr->iobase, E1000_RCTL, rctl);
 }
 
 /*------------------------------------------------------------------------
@@ -419,14 +408,14 @@ local void _82545EM_configure_tx(
 
 	/* Set the transmit descriptor write-back policy for both queues */
 
-	txdctl = eth_io_readl(ethptr->iobase, E1000_TXDCTL(0));
+	txdctl = eth_dev_readl(ethptr->iobase, E1000_TXDCTL(0));
 	txdctl &= ~E1000_TXDCTL_WTHRESH;
 	txdctl |= E1000_TXDCTL_GRAN;
-	eth_io_writel(ethptr->iobase, E1000_TXDCTL(0), txdctl);
+	eth_dev_writel(ethptr->iobase, E1000_TXDCTL(0), txdctl);
 
 	/* Program the Transmit Control Register */
 	
-	tctl = eth_io_readl(ethptr->iobase, E1000_TCTL);
+	tctl = eth_dev_readl(ethptr->iobase, E1000_TCTL);
 	tctl &= ~E1000_TCTL_CT;
 	tctl |= E1000_TCTL_RTLC |
 		E1000_TCTL_EN 	|
@@ -442,24 +431,24 @@ local void _82545EM_configure_tx(
 	ipgr2 = E1000_TIPG_IPGR2_DEFAULT;
 	tipg |= ipgr1 << E1000_TIPG_IPGR1_SHIFT;
 	tipg |= ipgr2 << E1000_TIPG_IPGR2_SHIFT;
-	eth_io_writel(ethptr->iobase, E1000_TIPG, tipg);
+	eth_dev_writel(ethptr->iobase, E1000_TIPG, tipg);
 
 	/* Set the Tx Interrupt Delay register */
 	
-	eth_io_writel(ethptr->iobase, E1000_TIDV, E1000_TIDV_DEFAULT);
-	eth_io_writel(ethptr->iobase, E1000_TADV, E1000_TADV_DEFAULT);
+	eth_dev_writel(ethptr->iobase, E1000_TIDV, E1000_TIDV_DEFAULT);
+	eth_dev_writel(ethptr->iobase, E1000_TADV, E1000_TADV_DEFAULT);
 
 	/* Setup the HW Tx Head and Tail descriptor pointers */
 	
-	eth_io_writel(ethptr->iobase, E1000_TDBAL(0), 
+	eth_dev_writel(ethptr->iobase, E1000_TDBAL(0), 
 			(uint32)ethptr->txRing);
-	eth_io_writel(ethptr->iobase, E1000_TDBAH(0), 0);
-	eth_io_writel(ethptr->iobase, E1000_TDLEN(0), 
+	eth_dev_writel(ethptr->iobase, E1000_TDBAH(0), 0);
+	eth_dev_writel(ethptr->iobase, E1000_TDLEN(0), 
 			E1000_TDSIZE * ethptr->txRingSize);
-	eth_io_writel(ethptr->iobase, E1000_TDH(0), 0);
-	eth_io_writel(ethptr->iobase, E1000_TDT(0), 0);
+	eth_dev_writel(ethptr->iobase, E1000_TDH(0), 0);
+	eth_dev_writel(ethptr->iobase, E1000_TDT(0), 0);
 
-	eth_io_writel(ethptr->iobase, E1000_TCTL, tctl);
+	eth_dev_writel(ethptr->iobase, E1000_TCTL, tctl);
 }
 
 /*------------------------------------------------------------------------
@@ -482,14 +471,15 @@ status _82545EM_read_phy_reg(
 		(E1000_82545EM_MDIC_PHY_ADDR << E1000_MDIC_PHY_SHIFT) |
 		(E1000_MDIC_OP_READ));
 
-	eth_io_writel(ethptr->iobase, E1000_MDIC, mdic);
+	eth_dev_writel(ethptr->iobase, E1000_MDIC, mdic);
 
 	for (i = 0; i < (E1000_GEN_POLL_TIMEOUT * 3); i++) {
 		DELAY(50);
-		mdic = eth_io_readl(ethptr->iobase, E1000_MDIC);
+		mdic = eth_dev_readl(ethptr->iobase, E1000_MDIC);
 		if (mdic & E1000_MDIC_READY)
 			break;
 	}
+
 	if (!(mdic & E1000_MDIC_READY)) {
 		return SYSERR;
 	}
@@ -522,11 +512,11 @@ status _82545EM_write_phy_reg(
 		 (E1000_82545EM_MDIC_PHY_ADDR << E1000_MDIC_PHY_SHIFT) |
 		 (E1000_MDIC_OP_WRITE) );
 
-	eth_io_writel(ethptr->iobase, E1000_MDIC, mdic);
+	eth_dev_writel(ethptr->iobase, E1000_MDIC, mdic);
 
 	for (i = 0; i < (E1000_GEN_POLL_TIMEOUT * 3); i++) {
 		DELAY(50);
-		mdic = eth_io_readl(ethptr->iobase, E1000_MDIC);
+		mdic = eth_dev_readl(ethptr->iobase, E1000_MDIC);
 		if (mdic & E1000_MDIC_READY)
 			break;
 	}
