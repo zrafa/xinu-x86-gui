@@ -30,8 +30,6 @@ void galaga_window(mu_Context *ctx, int n) {
 			w = GALAGA_W;
 		if (h > GALAGA_H)
 			h = GALAGA_H;
-//		mu_layout_set_next(ctx, mu_rect(0,0,GALAGA_W, GALAGA_H), 2); /* 1: RELATIVE, 2: ABSOLUTE */
-		//rect = mu_layout_next(ctx);
                 mu_draw_image(ctx, galaga_buf, mu_rect(rect.x, rect.y, GALAGA_W, GALAGA_H), w, h, n);
 
 		mu_end_window(ctx);
