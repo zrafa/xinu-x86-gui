@@ -148,17 +148,15 @@ int galaga(void){
 	pid = create(reading_keys, 1024, 20, "keys", 0);
 	resume(pid);
 
-	pid_control = create(game_control, 1024, 20, "control_proc", 0);
-	resume(pid_control);
-}
+	pid_control = getpid();
 
-void game_control(){
 	gui_buf_init();
 	pid_info = create(info_game, 1024, 20, "info_proc", 0);
 	pid_game = create(game_galaga, 1024, 20, "game_proc", 0);
 	
 	resume(pid_info);
 	resume(pid_game);
+
 	int endgame_msg = receive();
 
 	kill(pid_game);
@@ -174,8 +172,9 @@ int game_galaga() {
 	while(1) {
 		//go back to title screen if select button is pressed
 		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+			initialize();
 			restart();
-			game_galaga();
+		//	game_galaga();
 		}
 
 		if (KEY_DOWN_NOW(BUTTON_ESCAPE)){
@@ -201,7 +200,6 @@ int game_galaga() {
 			player.playerY += playerspeed;
 		}
 		sleepms(50);
-
 
 
 		//draw player
@@ -371,9 +369,10 @@ void initialize(){
 	send(pid_info, 2);
 
 	while(1) {
-		if (KEY_DOWN_NOW(BUTTON_START)) {
+		if (KEY_DOWN_NOW(BUTTON_START))
 			break;
-		}
+		if (KEY_DOWN_NOW(BUTTON_ESCAPE))
+			send(pid_control, 1);
 	}
 
 	drawImage3(0, 0, 240, 160, controls);

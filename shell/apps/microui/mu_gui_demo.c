@@ -15,6 +15,8 @@ extern uint32 nina[];
 void nina_window(mu_Context *ctx) {
 	mu_Rect rect;
 	int w,h;
+	mu_Vec2 mouse;
+	char c;
 
 	/* do window */
 	if (mu_begin_window(ctx, "Demo Nina", mu_rect(700, 40, NINA_W+FRAME_SPACE_W, NINA_H+FRAME_SPACE_H))) {
@@ -28,7 +30,7 @@ void nina_window(mu_Context *ctx) {
 			h = NINA_H;
 
 		rect = mu_layout_next(ctx);
-		mu_draw_image(ctx, nina, mu_rect(rect.x, rect.y, NINA_W, NINA_H), w, h);
+		mu_draw_image(ctx, nina, mu_rect(rect.x, rect.y, NINA_W, NINA_H), w, h, &mouse, &c);
 
 		mu_end_window(ctx);
 	}

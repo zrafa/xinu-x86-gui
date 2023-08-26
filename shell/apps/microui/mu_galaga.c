@@ -13,8 +13,10 @@ extern uint32 *galaga_buf;
 /* window of this program, called by microui.
  * It draws an image surface (galaga_buf).
  * galaga_buf might be modified, probably, in main program (mu_gui_demo()) 
+ *
+ * int n argument is the window number n.
  */
-void galaga_window(mu_Context *ctx) {
+void galaga_window(mu_Context *ctx, int n) {
 	mu_Rect rect;
 	int w,h;
 
@@ -28,9 +30,9 @@ void galaga_window(mu_Context *ctx) {
 			w = GALAGA_W;
 		if (h > GALAGA_H)
 			h = GALAGA_H;
-
-		rect = mu_layout_next(ctx);
-                mu_draw_image(ctx, galaga_buf, mu_rect(rect.x, rect.y, GALAGA_W, GALAGA_H), w, h);
+//		mu_layout_set_next(ctx, mu_rect(0,0,GALAGA_W, GALAGA_H), 2); /* 1: RELATIVE, 2: ABSOLUTE */
+		//rect = mu_layout_next(ctx);
+                mu_draw_image(ctx, galaga_buf, mu_rect(rect.x, rect.y, GALAGA_W, GALAGA_H), w, h, n);
 
 		mu_end_window(ctx);
 	}
@@ -40,8 +42,9 @@ process mu_galaga(void)
 {
 	int n;
 
-	resume(create(galaga, 8124, 20, "galaga", 0));
+//	resume(create(galaga, 8124, 20, "galaga", 0));
 	n = mu_add_win(galaga_window);
+	galaga();
 
 	/* program source code (for example, modify surface
 	 * drawn into window
@@ -49,8 +52,7 @@ process mu_galaga(void)
 
 	/* wait until window closes or program finishes */
 //	cra
-	sleep(100);	
-
+// sleep(100);	
 	mu_free_win(n) ;
 }
 

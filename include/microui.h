@@ -281,10 +281,17 @@ void mu_update_control(mu_Context *ctx, mu_Id id, mu_Rect rect, int opt);
 
 
 /* dynamic windows */
+typedef struct {
+	mu_Vec2 mouse;	/* mouse x,y inside window */
+	int but;	/* mouse button: 1 left, 2 middle, 4 right */
+	int c;		/* key pressed */
+} mu_event_t;
+
 #define N_WIN 256
 typedef struct {
         uint8 valid;
-        void (*win) (mu_Context *ctx);
+	mu_event_t *e;
+        void (*win) (mu_Context *ctx, int n);
 } win_t;
 
 extern win_t windows[N_WIN];

@@ -213,6 +213,36 @@ void mu_free_win(uint8 n) {
 	windows[n].valid = 0;
 }
 
+void mu_mutex_lock(int s) {
+	wait(s);
+}
+
+void mu_mutex_unlock(int s) {
+	signal(s);
+}
+
+sid32 sem_event;
+
+void mu_set_event(int n, mu_event_t *e) {
+	mu_mutex_lock(sem_event);
+	windows[n].e->but = e->but; 
+	windows[n].e->mouse.x = e->mouse.x; 
+	windows[n].e->mouse.y = e->mouse.y;
+	windows[n].e->c = e->c; 
+	mu_mutex_unlock(sem_event);
+}
+
+void mu_get_event(int n, mu_event_t *e) {
+	mu_mutex_lock(sem_event);
+	e->mouse.x = windows[n].e->mouse.x; 
+	e->mouse.y = windows[n].e->mouse.y; 
+	e->but = windows[n].e->but; 
+	e->c = windows[n].e->c; 
+	windows[n].e->but = -1; 
+	windows[n].e->c = -1; 
+	mu_mutex_unlock(sem_event);
+}
+
 
 void mu_init(mu_Context *ctx) {
   memset(ctx, 0, sizeof(*ctx));
@@ -223,6 +253,7 @@ void mu_init(mu_Context *ctx) {
   int i;
   for (i=0; i<N_WIN; i++)
 	  windows[i].valid = 0;
+  sem_event = semcreate(1);
 	  
 }
 
@@ -595,7 +626,27 @@ void mu_draw_text(mu_Context *ctx, mu_Font font, const char *str, int len,
   if (clipped) { mu_set_clip(ctx, unclipped_rect); }
 }
 
-void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect, int w, int h) {
+void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, int n) {
+  char idt[8]; sprintf(idt, "win%i", n);
+  mu_Id id = mu_get_id(ctx, idt, strlen(idt));
+  mu_layout_set_next(ctx, mu_rect(0, 0, w, h), 2);
+  mu_Rect rect = mu_layout_next(ctx);
+  mu_update_control(ctx, id, rect, 0);
+
+  /* handle click */
+  mu_Rect r = rect;
+
+  if (ctx->mouse_pressed == MU_MOUSE_LEFT && ctx->focus == id) {
+	printf("MOUSE PRESSED r.x: %d, r.w: %d, r.y: %d, r.h: %d ,  x: %d, y:%d focus: %u, id: %u, hover: %u\n", r.x, r.w, r.y, r.h, ctx->mouse_pos.x, ctx->mouse_pos.y, ctx->focus, id, ctx->hover);
+	mu_event_t e;
+	e.mouse.x = ctx->mouse_pos.x - r.x;
+	e.mouse.y = ctx->mouse_pos.y - r.y;
+	e.but = 1;
+	mu_set_event(n, &e);
+  }
+	
+
+
   mu_Command *cmd;
   /* do clip command if the rect isn't fully contained within the cliprect */
   int clipped = mu_check_clip(ctx, rect);
