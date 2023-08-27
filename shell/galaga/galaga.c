@@ -1,4 +1,5 @@
 #include <xinu.h>
+#include <microui.h>
 #include "titlescreen.h"
 #include "playerImage.h"
 #include "enemy.h"
@@ -99,7 +100,7 @@ int collision(u16 enemyX, u16 enemyY, u16 enemyWidth, u16 enemyHeight,
 void restart();
 
 void game_control();
-int game_galaga();
+int game_galaga(int n);
 void info_game();
 
 //objects
@@ -143,7 +144,8 @@ char str_lives[32], str_score[32];
 //Control information
 int pid_control, pid_info, pid_game;
 
-int galaga(void){
+int galaga(int n){
+	printf("n2=%d\n", n);
 	int pid;
 	pid = create(reading_keys, 1024, 20, "keys", 0);
 	resume(pid);
@@ -152,7 +154,7 @@ int galaga(void){
 
 	gui_buf_init();
 	pid_info = create(info_game, 1024, 20, "info_proc", 0);
-	pid_game = create(game_galaga, 1024, 20, "game_proc", 0);
+	pid_game = create(game_galaga, 1024, 20, "game_proc", 1, n);
 	
 	resume(pid_info);
 	resume(pid_game);
@@ -165,11 +167,16 @@ int galaga(void){
 	gui_buf_free();
 }
 
-int game_galaga() {
+int game_galaga(int n) {
+	printf("n=%d", n);
 	initialize();
 	restart();
 	//start black screen for drawing
+	mu_event_t e;
 	while(1) {
+		mu_get_event(n, &e);
+		if (e.but != -1)
+			printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
 		//go back to title screen if select button is pressed
 		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
 			initialize();
@@ -322,7 +329,10 @@ void game_over(int state) {
 
 	while(1){
 		if (KEY_DOWN_NOW(BUTTON_SELECT) || KEY_DOWN_NOW(BUTTON_START)) {
-			game_galaga();
+			initialize();
+			restart();
+
+//			game_galaga();
 		}
 	}
 }

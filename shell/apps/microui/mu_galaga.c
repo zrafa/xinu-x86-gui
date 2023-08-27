@@ -42,7 +42,7 @@ process mu_galaga(void)
 
 //	resume(create(galaga, 8124, 20, "galaga", 0));
 	n = mu_add_win(galaga_window);
-	galaga();
+	galaga(n);
 
 	/* program source code (for example, modify surface
 	 * drawn into window

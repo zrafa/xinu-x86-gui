@@ -290,7 +290,7 @@ typedef struct {
 #define N_WIN 256
 typedef struct {
         uint8 valid;
-	mu_event_t *e;
+	mu_event_t e;
         void (*win) (mu_Context *ctx, int n);
 } win_t;
 
@@ -298,6 +298,9 @@ extern win_t windows[N_WIN];
 
 int mu_add_win(void (* func)(mu_Context *ctx));
 void mu_free_win(uint8 n); 
+void mu_set_event(int n, mu_event_t *e);
+void mu_get_event(int n, mu_event_t *e);
+
 
 
 

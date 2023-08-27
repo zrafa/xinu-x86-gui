@@ -225,21 +225,21 @@ sid32 sem_event;
 
 void mu_set_event(int n, mu_event_t *e) {
 	mu_mutex_lock(sem_event);
-	windows[n].e->but = e->but; 
-	windows[n].e->mouse.x = e->mouse.x; 
-	windows[n].e->mouse.y = e->mouse.y;
-	windows[n].e->c = e->c; 
+	windows[n].e.but = e->but; 
+	windows[n].e.mouse.x = e->mouse.x; 
+	windows[n].e.mouse.y = e->mouse.y;
+	windows[n].e.c = e->c; 
 	mu_mutex_unlock(sem_event);
 }
 
 void mu_get_event(int n, mu_event_t *e) {
 	mu_mutex_lock(sem_event);
-	e->mouse.x = windows[n].e->mouse.x; 
-	e->mouse.y = windows[n].e->mouse.y; 
-	e->but = windows[n].e->but; 
-	e->c = windows[n].e->c; 
-	windows[n].e->but = -1; 
-	windows[n].e->c = -1; 
+	e->mouse.x = windows[n].e.mouse.x; 
+	e->mouse.y = windows[n].e.mouse.y; 
+	e->but = windows[n].e.but; 
+	e->c = windows[n].e.c; 
+	windows[n].e.but = -1; 
+	windows[n].e.c = -1; 
 	mu_mutex_unlock(sem_event);
 }
 
