@@ -152,7 +152,7 @@ int galaga(int n){
 
 	pid_control = getpid();
 
-	gui_buf_init();
+	// gui_buf_init();
 	pid_info = create(info_game, 1024, 20, "info_proc", 0);
 	pid_game = create(game_galaga, 1024, 20, "game_proc", 1, n);
 	
@@ -164,7 +164,7 @@ int galaga(int n){
 	kill(pid_game);
 	kill(pid_info);
 	drawRect(0, 0, 240, 160, YELLOW);
-	gui_buf_free();
+	// gui_buf_free();
 }
 
 int game_galaga(int n) {

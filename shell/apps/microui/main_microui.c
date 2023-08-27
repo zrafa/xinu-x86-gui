@@ -242,7 +242,8 @@ static void process_frame(mu_Context *ctx) {
 	int i;
 	for (i=0; i<N_WIN; i++) {
 		if (windows[i].valid)
-			windows[i].win(ctx, i);
+			dynamic_window(ctx, i);
+			// windows[i].win(ctx, i);
 	}
 
   mu_end(ctx);

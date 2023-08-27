@@ -39,8 +39,11 @@ void nina_window(mu_Context *ctx) {
 process mu_gui_demo(void)
 {
 	int n;
+	uint32 *buf;
 
-	n = mu_add_win(nina_window);
+	buf = getmem(NINA_W*NINA_H*4);
+	memcpy(buf, nina, NINA_W*NINA_H*4);
+	n = mu_add_win("Demo Nina", 700, 40, NINA_W, NINA_H, buf);
 
 	/* program source code (for example, modify surface
 	 * drawn into window
@@ -49,6 +52,7 @@ process mu_gui_demo(void)
 	/* wait until window closes or program finishes */
 	sleep(100);	
 
+	freemem(buf, NINA_W*NINA_H*4);
 	mu_free_win(n) ;
 }
 

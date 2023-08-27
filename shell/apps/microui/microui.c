@@ -192,16 +192,30 @@ static void draw_frame(mu_Context *ctx, mu_Rect rect, int colorid) {
 }
 
 
+/*
+ * ================================================
+ * DYNAMIC WINDOWS SECTION
+ * ================================================
+ */
+
 win_t windows[N_WIN];
 
-int mu_add_win(void (* func)(mu_Context *ctx))
+// int mu_add_win(void (* func)(mu_Context *ctx), char *name, int x, int y, int w, int h, void *buf)
+int mu_add_win(char *name, int x, int y, int w, int h, void *buf)
 {
 	int i;
 
 	for (i=0; i<N_WIN; i++) {
 		if (windows[i].valid == 0) {	/* we found an available win */
 			windows[i].valid = 1;
-			windows[i].win = func;
+//			windows[i].win = func;
+			strcpy(windows[i].name, name, strlen(name));
+			windows[i].posx = x;
+			windows[i].posy = y;
+			windows[i].w = w;
+			windows[i].h = h;
+			windows[i].buf = buf;
+
 			return i;
 		}
 	}
@@ -243,6 +257,34 @@ void mu_get_event(int n, mu_event_t *e) {
 	mu_mutex_unlock(sem_event);
 }
 
+#define FRAME_SPACE_W 10
+#define FRAME_SPACE_H 35
+
+void dynamic_window(mu_Context *ctx, int n) {
+        mu_Rect rect;
+        int w,h;
+
+        /* do window */
+        if (mu_begin_window(ctx, windows[n].name, mu_rect(windows[n].posx, windows[n].posy, windows[n].w+FRAME_SPACE_W, windows[n].h+FRAME_SPACE_H))) {
+                mu_Container *win = mu_get_current_container(ctx);
+                w = win->rect.w - FRAME_SPACE_W;
+                h = win->rect.h - FRAME_SPACE_H;
+
+                if (w > windows[n].w)
+                        w = windows[n].w;
+                if (h > windows[n].h)
+                        h = windows[n].h;
+                mu_draw_image(ctx, windows[n].buf, mu_rect(rect.x, rect.y, windows[n].w, windows[n].h), w, h, n);
+
+                mu_end_window(ctx);
+        }
+}
+
+/*
+ * ================================================
+ * END DYNAMIC WINDOWS SECTION
+ * ================================================
+ */
 
 void mu_init(mu_Context *ctx) {
   memset(ctx, 0, sizeof(*ctx));
@@ -645,7 +687,8 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, in
 	mu_set_event(n, &e);
   }
 	
-
+  rect.w = rect2.w;
+  rect.h = rect2.h;
 
   mu_Command *cmd;
   /* do clip command if the rect isn't fully contained within the cliprect */

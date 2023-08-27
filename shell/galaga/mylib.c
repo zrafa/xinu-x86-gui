@@ -10,7 +10,7 @@ void drawImage3(int x, int y, int width, int height, const u16* image);
 // void delay();
 void waitForVBlank();
 
-uint32 *galaga_buf;
+extern uint32 *galaga_buf;
 
 void gui_buf_init()
 {

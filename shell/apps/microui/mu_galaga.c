@@ -8,7 +8,8 @@
 
 extern process galaga();
 
-extern uint32 *galaga_buf;
+//extern uint32 *galaga_buf;
+uint32 *galaga_buf;
 
 /* window of this program, called by microui.
  * It draws an image surface (galaga_buf).
@@ -36,12 +37,16 @@ void galaga_window(mu_Context *ctx, int n) {
 	}
 }
 
+
+
 process mu_galaga(void)
 {
 	int n;
 
 //	resume(create(galaga, 8124, 20, "galaga", 0));
-	n = mu_add_win(galaga_window);
+//	n = mu_add_win(galaga_window);
+        galaga_buf = getmem(GALAGA_W*GALAGA_H*4);
+	n = mu_add_win("Galaga", 700, 200, GALAGA_W, GALAGA_H, galaga_buf);
 	galaga(n);
 
 	/* program source code (for example, modify surface
@@ -51,6 +56,7 @@ process mu_galaga(void)
 	/* wait until window closes or program finishes */
 //	cra
 // sleep(100);	
+        freemem(galaga_buf, GALAGA_W*GALAGA_H*4);
 	mu_free_win(n) ;
 }
 
