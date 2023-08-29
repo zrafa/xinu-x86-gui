@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "keyboard.h": "c",
-        "mouse.h": "c",
-        "xinu.h": "c"
-    }
-}
