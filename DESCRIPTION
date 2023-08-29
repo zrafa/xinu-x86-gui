@@ -1,5 +1,6 @@
-This directory holds Xinu sources for Virtual Box.  They are derived from
-the Galileo version described in:
+This directory holds Xinu sources for PC (x86, amd64). Also for qemu and
+Virtual Box.  They are derived from
+the Galileo version and Virtual Box version, described in:
 
 	Douglas Comer, Operating System Design -- The Xinu Approach,
 	Second edition, CRC Press, 2015.
@@ -30,4 +31,4 @@ The changes are:
     had trouble reading the grub free list.  Additional work may be
     needed to ensure the free list is correct.
 
-July, 2016
+2023
