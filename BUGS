@@ -3,3 +3,4 @@
 - after galaga gameover does not restart well
 - textbox overflows text
 - behaviour of mouse in virtualbox is not correct
+- when X button closes dynamic window, process does not finish
