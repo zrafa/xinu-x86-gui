@@ -284,7 +284,7 @@ void mu_update_control(mu_Context *ctx, mu_Id id, mu_Rect rect, int opt);
 typedef struct {
 	mu_Vec2 mouse;	/* mouse x,y inside window */
 	int but;	/* mouse button: 1 left, 2 middle, 4 right */
-	int c;		/* key pressed */
+	int c[32];	/* key pressed */
 } mu_event_t;
 
 #define N_WIN 256

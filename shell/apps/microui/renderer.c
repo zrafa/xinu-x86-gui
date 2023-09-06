@@ -125,6 +125,7 @@ void r_handle_input(mu_Context *ctx)
 		if(new_key > 31 && new_key < 127) {
 			/* a key was just pressed */
 			mu_input_text(ctx, buf);
+				printf("keyssssss.... %d \n", strlen(ctx->input_text));
 		} else if (new_key == 13) {
 			/* enter */
 			mu_input_keydown(ctx, MU_KEY_RETURN);

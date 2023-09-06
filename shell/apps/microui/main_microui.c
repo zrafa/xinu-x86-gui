@@ -282,6 +282,8 @@ int microui() {
     /* process frame */
     process_frame(ctx);
 
+	if (strlen(ctx->input_text))
+		printf("KEYs 3 %d \n", strlen(ctx->input_text));
     /* render */
     r_clear(mu_color(bg[0], bg[1], bg[2], 255));
     mu_Command *cmd = NULL;

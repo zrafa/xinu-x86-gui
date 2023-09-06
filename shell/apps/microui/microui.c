@@ -242,7 +242,9 @@ void mu_set_event(int n, mu_event_t *e) {
 	windows[n].e.but = e->but; 
 	windows[n].e.mouse.x = e->mouse.x; 
 	windows[n].e.mouse.y = e->mouse.y;
-	windows[n].e.c = e->c; 
+	// windows[n].e.c = e->c; 
+	windows[n].e.c[0]='\0';
+	memcpy(windows[n].e.c, e->c, strlen(e->c));
 	mu_mutex_unlock(sem_event);
 }
 
@@ -251,9 +253,11 @@ void mu_get_event(int n, mu_event_t *e) {
 	e->mouse.x = windows[n].e.mouse.x; 
 	e->mouse.y = windows[n].e.mouse.y; 
 	e->but = windows[n].e.but; 
-	e->c = windows[n].e.c; 
+	//e->c = windows[n].e.c; 
+	e->c[0] = '\0';
+	memcpy(e->c, windows[n].e.c, strlen(windows[n].e.c));
 	windows[n].e.but = -1; 
-	windows[n].e.c = -1; 
+	windows[n].e.c[0] = '\0'; 
 	mu_mutex_unlock(sem_event);
 }
 
@@ -673,18 +677,34 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, in
   mu_Id id = mu_get_id(ctx, idt, strlen(idt));
   mu_layout_set_next(ctx, mu_rect(0, 0, w, h), 2);
   mu_Rect rect = mu_layout_next(ctx);
-  mu_update_control(ctx, id, rect, 0);
+  // mu_update_control(ctx, id, rect, 0);
+  mu_update_control(ctx, id, rect, MU_OPT_HOLDFOCUS);
 
-  /* handle click */
+  /* handle events */
+  mu_event_t e; int event = 0;
   mu_Rect r = rect;
 
-  if (ctx->mouse_pressed == MU_MOUSE_LEFT && ctx->focus == id) {
+  e.but = -1;
+  e.c[0] = '\0';
+  
+  if (ctx->focus == id) {
+    /* handle click */
+    if (ctx->mouse_pressed == MU_MOUSE_LEFT) {
 	printf("MOUSE PRESSED r.x: %d, r.w: %d, r.y: %d, r.h: %d ,  x: %d, y:%d focus: %u, id: %u, hover: %u\n", r.x, r.w, r.y, r.h, ctx->mouse_pos.x, ctx->mouse_pos.y, ctx->focus, id, ctx->hover);
-	mu_event_t e;
 	e.mouse.x = ctx->mouse_pos.x - r.x;
 	e.mouse.y = ctx->mouse_pos.y - r.y;
 	e.but = 1;
-	mu_set_event(n, &e);
+	event = 1;
+    }
+    /* handle key events */
+    if (strlen(ctx->input_text)) {
+		printf("KEY PRESSED \n");
+		memcpy(e.c, ctx->input_text, strlen(ctx->input_text));
+		// = ctx->input_text[0];
+		event = 1;
+    }
+//    if (event)
+		mu_set_event(n, &e);
   }
 	
   rect.w = rect2.w;

@@ -177,6 +177,8 @@ int game_galaga(int n) {
 		mu_get_event(n, &e);
 		if (e.but != -1)
 			printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
+	//	if (e.c != -1)
+	//		printf("KEY: %c %d \n", e.c);
 		//go back to title screen if select button is pressed
 		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
 			initialize();
