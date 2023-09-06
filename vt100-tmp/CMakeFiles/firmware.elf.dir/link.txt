@@ -1,0 +1,1 @@
+/usr/bin/avr-g++ -I. -ffunction-sections -fpermissive -fdata-sections -std=c++11 -O3 -Wl,--relax,--gc-sections -DF_CPU=16000000UL -mmcu=atmega328p CMakeFiles/firmware.elf.dir/demo.cpp.o CMakeFiles/firmware.elf.dir/ili9340.c.o CMakeFiles/firmware.elf.dir/uart.c.o CMakeFiles/firmware.elf.dir/vt100.c.o -o firmware.elf   -L. 
