@@ -76,9 +76,9 @@ void gui_buf_draw_char(uint32 *buf, int width_buf, int x, int y, char c, uint32 
                         if (check_bit(col, j))
                                 gui_buf_pixel(buf, width_buf, x + i, y + j, color);
                         else {
-                                if (bg_color) {
+                                //if (bg_color) {
                                         gui_buf_pixel(buf, width_buf, x + i, y + j, bg_color);
-                                }
+                                //}
                         }
                 }
         }

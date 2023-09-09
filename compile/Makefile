@@ -47,6 +47,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/shell/galaga		\
 			-s $(TOPDIR)/shell/apps			\
+			-s $(TOPDIR)/shell/apps/vt100		\
 			-s $(TOPDIR)/shell/apps/microui		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
