@@ -87,6 +87,22 @@ int isdigit(char ch)
     return (ch >= '0') && (ch <= '9');
 }
 
+
+
+void vt100_set_back_color(uint16_t col){
+        // struct vt100 *t = &term;
+        // t->back_color = col; 
+        term.back_color = col; 
+}
+
+void vt100_set_front_color(uint16_t col){
+        //struct ili9340 *t = &term;
+        //t->front_color = col; 
+        term.front_color = col; 
+}
+
+
+
 void _vt100_reset(void){
   term.char_height = 8;
   term.char_width = 6;
@@ -121,8 +137,6 @@ inline uint16_t VT100_CURSOR_Y(struct vt100 *t){
 	// if within the top or bottom margin areas then normal addressing
 	// if(t->cursor_y < t->scroll_start_row || t->cursor_y >= t->scroll_end_row){
 	if ((t->cursor_y < t->scroll_end_row) && (t->cursor_y >= t->scroll_start_row)) {
-		printf("NORMAL \n");
-		sleepms(20);
 		return t->cursor_y * VT100_CHAR_HEIGHT; 
 	} else {
 		// otherwise we are inside scroll area
@@ -130,7 +144,6 @@ inline uint16_t VT100_CURSOR_Y(struct vt100 *t){
 		uint16_t row = t->cursor_y + t->scroll_value; 
 		if(t->cursor_y + t->scroll_value >= t->scroll_end_row)
 			row -= scroll_height; 
-		printf("NOT NORMAL %d end row %d start row %d \n", t->cursor_y, t->scroll_end_row, t->scroll_start_row);
 
 		return row * VT100_CHAR_HEIGHT; 
 	}
@@ -176,7 +189,6 @@ void _vt100_scroll(uint32 *buf, int width_buf, struct vt100 *t, int16_t lines){
 	}
 	// RAFA uint16_t scroll_start = (t->scroll_start_row + t->scroll_value) * VT100_CHAR_HEIGHT; 
 	uint16_t scroll_start = (t->scroll_start_row + lines ) * VT100_CHAR_HEIGHT; 
-	printf("SROLL : %d scroll_value %d \n", scroll_start, t->scroll_value);
 	// ili9340_setScrollStart(scroll_start); 
 	vt100_scroll_buf(buf, width_buf, scroll_start); 
 	// RAFA
@@ -223,7 +235,6 @@ void _vt100_move(uint32 *buf, int width_buf, struct vt100 *term, int16_t right_l
 			// otherwise we move as normal inside the screen
 			term->cursor_y = new_y;
 		}
-		printf("NEW Y %d term new y %d to_scroll %d \n", new_y, term->cursor_y, to_scroll);
 		_vt100_scroll(buf, width_buf, term, to_scroll);
 	}
 }
@@ -255,8 +266,8 @@ void _vt100_putc(uint32 *buf, int width_buf, struct vt100 *t, uint8_t ch){
 	//ili9340_drawChar(x, y, ch);
         // gui_buf_draw_char(uint32 *buf, int width_buf, int x, int y, char c, uint32 color,
           //                          uint32 bg_color)
-	printf("PUTC %c Y %d \n", ch, y);
-        gui_buf_draw_char(buf, width_buf, x, y, ch, 0xAAAAAAAA, 0);
+	sleepms(5);
+        gui_buf_draw_char(buf, width_buf, x, y, ch, rgb16_to_rgb32(term.front_color), rgb16_to_rgb32(term.back_color));
 
 	// move cursor right
 	_vt100_move(buf, width_buf, t, 1, 0); 

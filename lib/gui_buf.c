@@ -1,6 +1,24 @@
 #include <xinu.h>
 #include <font.h>
 
+uint32 rgb16_to_rgb32(uint16 color)
+{
+        /* 1. Extract the red, green and blue values */
+
+        // From rrrr rggg gggb bbbb, get r5, g6 and b5
+        uint32 r = (color >> 11) & 0x1F;
+        uint32 g = (color >> 5) & 0x3F;
+        uint32 b = (color & 0x1F);
+
+        /* 2. Convert them to r8, g8 and b8 (0-255 value), applying rule of three */
+        r = (r * 255) / 31;
+        g = (g * 255) / 63;
+        b = (b * 255) / 31;
+
+        /* 3. Construct 32-bit format, we get 0x00RRGGBB by shifting bits */
+        uint32 color32 = 0x00ffffff & ((r << 16) | (g << 8) | b);
+        return color32;
+}
 
 uint32 * gui_buf_getmem(int size)
 {

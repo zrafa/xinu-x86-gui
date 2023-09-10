@@ -11,7 +11,6 @@ extern int32 gui_width;
 extern int32 gui_height;
 
 
-uint32 rgb16_to_rgb32(uint16 color);
 void gui_set_pixel(int x, int y, uint16 color);
 void gui_pixel(int x, int y, uint32 color);
 void gui_paint_screen(uint32 color);

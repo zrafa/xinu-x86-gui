@@ -19,6 +19,148 @@ void null_str(char *str) {
 }
 
 
+void test_colors(uint32 *buf, int width_buf)
+{
+        char b[32];
+        
+        // reset terminal and clear screen. Cursor at 1;1.
+        // reset all modes
+        vt100_puts(buf, width_buf, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
+
+        // set top margin 3 lines, bottom margin 5 lines
+        vt100_puts(buf, width_buf, "\e[4;36r");
+
+        // set bg color to red and text to white
+        vt100_puts(buf, width_buf, "\e[41;37m");
+        
+        // draw top and bottom windows
+        vt100_puts(buf, width_buf, "\e[1;1H#\e[2;1H#\e[3;1H#\e[1;40H#\e[2;40H#\e[3;40H#");
+        vt100_puts(buf, width_buf, "\e[1;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#'); 
+        vt100_puts(buf, width_buf, "\e[3;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#');
+
+        // background blue
+        vt100_puts(buf, width_buf, "\e[44;37m");
+        
+        vt100_puts(buf, width_buf, "\e[36;1H#\e[37;1H#\e[38;1H#\e[39;1H#\e[40;1H#");
+        vt100_puts(buf, width_buf, "\e[36;40H#\e[37;40H#\e[38;40H#\e[39;40H#\e[40;40H#");
+        vt100_puts(buf, width_buf, "\e[36;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#'); 
+        vt100_puts(buf, width_buf, "\e[40;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#');
+
+        // foreground white
+        vt100_puts(buf, width_buf, "\e[37;40m");
+
+
+        // print some text that should not move
+        vt100_puts(buf, width_buf, "\e[2;4HThis is top text (should not move)"); 
+        vt100_puts(buf, width_buf, "\e[38;3HThis is bottom text (should not move)");
+
+        // green background, black text
+        vt100_puts(buf, width_buf, "\e[42;30m");
+        
+        // set origin mode and print border around the scroll region
+        vt100_puts(buf, width_buf, "\e[?6h");
+        vt100_puts(buf, width_buf, "\e[1;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '!');
+        // origin mode should snap 99 to last line in scroll region
+        vt100_puts(buf, width_buf, "\e[99;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '!');
+	int l, c;
+                sprintf(b, "\e[%d;1H", 1);
+                vt100_puts(buf, width_buf, b);
+ 		for(l = 0; l < 40; l++){
+                        for(c = 0; c < 40; c++){
+                                vt100_putc(buf, width_buf, '0'+l);
+                        }
+                	sprintf(b, "\e[%d;1H", l+1);
+                	vt100_puts(buf, width_buf, b);
+                }
+/*
+        for(int y = 0; y < VT100_HEIGHT; y++){
+                sprintf(b, "\e[%d;1H", y+1);
+                vt100_puts(buf, width_buf, b);
+                for(int c = 0; c < VT100_WIDTH; c++){
+                        vt100_putc(buf, width_buf, '!');
+                }
+        }
+*/
+
+        // scroll the scroll region
+        vt100_puts(buf, width_buf, "\e[99;1H\eD\eD");
+        vt100_puts(buf, width_buf, "\e[1;1H\eM\eM");
+        vt100_puts(buf, width_buf, "\e[99;1H\eD");
+
+        // black background, yellow text
+        vt100_puts(buf, width_buf, "\e[33;40m");
+        
+        // clear out an area in the middle and draw text
+        for(int y = 0; y < 5; y++){
+                sprintf(b, "\e[%d;6H", y+10);
+                vt100_puts(buf, width_buf, b);
+        
+                for(int c = 0; c < 30; c++){
+                        vt100_putc(buf, width_buf, ' ');
+                }
+        }
+
+        vt100_puts(buf, width_buf, "\e[11;10HMust be ! filled with 2");
+        vt100_puts(buf, width_buf, "\e[12;10H    empty lines at");
+        vt100_puts(buf, width_buf, "\e[13;10H    top and bottom! ");
+
+}
+
+void test_scroll(uint32 *buf, int width_buf){
+        char b[16]; 
+        // reset terminal and clear screen. Cursor at 1;1. 
+        vt100_puts(buf, width_buf, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
+
+        // set top margin 3 lines, bottom margin 5 lines
+        vt100_puts(buf, width_buf, "\e[4;36r");
+
+        // draw top and bottom windows
+        vt100_puts(buf, width_buf, "\e[1;1H#\e[2;1H#\e[3;1H#\e[1;40H#\e[2;40H#\e[3;40H#");
+        vt100_puts(buf, width_buf, "\e[36;1H#\e[37;1H#\e[38;1H#\e[39;1H#\e[40;1H#");
+        vt100_puts(buf, width_buf, "\e[36;40H#\e[37;40H#\e[38;40H#\e[39;40H#\e[40;40H#");
+        vt100_puts(buf, width_buf, "\e[1;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#'); 
+        vt100_puts(buf, width_buf, "\e[3;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#'); 
+        vt100_puts(buf, width_buf, "\e[36;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#'); 
+        vt100_puts(buf, width_buf, "\e[40;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '#');
+
+        // print some text that should not move
+        vt100_puts(buf, width_buf, "\e[2;4HThis is top text (should not move)"); 
+        vt100_puts(buf, width_buf, "\e[38;3HThis is bottom text (should not move)");
+        
+        // set origin mode and print border around the scroll region
+        vt100_puts(buf, width_buf, "\e[?6h");
+        vt100_puts(buf, width_buf, "\e[1;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '!');
+        // origin mode should snap 99 to last line in scroll region
+        vt100_puts(buf, width_buf, "\e[99;1H"); for(int x = 0; x < VT100_WIDTH; x++) vt100_putc(buf, width_buf, '!');
+        for(int y = 0; y < VT100_HEIGHT; y++){
+                //sprintf(buf, "\e[%d;1H!\e[%d;%dH!", y+1, y+1, VT100_WIDTH);
+                sprintf(b, "\e[%d;1H", y+1);
+                vt100_puts(buf, width_buf, b);
+                for(int c = 0; c < VT100_WIDTH; c++){
+                        vt100_putc(buf, width_buf, '!');
+                }
+        }
+
+        // scroll the scroll region
+        vt100_puts(buf, width_buf, "\e[99;1H\eD\eD");
+        vt100_puts(buf, width_buf, "\e[1;1H\eM\eM");
+        vt100_puts(buf, width_buf, "\e[99;1H\eD");
+
+        // clear out an area in the middle and draw text
+        for(int y = 0; y < 5; y++){
+                sprintf(b, "\e[%d;6H", y+10);
+                vt100_puts(buf, width_buf, b);
+        
+                for(int c = 0; c < 30; c++){
+                        vt100_putc(buf, width_buf, ' ');
+                }
+        }
+        vt100_puts(buf, width_buf, "\e[11;10HMust be ! filled with 2");
+        vt100_puts(buf, width_buf, "\e[12;10H    empty lines at");
+        vt100_puts(buf, width_buf, "\e[13;10H    top and bottom! ");
+        
+}
+
 void test_cursor(uint32 *buf, int width_buf){
         char b[16]; 
         // clear screen
@@ -162,7 +304,7 @@ process vt(void)
         gui_buf_print_text(buf, VT_W, 10, 10, "HOLA MUNDO como estan", 255, 0);
 //	buf = getmem(NINA_W*NINA_H*4);
 //	memcpy(buf, nina, NINA_W*NINA_H*4);
-	n = mu_add_win("vt", 700, 240, VT_W, VT_H, buf);
+	n = mu_add_win("vt", 300, 440, VT_W, VT_H, buf);
 	
 	vt100_init(null_str);
 
@@ -180,6 +322,8 @@ process vt(void)
 	printf ("PASAMOS\n");
   vt100_puts(buf, VT_W, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
 	test_cursor(buf, VT_W);
+	test_scroll(buf, VT_W);
+	test_colors(buf, VT_W);
 
 	mu_event_t e;
 	for (;;) {

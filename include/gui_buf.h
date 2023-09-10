@@ -2,6 +2,8 @@
 #ifndef GUI_BUF_H
 #define GUI_BUF_H
 
+uint32 rgb16_to_rgb32(uint16 color);
+
 uint32 * gui_buf_getmem(int size);
 
 void gui_buf_freemem(uint32 *buf, int size);
