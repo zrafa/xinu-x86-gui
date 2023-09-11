@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include <renderer.h>
 #include <microui.h>
+#include <vt100.h>
 
 #define NULL 0
 
@@ -263,6 +264,14 @@ static int text_height(mu_Font font) {
 
 
 int microui() {
+
+
+	/* inits virtual terminals */
+	vt100_init_vts();
+
+
+
+
   /* init renderer */
   r_init();
   /* init microui */

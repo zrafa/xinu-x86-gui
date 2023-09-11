@@ -17,19 +17,19 @@
 	Copyright: Martin K. Schröder (info@fortmax.se) 2014
 */
 
-// #include <ctype.h>
 #include <xinu.h>
 #include <stdint.h>
 
 #include <vt100.h>
 
-// #include "ili9340.h"
+
+#define MAX_N_VT 40	/* max numbers of virtual terminals available */
 
 #define KEY_ESC 0x1b
 #define KEY_DEL 0x7f
 #define KEY_BELL 0x07
 
-#define STATE(NAME, BUF, W, TERM, EV, ARG) void NAME(uint32 *buf, int width_buf, struct vt100 *TERM, uint8_t EV, uint16_t ARG)
+#define STATE(NAME, TERM, EV, ARG) void NAME(struct vt100 *TERM, uint8_t EV, uint16_t ARG)
 
 // states 
 enum {
@@ -43,43 +43,14 @@ enum {
 	EV_CHAR = 1,
 };
 
-#define MAX_COMMAND_ARGS 4
-static struct vt100 {
-	union flags {
-		uint8_t val;
-		struct {
-			// 0 = cursor remains on last column when it gets there
-			// 1 = lines wrap after last column to next line
-			uint8_t cursor_wrap : 1; 
-			uint8_t scroll_mode : 1;
-			uint8_t origin_mode : 1; 
-		}; 
-	} flags;
-	
-	// cursor position on the screen (0, 0) = top left corner. 
-	int16_t cursor_x, cursor_y;
-	int16_t saved_cursor_x, saved_cursor_y; // used for cursor save restore
-	int16_t scroll_start_row, scroll_end_row; 
-	// character width and height
-	int8_t char_width, char_height;
-	// colors used for rendering current characters
-	uint16_t back_color, front_color;
-	// the starting y-position of the screen scroll
-	uint16_t scroll_value; 
-	// command arguments that get parsed as they appear in the terminal
-	uint8_t narg; uint16_t args[MAX_COMMAND_ARGS];
-	// current arg pointer (we use it for parsing) 
-	uint8_t carg;
-	
-	void (*state)(uint32 *buf, int width_buf, struct vt100 *term, uint8_t ev, uint16_t arg);
-	void (*send_response)(char *str);
-	void (*ret_state)(struct vt100 *term, uint8_t ev, uint16_t arg); 
-} term;
 
-STATE(_st_idle, buf, width_buf, term, ev, arg);
-STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg);
-STATE(_st_esc_question, buf, width_buf, term, ev, arg);
-STATE(_st_esc_hash, buf, width_buf, term, ev, arg);
+vt100_t term[MAX_N_VT];
+
+
+STATE(_st_idle, term, ev, arg);
+STATE(_st_esc_sq_bracket, term, ev, arg);
+STATE(_st_esc_question, term, ev, arg);
+STATE(_st_esc_hash, term, ev, arg);
 
 
 int isdigit(char ch)
@@ -89,44 +60,71 @@ int isdigit(char ch)
 
 
 
-void vt100_set_back_color(uint16_t col){
-        // struct vt100 *t = &term;
-        // t->back_color = col; 
-        term.back_color = col; 
+void vt100_set_back_color(struct vt100 *t, uint16_t col){
+        t->back_color = col; 
 }
 
-void vt100_set_front_color(uint16_t col){
-        //struct ili9340 *t = &term;
-        //t->front_color = col; 
-        term.front_color = col; 
+void vt100_set_front_color(struct vt100 *t, uint16_t col){
+        t->front_color = col; 
 }
 
-
-
-void _vt100_reset(void){
-  term.char_height = 8;
-  term.char_width = 6;
-  term.back_color = 0x0000;
-  term.front_color = 0xffff;
-  term.cursor_x = term.cursor_y = term.saved_cursor_x = term.saved_cursor_y = 0;
-  term.narg = 0;
-  term.state = _st_idle;
-  term.ret_state = 0;
-  term.scroll_value = 0; 
-  term.scroll_start_row = 0;
-  term.scroll_end_row = VT100_HEIGHT; // outside of screen = whole screen scrollable
-  term.flags.cursor_wrap = 0;
-  term.flags.origin_mode = 0; 
-  // ili9340_setFrontColor(term.front_color);
-// 	ili9340_setBackColor(term.back_color);
-// 	ili9340_setScrollMargins(0, 0); 
-// 	ili9340_setScrollStart(0); 
+struct vt100 * vt100_get_vt(int n)
+{
+	return &term[n];
 }
 
-void _vt100_resetScroll(void){
-	term.scroll_start_row = 0;
-	term.scroll_end_row = VT100_HEIGHT;
-	term.scroll_value = 0; 
+int vt100_get_vt_available(uint32 *buf, int width_buf) 
+{
+	int i;
+
+	for (i=0; i<MAX_N_VT; i++) {
+		if (term[i].available) {
+			term[i].available = 0;
+			term[i].buf = buf;
+			term[i].width_buf = width_buf;
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void vt100_free_vt(int n) 
+{
+	term[n].available = 1;
+}
+
+void vt100_init_vts() 
+{
+	int i;
+
+	for (i=0; i<MAX_N_VT; i++) {
+		term[i].available = 1;
+	}
+}
+
+void _vt100_reset(struct vt100 *t)
+{
+	t->char_height = 8;
+	t->char_width = 6;
+	t->back_color = 0x0000;
+	t->front_color = 0xffff;
+	t->cursor_x = t->cursor_y = t->saved_cursor_x = t->saved_cursor_y = 0;
+	t->narg = 0;
+	t->state = _st_idle;
+	t->ret_state = 0;
+	t->scroll_value = 0; 
+	t->scroll_start_row = 0;
+	t->scroll_end_row = VT100_HEIGHT; // outside of screen = whole screen scrollable
+	t->flags.cursor_wrap = 0;
+	t->flags.origin_mode = 0; 
+
+}
+
+void _vt100_resetScroll(struct vt100 *t){
+	t->scroll_start_row = 0;
+	t->scroll_end_row = VT100_HEIGHT;
+	t->scroll_value = 0; 
 	//ili9340_setScrollMargins(0, 0);
 	//ili9340_setScrollStart(0); 
 }
@@ -149,26 +147,24 @@ inline uint16_t VT100_CURSOR_Y(struct vt100 *t){
 	}
 }
 
-void _vt100_clearLines(uint32 *buf, int width_buf, struct vt100 *t, uint16_t start_line, uint16_t end_line){
+void _vt100_clearLines(struct vt100 *t, uint16_t start_line, uint16_t end_line){
 	for(int c = start_line; c <= end_line; c++){
 		uint16_t cy = t->cursor_y;
 		t->cursor_y = c; 
 		//ili9340_fillRect(0, VT100_CURSOR_Y(t), VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
-		// gui_buf_rect(uint32 *buf, int width_buf, int x, int y, int width, int heigth, uint32 color)
-		gui_buf_rect(buf, width_buf, 0, VT100_CURSOR_Y(t), VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
+		gui_buf_rect(t->buf, t->width_buf, 0, VT100_CURSOR_Y(t), VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
 		t->cursor_y = cy;
 	}
 }
 
-void vt100_scroll_buf(uint32 *buf, int width_buf, int scroll_start)
+void vt100_scroll_buf(struct vt100 *t, int scroll_start)
 {
-        // RAFA gui_buf_draw_image(buf, width_buf, 0, 0, VT100_SCREEN_WIDTH, VT100_SCREEN_HEIGHT-scroll_start  , buf+(VT100_SCREEN_WIDTH*scroll_start*4));
-        gui_buf_draw_image(buf, width_buf, 0, 0, VT100_SCREEN_WIDTH, VT100_SCREEN_HEIGHT-scroll_start  , buf+(VT100_SCREEN_WIDTH*scroll_start));
+        gui_buf_draw_image(t->buf, t->width_buf, 0, 0, VT100_SCREEN_WIDTH, VT100_SCREEN_HEIGHT-scroll_start  , t->buf+(VT100_SCREEN_WIDTH*scroll_start));
 //	  term.scroll_start = scroll_start;
 }
 
 // scrolls the scroll region up (lines > 0) or down (lines < 0)
-void _vt100_scroll(uint32 *buf, int width_buf, struct vt100 *t, int16_t lines){
+void _vt100_scroll(struct vt100 *t, int16_t lines){
 	if(!lines) return;
 
 	// get height of scroll area in rows
@@ -182,7 +178,7 @@ void _vt100_scroll(uint32 *buf, int width_buf, struct vt100 *t, int16_t lines){
 		t->scroll_value = (t->scroll_value + lines) % scroll_height -1;
 		// scrolling up so clear first line of scroll area
 	} else if(lines < 0){
-		_vt100_clearLines(buf, width_buf, t, t->scroll_end_row - lines, t->scroll_end_row - 1); 
+		_vt100_clearLines(t, t->scroll_end_row - lines, t->scroll_end_row - 1); 
 		// make sure that the value wraps down 
 		t->scroll_value = (scroll_height + t->scroll_value + lines) % scroll_height; 
 		// scrolling down - so clear last line of the scroll area
@@ -190,52 +186,52 @@ void _vt100_scroll(uint32 *buf, int width_buf, struct vt100 *t, int16_t lines){
 	// RAFA uint16_t scroll_start = (t->scroll_start_row + t->scroll_value) * VT100_CHAR_HEIGHT; 
 	uint16_t scroll_start = (t->scroll_start_row + lines ) * VT100_CHAR_HEIGHT; 
 	// ili9340_setScrollStart(scroll_start); 
-	vt100_scroll_buf(buf, width_buf, scroll_start); 
+	vt100_scroll_buf(t, scroll_start); 
 	// RAFA
 	 if(lines > 0){
 		// RAFA _vt100_clearLines(buf, width_buf, t, t->scroll_start_row, t->scroll_start_row+lines-1); 
-	 	_vt100_clearLines(buf, width_buf, t, t->scroll_end_row-lines, t->scroll_end_row-1); 
+	 	_vt100_clearLines(t, t->scroll_end_row-lines, t->scroll_end_row-1); 
 	
 	 }
 }
 
 // moves the cursor relative to current cursor position and scrolls the screen
-void _vt100_move(uint32 *buf, int width_buf, struct vt100 *term, int16_t right_left, int16_t bottom_top){
+void _vt100_move(struct vt100 *t, int16_t right_left, int16_t bottom_top){
 	// calculate how many lines we need to move down or up if x movement goes outside screen
-	int16_t new_x = right_left + term->cursor_x; 
+	int16_t new_x = right_left + t->cursor_x; 
 	if(new_x > VT100_WIDTH){
-		if(term->flags.cursor_wrap){
+		if(t->flags.cursor_wrap){
 			bottom_top += new_x / VT100_WIDTH;
-			term->cursor_x = new_x % VT100_WIDTH - 1;
+			t->cursor_x = new_x % VT100_WIDTH - 1;
 		} else {
-			term->cursor_x = VT100_WIDTH;
+			t->cursor_x = VT100_WIDTH;
 		}
 	} else if(new_x < 0){
 		bottom_top += new_x / VT100_WIDTH - 1;
-		term->cursor_x = VT100_WIDTH - (abs(new_x) % VT100_WIDTH) + 1; 
+		t->cursor_x = VT100_WIDTH - (abs(new_x) % VT100_WIDTH) + 1; 
 	} else {
-		term->cursor_x = new_x;
+		t->cursor_x = new_x;
 	}
 
 	if(bottom_top){
-		int16_t new_y = term->cursor_y + bottom_top;
+		int16_t new_y = t->cursor_y + bottom_top;
 		int16_t to_scroll = 0;
 		// bottom margin 39 marks last line as static on 40 line display
 		// therefore, we would scroll when new cursor has moved to line 39
 		// (or we could use new_y > VT100_HEIGHT here
 		// NOTE: new_y >= term->scroll_end_row ## to_scroll = (new_y - term->scroll_end_row) +1
-		if(new_y >= term->scroll_end_row){
-			to_scroll = (new_y - term->scroll_end_row) + 1; 
+		if(new_y >= t->scroll_end_row){
+			to_scroll = (new_y - t->scroll_end_row) + 1; 
 			// place cursor back within the scroll region
-			term->cursor_y = term->scroll_end_row - 1; //new_y - to_scroll; 
-		} else if(new_y < term->scroll_start_row){
-			to_scroll = (new_y - term->scroll_start_row); 
-			term->cursor_y = term->scroll_start_row; //new_y - to_scroll; 
+			t->cursor_y = t->scroll_end_row - 1; //new_y - to_scroll; 
+		} else if(new_y < t->scroll_start_row){
+			to_scroll = (new_y - t->scroll_start_row); 
+			t->cursor_y = t->scroll_start_row; //new_y - to_scroll; 
 		} else {
 			// otherwise we move as normal inside the screen
-			term->cursor_y = new_y;
+			t->cursor_y = new_y;
 		}
-		_vt100_scroll(buf, width_buf, term, to_scroll);
+		_vt100_scroll(t, to_scroll);
 	}
 }
 
@@ -247,13 +243,13 @@ void _vt100_drawCursor(struct vt100 *t){
 }
 
 // sends the character to the display and updates cursor position
-void _vt100_putc(uint32 *buf, int width_buf, struct vt100 *t, uint8_t ch){
+void _vt100_putc(struct vt100 *t, uint8_t ch){
 	if(ch < 0x20 || ch > 0x7e){
 		static const char hex[] = "0123456789abcdef"; 
-		_vt100_putc(buf, width_buf, t, '0'); 
-		_vt100_putc(buf, width_buf, t, 'x'); 
-		_vt100_putc(buf, width_buf, t, hex[((ch & 0xf0) >> 4)]);
-		_vt100_putc(buf, width_buf, t, hex[(ch & 0x0f)]);
+		_vt100_putc(t, '0'); 
+		_vt100_putc(t, 'x'); 
+		_vt100_putc(t, hex[((ch & 0xf0) >> 4)]);
+		_vt100_putc(t, hex[(ch & 0x0f)]);
 		return;
 	}
 	
@@ -264,23 +260,21 @@ void _vt100_putc(uint32 *buf, int width_buf, struct vt100 *t, uint8_t ch){
 	//ili9340_setFrontColor(t->front_color);
 	//ili9340_setBackColor(t->back_color); 
 	//ili9340_drawChar(x, y, ch);
-        // gui_buf_draw_char(uint32 *buf, int width_buf, int x, int y, char c, uint32 color,
-          //                          uint32 bg_color)
 	sleepms(5);
-        gui_buf_draw_char(buf, width_buf, x, y, ch, rgb16_to_rgb32(term.front_color), rgb16_to_rgb32(term.back_color));
+        gui_buf_draw_char(t->buf, t->width_buf, x, y, ch, rgb16_to_rgb32(t->front_color), rgb16_to_rgb32(t->back_color));
 
 	// move cursor right
-	_vt100_move(buf, width_buf, t, 1, 0); 
+	_vt100_move(t, 1, 0); 
 	_vt100_drawCursor(t); 
 }
 
-void vt100_puts(uint32 *buf, int width_buf, const char *str){
+void vt100_puts(struct vt100 *t, const char *str){
 	while(*str){
-		vt100_putc(buf, width_buf, *str++);
+		vt100_putc(t, *str++);
 	}
 }
 
-STATE(_st_command_arg, buf, width_buf, term, ev, arg){
+STATE(_st_command_arg, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			if(isdigit(arg)){ // a digit argument
@@ -297,19 +291,19 @@ STATE(_st_command_arg, buf, width_buf, term, ev, arg){
 					term->state = _st_idle;
 				}
 				// execute next state as well because we have already consumed a char!
-				term->state(buf, width_buf, term, ev, arg);
+				term->state(term, ev, arg);
 			}
 			break;
 		}
 	}
 }
 
-STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
+STATE(_st_esc_sq_bracket, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			if(isdigit(arg)){ // start of an argument
 				term->ret_state = _st_esc_sq_bracket; 
-				_st_command_arg(buf, width_buf, term, ev, arg);
+				_st_command_arg(term, ev, arg);
 				term->state = _st_command_arg;
 			} else if(arg == ';'){ // arg separator. 
 				// skip. And also stay in the command state
@@ -363,15 +357,15 @@ STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
 						uint16_t y = VT100_CURSOR_Y(term); 
 						if(term->narg == 0 || (term->narg == 1 && term->args[0] == 0)){
 							// clear down to the bottom of screen (including cursor)
-							_vt100_clearLines(buf, width_buf, term, term->cursor_y, VT100_HEIGHT); 
+							_vt100_clearLines(term, term->cursor_y, VT100_HEIGHT); 
 						} else if(term->narg == 1 && term->args[0] == 1){
 							// clear top of screen to current line (including cursor)
-							_vt100_clearLines(buf, width_buf, term, 0, term->cursor_y); 
+							_vt100_clearLines(term, 0, term->cursor_y); 
 						} else if(term->narg == 1 && term->args[0] == 2){
 							// clear whole screen
-							_vt100_clearLines(buf, width_buf, term, 0, VT100_HEIGHT);
+							_vt100_clearLines(term, 0, VT100_HEIGHT);
 							// reset scroll value
-							_vt100_resetScroll(); 
+							_vt100_resetScroll(term); 
 						}
 						term->state = _st_idle; 
 						break;
@@ -384,15 +378,15 @@ STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
 							// clear to end of line (to \n or to edge?)
 							// including cursor
 							// ili9340_fillRect(x, y, VT100_SCREEN_WIDTH - x, VT100_CHAR_HEIGHT, term->back_color);
-							gui_buf_rect(buf, width_buf, x, y, VT100_SCREEN_WIDTH - x, VT100_CHAR_HEIGHT, 0x0000);
+							gui_buf_rect(term->buf, term->width_buf, x, y, VT100_SCREEN_WIDTH - x, VT100_CHAR_HEIGHT, 0x0000);
 						} else if(term->narg == 1 && term->args[0] == 1){
 							// clear from left to current cursor position
 							//ili9340_fillRect(0, y, x + VT100_CHAR_WIDTH, VT100_CHAR_HEIGHT, term->back_color);
-							gui_buf_rect(buf, width_buf, 0, y, x + VT100_CHAR_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
+							gui_buf_rect(term->buf, term->width_buf, 0, y, x + VT100_CHAR_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
 						} else if(term->narg == 1 && term->args[0] == 2){
 							// clear whole current line
 							// ili9340_fillRect(0, y, VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, term->back_color);
-							gui_buf_rect(buf, width_buf, 0, y, VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
+							gui_buf_rect(term->buf, term->width_buf, 0, y, VT100_SCREEN_WIDTH, VT100_CHAR_HEIGHT, 0x0000);
 						}
 						term->state = _st_idle; 
 						break;
@@ -405,15 +399,15 @@ STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
 					case 'P': {// delete characters args[0] or 1 in front of cursor
 						// TODO: this needs to correctly delete n chars
 						int n = ((term->narg > 0)?term->args[0]:1);
-						_vt100_move(buf, width_buf, term, -n, 0);
+						_vt100_move(term, -n, 0);
 						for(int c = 0; c < n; c++){
-							_vt100_putc(buf, width_buf, term, ' ');
+							_vt100_putc(term, ' ');
 						}
 						term->state = _st_idle;
 						break;
 					}
 					case 'c':{ // query device code
-						term->send_response("\e[?1;0c"); 
+						term->send_response(term, "\e[?1;0c"); 
 						term->state = _st_idle; 
 						break; 
 					}
@@ -499,7 +493,7 @@ STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
 							//ili9340_setScrollMargins(top_margin, bottom_margin);
 							////ili9340_setScrollStart(0); // reset scroll 
 						} else {
-							_vt100_resetScroll(); 
+							_vt100_resetScroll(term); 
 						}
 						term->state = _st_idle; 
 						break;  
@@ -530,13 +524,13 @@ STATE(_st_esc_sq_bracket, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_esc_question, buf, width_buf, term, ev, arg){
+STATE(_st_esc_question, term, ev, arg){
 	// DEC mode commands
 	switch(ev){
 		case EV_CHAR: {
 			if(isdigit(arg)){ // start of an argument
 				term->ret_state = _st_esc_question; 
-				_st_command_arg(buf, width_buf, term, ev, arg);
+				_st_command_arg(term, ev, arg);
 				term->state = _st_command_arg;
 			} else if(arg == ';'){ // arg separator. 
 				// skip. And also stay in the command state
@@ -611,7 +605,7 @@ STATE(_st_esc_question, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_esc_left_br, buf, width_buf, term, ev, arg){
+STATE(_st_esc_left_br, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			switch(arg) {  
@@ -631,7 +625,7 @@ STATE(_st_esc_left_br, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_esc_right_br, buf, width_buf, term, ev, arg){
+STATE(_st_esc_right_br, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			switch(arg) {  
@@ -651,7 +645,7 @@ STATE(_st_esc_right_br, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_esc_hash, buf, width_buf, term, ev, arg){
+STATE(_st_esc_hash, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			switch(arg) {  
@@ -668,7 +662,7 @@ STATE(_st_esc_hash, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_escape, buf, width_buf, term, ev, arg){
+STATE(_st_escape, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			#define CLEAR_ARGS \
@@ -700,17 +694,17 @@ STATE(_st_escape, buf, width_buf, term, ev, arg){
 					break;
 				case 'D': // moves cursor down one line and scrolls if necessary
 					// move cursor down one line and scroll window if at bottom line
-					_vt100_move(buf, width_buf, term, 0, 1); 
+					_vt100_move(term, 0, 1); 
 					term->state = _st_idle;
 					break; 
 				case 'M': // Cursor up
 					// move cursor up one line and scroll window if at top line
-					_vt100_move(buf, width_buf, term, 0, -1); 
+					_vt100_move(term, 0, -1); 
 					term->state = _st_idle;
 					break; 
 				case 'E': // next line
 					// same as '\r\n'
-					_vt100_move(buf, width_buf, term, 0, 1);
+					_vt100_move(term, 0, 1);
 					term->cursor_x = 0; 
 					term->state = _st_idle;
 					break;  
@@ -734,13 +728,13 @@ STATE(_st_escape, buf, width_buf, term, ev, arg){
 					break;  
 				case 'Z': // Report terminal type 
 					// vt 100 response
-					term->send_response("\033[?1;0c");  
+					term->send_response(term, "\033[?1;0c");  
 					// unknown terminal     
 						//out("\033[?c");
 					term->state = _st_idle;
 					break;    
 				case 'c': // Reset terminal to initial state 
-					_vt100_reset();
+					_vt100_reset(term);
 					term->state = _st_idle;
 					break;  
 				case 'H': // Set tab in current position 
@@ -769,16 +763,16 @@ STATE(_st_escape, buf, width_buf, term, ev, arg){
 	}
 }
 
-STATE(_st_idle, buf, width_buf, term, ev, arg){
+STATE(_st_idle, term, ev, arg){
 	switch(ev){
 		case EV_CHAR: {
 			switch(arg){
 				
 				case 5: // AnswerBack for vt100's  
-					term->send_response("X"); // should send SCCS_ID?
+					term->send_response(term, "X"); // should send SCCS_ID?
 					break;  
 				case '\n': { // new line
-					_vt100_move(buf, width_buf, term, 0, 1);
+					_vt100_move(term, 0, 1);
 					term->cursor_x = 0; 
 					//_vt100_moveCursor(term, 0, term->cursor_y + 1);
 					// do scrolling here! 
@@ -791,7 +785,7 @@ STATE(_st_idle, buf, width_buf, term, ev, arg){
 					break;
 				}
 				case '\b': { // backspace 0x08
-					_vt100_move(buf, width_buf, term, -1, 0); 
+					_vt100_move(term, -1, 0); 
 					// backspace does not delete the character! Only moves cursor!
 					//ili9340_drawChar(term->cursor_x * term->char_width,
 					//	term->cursor_y * term->char_height, ' ');
@@ -801,8 +795,8 @@ STATE(_st_idle, buf, width_buf, term, ev, arg){
 					// Problem: with current implementation, we can't move the rest of line
 					// to the left as is the proper behavior of the delete character
 					// fill the current position with background color
-					_vt100_putc(buf, width_buf, term, ' ');
-					_vt100_move(buf, width_buf, term, -1, 0);
+					_vt100_putc(term, ' ');
+					_vt100_move(term, -1, 0);
 					//_vt100_clearChar(term, term->cursor_x, term->cursor_y); 
 					break;
 				}
@@ -810,7 +804,7 @@ STATE(_st_idle, buf, width_buf, term, ev, arg){
 					// tab fills characters on the line until we reach a multiple of tab_stop
 					int tab_stop = 4;
 					int to_put = tab_stop - (term->cursor_x % tab_stop); 
-					while(to_put--) _vt100_putc(buf, width_buf, term, ' ');
+					while(to_put--) _vt100_putc(term, ' ');
 					break;
 				}
 				case KEY_BELL: { // bell is sent by bash for ex. when doing tab completion
@@ -823,7 +817,7 @@ STATE(_st_idle, buf, width_buf, term, ev, arg){
 					break;
 				}
 				default: {
-					_vt100_putc(buf, width_buf, term, arg);
+					_vt100_putc(term, arg);
 					break;
 				}
 			}
@@ -833,12 +827,14 @@ STATE(_st_idle, buf, width_buf, term, ev, arg){
 	}
 }
 
-void vt100_init(void (*send_response)(char *str)){
-  term.send_response = send_response; 
-	_vt100_reset(); 
+void vt100_init(struct vt100 *t, void (*send_response)(char *str))
+{
+  t->send_response = send_response; 
+	_vt100_reset(t); 
 }
 
-void vt100_putc(uint32 *buf, int width_buf, uint8_t c){
+void vt100_putc(struct vt100 *t, uint8_t c)
+{
 	/*char *buffer = 0; 
 	switch(c){
 		case KEY_UP:         buffer="\e[A";    break;
@@ -871,5 +867,5 @@ void vt100_putc(uint32 *buf, int width_buf, uint8_t c){
 	} else {
 		term.state(&term, EV_CHAR, 0x0000 | c);
 	}*/
-	term.state(buf, width_buf, &term, EV_CHAR, 0x0000 | c);
+	t->state(t, EV_CHAR, 0x0000 | c);
 }

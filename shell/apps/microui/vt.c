@@ -19,6 +19,7 @@ void null_str(char *str) {
 }
 
 
+/*
 void test_colors(uint32 *buf, int width_buf)
 {
         char b[32];
@@ -72,16 +73,6 @@ void test_colors(uint32 *buf, int width_buf)
                 	sprintf(b, "\e[%d;1H", l+1);
                 	vt100_puts(buf, width_buf, b);
                 }
-/*
-        for(int y = 0; y < VT100_HEIGHT; y++){
-                sprintf(b, "\e[%d;1H", y+1);
-                vt100_puts(buf, width_buf, b);
-                for(int c = 0; c < VT100_WIDTH; c++){
-                        vt100_putc(buf, width_buf, '!');
-                }
-        }
-*/
-
         // scroll the scroll region
         vt100_puts(buf, width_buf, "\e[99;1H\eD\eD");
         vt100_puts(buf, width_buf, "\e[1;1H\eM\eM");
@@ -293,20 +284,25 @@ void test_cursor(uint32 *buf, int width_buf){
         vt100_puts(buf, width_buf, "\e[31;6HText box must start at line 3"); 
 }
 
+*/
 
 
 process vt(void)
 {
-	int n;
+	int n, n_vt;
 	uint32 *buf;
+	struct vt100 *t;
 
+	char title[20];
 	buf = gui_buf_getmem(VT_W*VT_H*4);
-        gui_buf_print_text(buf, VT_W, 10, 10, "HOLA MUNDO como estan", 255, 0);
-//	buf = getmem(NINA_W*NINA_H*4);
-//	memcpy(buf, nina, NINA_W*NINA_H*4);
-	n = mu_add_win("vt", 300, 440, VT_W, VT_H, buf);
+
+	n_vt = vt100_get_vt_available(buf, VT_W);
+	t = vt100_get_vt(n_vt);
+
+	sprintf(title, "vt %d", n_vt);
+	n = mu_add_win(title, 300, 10+n_vt*10, VT_W, VT_H, buf);
 	
-	vt100_init(null_str);
+	vt100_init(t, null_str);
 
 	/* program source code (for example, modify surface
 	 * drawn into window
@@ -315,15 +311,16 @@ process vt(void)
 	int l, c;
  		for(l = 0; l < 40; l++){
                         for(c = 0; c < 40; c++){
-                                vt100_putc(buf, VT_W, '0'+l);
+                                vt100_putc(t, '0'+l);
                         }
-                        if(l < 39) vt100_puts(buf, VT_W, "\r\n"); 
+                        if(l < 39) vt100_puts(t, "\r\n"); 
                 }
 	printf ("PASAMOS\n");
-  vt100_puts(buf, VT_W, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
-	test_cursor(buf, VT_W);
-	test_scroll(buf, VT_W);
-	test_colors(buf, VT_W);
+  vt100_puts(t, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
+	sleepms(500);
+//	test_cursor(buf, VT_W);
+//	test_scroll(buf, VT_W);
+//	test_colors(buf, VT_W);
 
 	mu_event_t e;
 	for (;;) {
@@ -338,6 +335,7 @@ process vt(void)
 	/* wait until window closes or program finishes */
 	sleep(100);	
 
+	vt100_free_vt(n_vt);
 	gui_buf_freemem(buf, VT_W*VT_H*4);
 	mu_free_win(n) ;
 }
