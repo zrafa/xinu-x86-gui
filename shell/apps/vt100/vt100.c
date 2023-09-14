@@ -105,10 +105,8 @@ void vt100_init_vts()
 
 void _vt100_reset(struct vt100 *t)
 {
-	t->char_height = 8;
-	t->char_width = 6;
-	//t->char_height = 16;
-	//t->char_width = 8;
+	t->char_height = VT100_CHAR_HEIGHT;
+	t->char_width = VT100_CHAR_WIDTH;
 	t->back_color = 0x0000;
 	t->front_color = 0xffff;
 	t->cursor_x = t->cursor_y = t->saved_cursor_x = t->saved_cursor_y = 0;

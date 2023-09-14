@@ -3,13 +3,8 @@
 #include <gui_buf.h>
 #include <vt100.h>
 
-#define FONT_W 6
-#define FONT_H 8
-//#define FONT_W 8
-//#define FONT_H 16
-
-#define VT_W (80*FONT_W)
-#define VT_H (24*FONT_H)
+#define VT_W (80*VT100_CHAR_WIDTH)
+#define VT_H (24*VT100_CHAR_HEIGHT)
 
 #define FRAME_SPACE_W 10
 #define FRAME_SPACE_H 35
