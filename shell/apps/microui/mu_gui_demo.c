@@ -17,7 +17,6 @@ process mu_gui_demo(void)
 
 	buf = gui_buf_getmem(NINA_W*NINA_H*4);
 	gui_buf_draw_image(buf, NINA_W, 0, 0, NINA_W, NINA_H, nina);
-        gui_buf_print_text(buf, NINA_W, 10, 10, "HOLA MUNDO como estan", 255, 0);
 //	buf = getmem(NINA_W*NINA_H*4);
 //	memcpy(buf, nina, NINA_W*NINA_H*4);
 	n = mu_add_win("Demo Nina", 700, 40, NINA_W, NINA_H, buf);

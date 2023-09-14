@@ -698,7 +698,7 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, in
     }
     /* handle key events */
     if (strlen(ctx->input_text)) {
-		printf("KEY PRESSED \n");
+		// printf("KEY PRESSED \n");
 		memcpy(e.c, ctx->input_text, strlen(ctx->input_text));
 		// = ctx->input_text[0];
 		event = 1;

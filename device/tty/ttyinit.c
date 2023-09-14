@@ -17,6 +17,9 @@ devcall	ttyinit(
 
 	typtr = &ttytab[ devptr->dvminor ];
 
+	// RAFA : keep dvminor
+	typtr->vtty_n = devptr->dvminor;
+
 	/* Initialize values in the tty control block */
 
 	typtr->tyihead = typtr->tyitail = 	/* Set up input queue	*/
@@ -49,6 +52,8 @@ devcall	ttyinit(
 	typtr->tyifullc = TY_FULLCH;		/* Send ^G when buffer	*/
 						/*   is full		*/
 
+if (devptr->dvminor == 0) {	/* if REAL TTY */
+
 	/* Initialize the UART */
 
 	uptr = (struct uart_csreg *)devptr->dvcsr;
@@ -74,5 +79,7 @@ devcall	ttyinit(
 	/* Start the device */
 
 	ttykickout(uptr);
+}
+
 	return OK;
 }

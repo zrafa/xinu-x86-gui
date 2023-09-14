@@ -41,7 +41,8 @@ static unsigned char latin_qwerty_map[] = {
   164, // ñ
   123, // {
   124, // |
-  0, // LEFT SHIFT
+  // 0, // LEFT SHIFT
+  178, // LEFT SHIFT    RAFA
   125, // }
   122, // z
   121, // x
@@ -53,7 +54,8 @@ static unsigned char latin_qwerty_map[] = {
   44, // ,
   46, // .
   45, // -
-  0, // RIGHT SHIFT
+  // 0, // RIGHT SHIFT
+  179, // RIGHT SHIFT	 RAFA
   0, // ImpPt
   0, // ALT
   32, // SPACE

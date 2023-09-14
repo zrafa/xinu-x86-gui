@@ -514,6 +514,7 @@ extern	syscall	semreset(sid32, int32);
 extern	syscall	send(pid32, umsg32);
 
 /* in file shell.c */
+extern 	process vt(void);
 extern 	process shell(did32);
 extern 	process mouse_p(did32);
 extern 	process keyboard_p(did32);

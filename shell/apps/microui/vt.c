@@ -18,6 +18,107 @@ void null_str(char *str) {
 
 }
 
+void vtty_out_set_pid(int n, int pid)
+{
+	struct ttycblk *typtr;
+	typtr = &ttytab[n+1];
+	typtr->vtty_out_pid = pid;
+	
+	typtr->sem_vtty_out = semcreate(0);
+
+}
+
+void vtty_in_set_ch(int n, char ch)
+{
+	struct ttycblk *typtr;
+	typtr = &ttytab[n+1];
+	typtr->vtty_in_ch = ch;
+	
+}
+
+// process vtty_out(int n, struct vt100 *term) 
+process vtty_out(int n, int t) 
+{
+        intmask mask;                   /* Saved interrupt mask         */
+	struct ttycblk *typtr;
+
+
+        int32   ochars;                 /* Number of output chars sent  */
+                                        /*   to the UART                */
+        int32   avail;                  /* Available chars in output buf*/
+        int32   uspace;                 /* Space left in onboard UART   */
+	int m;
+
+	typtr = &ttytab[n+1];
+	struct vt100 *term = vt100_get_vt(n);
+	kprintf("term %x  7\n", term);
+	
+while(1) {
+	m = receive();
+	kprintf("obtuve un mensaje\n");
+       mask = disable();
+        byte    ier = 0;
+
+        /* If output is currently held, simply ignore the call */
+
+        if (typtr->tyoheld) {
+		restore(mask);
+                continue;
+		// return;
+        }
+
+        /* If echo and output queues empty, turn off interrupts */
+
+        if ( (typtr->tyehead == typtr->tyetail) &&
+             (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
+		restore(mask);
+		continue;
+                // return;
+        }
+        
+        /* Initialize uspace to the size of the transmit FIFO */
+
+        // NO BUFFER uspace = UART_FIFO_SIZE;
+
+        /* While onboard FIFO is not full and the echo queue is */
+        /*   nonempty, xmit chars from the echo queue           */
+
+        while (typtr->tyehead != typtr->tyetail) {
+                vt100_putc(term, (char) *typtr->tyehead++);
+		// io_outb(csrptr->buffer, *typtr->tyehead++);
+                if (typtr->tyehead >= &typtr->tyebuff[TY_EBUFLEN]) {
+                        typtr->tyehead = typtr->tyebuff;
+                }
+                // NO BUFFER uspace--;
+        }
+
+        /* While onboard FIFO is not full and the output queue is       */
+        /*   nonempty, transmit chars from the output queue             */
+
+	kprintf("obtuve un mensaje 5\n");
+        ochars = 0;
+        avail = TY_OBUFLEN - semcount(typtr->tyosem);
+	kprintf("obtuve un mensaje 6\n");
+        while ( (avail > 0) ) {
+                vt100_putc(term, (char) *typtr->tyohead++);
+                // io_outb(csrptr->buffer, *typtr->tyohead++);
+                if (typtr->tyohead >= &typtr->tyobuff[TY_OBUFLEN]) {
+                        typtr->tyohead = typtr->tyobuff;
+
+      }
+                avail--;
+                // NO BUFFER uspace--;
+                ochars++;
+        }
+        if (ochars > 0) {
+                signaln(typtr->tyosem, ochars);
+        }
+
+	restore(mask);
+}
+
+}
+
 
 /*
 void test_colors(uint32 *buf, int width_buf)
@@ -308,6 +409,7 @@ process vt(void)
 	 * drawn into window
 	 */
 
+/*
 	int l, c;
  		for(l = 0; l < 40; l++){
                         for(c = 0; c < 40; c++){
@@ -316,25 +418,47 @@ process vt(void)
                         if(l < 39) vt100_puts(t, "\r\n"); 
                 }
 	printf ("PASAMOS\n");
+*/
   vt100_puts(t, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
-	sleepms(500);
+//	sleepms(500);
 //	test_cursor(buf, VT_W);
 //	test_scroll(buf, VT_W);
 //	test_colors(buf, VT_W);
+
+	int vtty_pid;
+	kprintf("term 2 %x \n", t);
+	vtty_pid = create(vtty_out, 20248, 20, "vtty_out", 1, n_vt, t);
+	vtty_out_set_pid(n_vt, vtty_pid);
+
+	resume(vtty_pid);
+
+	struct ttycblk *typtr;
+	typtr = &ttytab[n_vt+1];
+        intmask mask;                   /* Saved interrupt mask         */
+
+        /* Wait for shell to exit and recreate it */
+        sleep(5);
+        resume(create(shell, 4096, 20, "shell", 1, VTTY0+n_vt));
 
 	mu_event_t e;
 	for (;;) {
 		mu_get_event(n, &e);
                 if (e.but != -1)
                         printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
-                if (e.c[0] != '\0')
-                        printf("KEY: %c %d \n", e.c[0], e.c[0]);
+                if (e.c[0] != '\0') {
+                        // printf("KEY: %c %d \n", e.c[0], e.c[0]);
+			mask = disable();
+			typtr->vtty_in_ch = e.c[0];
+			ttyhandle_in(typtr, NULL);
+			restore(mask);
+		}
 
 	};
 
 	/* wait until window closes or program finishes */
 	sleep(100);	
 
+	kill(vtty_pid);
 	vt100_free_vt(n_vt);
 	gui_buf_freemem(buf, VT_W*VT_H*4);
 	mu_free_win(n) ;

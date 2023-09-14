@@ -127,6 +127,15 @@ nam:
 
    /* Define the console device to be a tty and specify CSR*/
    CONSOLE is tty  on uart  csr 0001770 -irq 0044
+   VTTY0 is tty  on uart
+   VTTY1 is tty  on uart
+   VTTY2 is tty  on uart
+   VTTY3 is tty  on uart
+   VTTY4 is tty  on uart
+   VTTY5 is tty  on uart
+   VTTY6 is tty  on uart
+   VTTY7 is tty  on uart
+   VTTY9 is tty  on uart
 
    /* Define the vga screen framebuffer */
    VGA is vga on nothing

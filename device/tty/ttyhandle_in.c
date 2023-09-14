@@ -18,7 +18,11 @@ void	ttyhandle_in (
 	char	ch;			/* Next char from device	*/
 	int32	avail;			/* Chars available in buffer	*/
 
-	ch = io_inb(csrptr->buffer);
+	// RAFA 
+	if (typtr->vtty_n == 0) 	/* if REAL CONSOLE */
+		ch = io_inb(csrptr->buffer);
+	else
+		ch = typtr->vtty_in_ch;
 
 	/* Compute chars available */
 
@@ -60,7 +64,12 @@ void	ttyhandle_in (
 	if (typtr->tyoflow) {
 		if (ch == typtr->tyostart) {	    /* ^Q starts output	*/
 			typtr->tyoheld = FALSE;
-			ttykickout(csrptr);
+			// RAFA
+			if (typtr->vtty_n == 0) {	/* if REAL CONSOLE */
+				ttykickout(csrptr);
+			} else {
+				send(typtr->vtty_out_pid, 1);
+			}
 			return;
 		} else if (ch == typtr->tyostop) {  /* ^S stops	output	*/
 			typtr->tyoheld = TRUE;
@@ -262,6 +271,11 @@ local	void	eputc(
 	if (typtr->tyetail >= &typtr->tyebuff[TY_EBUFLEN]) {
 		typtr->tyetail = typtr->tyebuff;
 	}
-	ttykickout(csrptr);
+	// RAFA
+	if (typtr->vtty_n == 0) {	/* if REAL CONSOLE */
+		ttykickout(csrptr);
+	} else {
+		send(typtr->vtty_out_pid, 1);
+	}
 	return;
 }
