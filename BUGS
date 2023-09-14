@@ -8,3 +8,25 @@
     you can not have two windows with the same title (if you have, you will see
     just one window).
 
+
+
+vtty.c code :
+    vtty_in_new_char(int n, char c)	 /* new key stroke c from n virtual terminal */
+	put c in buffer of n vtty (using semaphore)
+	send message to vtty_in process
+    
+    there is a vtty_in process, waiting for a message
+    when it arrives, get every char from in buffer and does the same code
+    than ttyhandler_in(), but inside this process with the ch
+
+
+    there is a vtty_out process, waitin for a message
+    when message arrives it gets chars from out buffer of tty
+    for every char it calls to vt100_put_char(n, c); /* n is the vt virtual terminal */
+
+    tty_putc  send message to vtty_out process (when it does ttykickout for real tty)
+
+
+vt.c reads chars from microui events, then calls vtty_in_new_char().
+then 
+           
