@@ -5,6 +5,8 @@
 
 #define FONT_W 6
 #define FONT_H 8
+//#define FONT_W 8
+//#define FONT_H 16
 
 #define VT_W (80*FONT_W)
 #define VT_H (24*FONT_H)
@@ -51,11 +53,9 @@ process vtty_out(int n, int t)
 
 	typtr = &ttytab[n+1];
 	struct vt100 *term = vt100_get_vt(n);
-	kprintf("term %x  7\n", term);
 	
 while(1) {
 	m = receive();
-	kprintf("obtuve un mensaje\n");
        mask = disable();
         byte    ier = 0;
 
@@ -84,7 +84,9 @@ while(1) {
         /*   nonempty, xmit chars from the echo queue           */
 
         while (typtr->tyehead != typtr->tyetail) {
+		// vt100_del_cursor(term);
                 vt100_putc(term, (char) *typtr->tyehead++);
+		// vt100_draw_cursor(term);
 		// io_outb(csrptr->buffer, *typtr->tyehead++);
                 if (typtr->tyehead >= &typtr->tyebuff[TY_EBUFLEN]) {
                         typtr->tyehead = typtr->tyebuff;
@@ -95,12 +97,12 @@ while(1) {
         /* While onboard FIFO is not full and the output queue is       */
         /*   nonempty, transmit chars from the output queue             */
 
-	kprintf("obtuve un mensaje 5\n");
         ochars = 0;
         avail = TY_OBUFLEN - semcount(typtr->tyosem);
-	kprintf("obtuve un mensaje 6\n");
         while ( (avail > 0) ) {
+		// vt100_del_cursor(term);
                 vt100_putc(term, (char) *typtr->tyohead++);
+		// vt100_draw_cursor(term);
                 // io_outb(csrptr->buffer, *typtr->tyohead++);
                 if (typtr->tyohead >= &typtr->tyobuff[TY_OBUFLEN]) {
                         typtr->tyohead = typtr->tyobuff;
@@ -394,13 +396,13 @@ process vt(void)
 	uint32 *buf;
 	struct vt100 *t;
 
-	char title[20];
+	char title[30];
 	buf = gui_buf_getmem(VT_W*VT_H*4);
 
 	n_vt = vt100_get_vt_available(buf, VT_W);
 	t = vt100_get_vt(n_vt);
 
-	sprintf(title, "vt %d", n_vt);
+	sprintf(title, "virtual terminal %d", n_vt);
 	n = mu_add_win(title, 300, 10+n_vt*10, VT_W, VT_H, buf);
 	
 	vt100_init(t, null_str);
@@ -420,13 +422,11 @@ process vt(void)
 	printf ("PASAMOS\n");
 */
   vt100_puts(t, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
-//	sleepms(500);
 //	test_cursor(buf, VT_W);
 //	test_scroll(buf, VT_W);
 //	test_colors(buf, VT_W);
 
 	int vtty_pid;
-	kprintf("term 2 %x \n", t);
 	vtty_pid = create(vtty_out, 20248, 20, "vtty_out", 1, n_vt, t);
 	vtty_out_set_pid(n_vt, vtty_pid);
 
@@ -437,7 +437,6 @@ process vt(void)
         intmask mask;                   /* Saved interrupt mask         */
 
         /* Wait for shell to exit and recreate it */
-        sleep(5);
         resume(create(shell, 4096, 20, "shell", 1, VTTY0+n_vt));
 
 	mu_event_t e;

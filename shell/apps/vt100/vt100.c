@@ -107,6 +107,8 @@ void _vt100_reset(struct vt100 *t)
 {
 	t->char_height = 8;
 	t->char_width = 6;
+	//t->char_height = 16;
+	//t->char_width = 8;
 	t->back_color = 0x0000;
 	t->front_color = 0xffff;
 	t->cursor_x = t->cursor_y = t->saved_cursor_x = t->saved_cursor_y = 0;
@@ -235,12 +237,24 @@ void _vt100_move(struct vt100 *t, int16_t right_left, int16_t bottom_top){
 	}
 }
 
-void _vt100_drawCursor(struct vt100 *t){
-	//uint16_t x = t->cursor_x * t->char_width;
-	//uint16_t y = t->cursor_y * t->char_height;
+void vt100_draw_cursor(struct vt100 *t)
+{
+	uint16_t x = t->cursor_x * t->char_width;
+	uint16_t y = t->cursor_y * t->char_height;
 
 	//ili9340_fillRect(x, y, t->char_width, t->char_height, t->front_color); 
+        gui_buf_rect(t->buf, t->width_buf, x, y, t->char_width, t->char_height, rgb16_to_rgb32(t->front_color));
 }
+
+void vt100_del_cursor(struct vt100 *t)
+{
+	uint16_t x = t->cursor_x * t->char_width;
+	uint16_t y = t->cursor_y * t->char_height;
+
+	//ili9340_fillRect(x, y, t->char_width, t->char_height, t->front_color); 
+        gui_buf_rect(t->buf, t->width_buf, x, y, t->char_width, t->char_height, rgb16_to_rgb32(t->back_color));
+}
+
 
 // sends the character to the display and updates cursor position
 void _vt100_putc(struct vt100 *t, uint8_t ch){
@@ -260,12 +274,13 @@ void _vt100_putc(struct vt100 *t, uint8_t ch){
 	//ili9340_setFrontColor(t->front_color);
 	//ili9340_setBackColor(t->back_color); 
 	//ili9340_drawChar(x, y, ch);
-	sleepms(5);
+	// delete cursor
+	vt100_del_cursor(t);
         gui_buf_draw_char(t->buf, t->width_buf, x, y, ch, rgb16_to_rgb32(t->front_color), rgb16_to_rgb32(t->back_color));
 
 	// move cursor right
 	_vt100_move(t, 1, 0); 
-	_vt100_drawCursor(t); 
+	vt100_draw_cursor(t);
 }
 
 void vt100_puts(struct vt100 *t, const char *str){
@@ -704,6 +719,7 @@ STATE(_st_escape, term, ev, arg){
 					break; 
 				case 'E': // next line
 					// same as '\r\n'
+					vt100_del_cursor(term);
 					_vt100_move(term, 0, 1);
 					term->cursor_x = 0; 
 					term->state = _st_idle;
@@ -779,6 +795,7 @@ STATE(_st_idle, term, ev, arg){
 					break;
 				}
 				case '\r': { // carrage return (0x0d)
+					vt100_del_cursor(term);
 					term->cursor_x = 0; 
 					//_vt100_move(term, 0, 1);
 					//_vt100_moveCursor(term, 0, term->cursor_y); 

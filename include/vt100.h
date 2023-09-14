@@ -27,8 +27,12 @@ extern "C" {
 
 #define VT100_SCREEN_WIDTH (6*80)
 #define VT100_SCREEN_HEIGHT (8*24)
+//#define VT100_SCREEN_WIDTH (8*80)
+//#define VT100_SCREEN_HEIGHT (16*24)
 #define VT100_CHAR_WIDTH 6
 #define VT100_CHAR_HEIGHT 8
+//#define VT100_CHAR_WIDTH 8
+//#define VT100_CHAR_HEIGHT 16
 #define VT100_HEIGHT (VT100_SCREEN_HEIGHT / VT100_CHAR_HEIGHT)
 #define VT100_WIDTH (VT100_SCREEN_WIDTH / VT100_CHAR_WIDTH)
 
@@ -79,6 +83,8 @@ void vt100_free_vt(int n);
 void vt100_init_vts(); 
 
 void vt100_init(struct vt100 *t, void (*send_response)(char *str)); 
+void vt100_del_cursor(struct vt100 *t);
+void vt100_draw_cursor(struct vt100 *t);
 void vt100_putc(struct vt100 *t, uint8 ch);
 void vt100_puts(struct vt100 *t, const char *str);
 
