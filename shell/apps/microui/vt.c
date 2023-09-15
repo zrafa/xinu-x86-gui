@@ -417,7 +417,7 @@ process vt(void)
 //	test_colors(buf, VT_W);
 
 	int vtty_pid;
-	vtty_pid = create(vtty_out, 20248, 20, "vtty_out", 1, n_vt, t);
+	vtty_pid = create(vtty_out, 2048, 60, "vtty_out", 1, n_vt, t);
 	vtty_out_set_pid(n_vt, vtty_pid);
 
 	resume(vtty_pid);
@@ -432,8 +432,9 @@ process vt(void)
 	mu_event_t e;
 	for (;;) {
 		mu_get_event(n, &e);
-                if (e.but != -1)
-                        printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
+                if (e.but != -1) {
+                        // DO SOMETHING WITH MOUSE printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
+		}
                 if (e.c[0] != '\0') {
                         // printf("KEY: %c %d \n", e.c[0], e.c[0]);
 			mask = disable();
