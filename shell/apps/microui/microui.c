@@ -691,7 +691,7 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, in
   if (ctx->focus == id) {
     /* handle click */
     if (ctx->mouse_pressed == MU_MOUSE_LEFT) {
-	printf("MOUSE PRESSED r.x: %d, r.w: %d, r.y: %d, r.h: %d ,  x: %d, y:%d focus: %u, id: %u, hover: %u\n", r.x, r.w, r.y, r.h, ctx->mouse_pos.x, ctx->mouse_pos.y, ctx->focus, id, ctx->hover);
+	// printf("MOUSE PRESSED r.x: %d, r.w: %d, r.y: %d, r.h: %d ,  x: %d, y:%d focus: %u, id: %u, hover: %u\n", r.x, r.w, r.y, r.h, ctx->mouse_pos.x, ctx->mouse_pos.y, ctx->focus, id, ctx->hover);
 	e.mouse.x = ctx->mouse_pos.x - r.x;
 	e.mouse.y = ctx->mouse_pos.y - r.y;
 	e.but = 1;
