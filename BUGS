@@ -1,6 +1,7 @@
 
 - colors in galaga
 - after galaga gameover does not restart well
+- galaga is broken
 - textbox overflows text
 - behaviour of mouse in virtualbox is not correct
 - when X button closes dynamic window, process does not finish
@@ -9,6 +10,7 @@
     just one window).
 - if exit on shell on vt, it should kill all the processes working with it.
 - backspacke on textbox does not work.
+- backspace on shell on virtual terminal does not "repeat" (just once when it is still pressed)
 
 
 
