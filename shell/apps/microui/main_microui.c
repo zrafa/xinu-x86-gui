@@ -5,6 +5,13 @@
 
 #define NULL 0
 
+/* For external programs */
+extern const    struct  cmdent  cmdtab[];
+extern uint32   ncmd;
+extern process mu_gui_demo();
+extern process mu_galaga();
+
+
 static  char logbuf[64000];
 static   int logbuf_updated = 0;
 // static float bg[3] = { 90, 95, 100 };
@@ -42,6 +49,82 @@ void write_log(char *text) {
   strcat(logbuf, text);
   logbuf_updated = 1;
 }
+
+int mu_begin_window_ex(mu_Context *ctx, const char *title, mu_Rect rect, int opt);
+
+
+
+static void test_menu(mu_Context *ctx)
+{
+	int j;
+        char    *src, *cmp;             /* Pointers used during name    */
+                                        /*   comparison                 */
+        bool8   diff;                   /* Was difference found during  */
+
+  if (mu_begin_window_ex(ctx, "menu", mu_rect(2, 2, 1020, 30), MU_OPT_NOTITLE|MU_OPT_NORESIZE|MU_OPT_HOLDFOCUS)) {
+
+    /* input textbox + submit button */
+    static char buf[40];
+    int submitted = 0;
+    mu_layout_row(ctx, 5, (int[]) { 120, 120, 120, -70, 50 }, 0);
+
+    if (mu_button(ctx, "virtual terminal")) { 
+		resume( create(vt, 16384, 20, "vt", 0));
+	}
+    if (mu_button(ctx, "XINU gui mascot")) { 
+		resume( create(mu_gui_demo, 2048, 20, "vt", 0));
+	}
+    if (mu_button(ctx, "galaga")) { 
+		resume( create(mu_galaga, 4096, 20, "vt", 0));
+	}
+
+    if (mu_textbox(ctx, buf, sizeof(buf)) & MU_RES_SUBMIT) {
+      mu_set_focus(ctx, ctx->last_id);
+      submitted = 1;
+    }
+    if (mu_button(ctx, "run")) { submitted = 1; }
+
+    if (submitted) {
+                /* Lookup first token in the command table */
+
+                for (j = 0; j < ncmd; j++) {
+                        src = cmdtab[j].cname;
+                        cmp = buf;
+                        diff = FALSE;
+                        while (*src != NULLCH) {
+                                if (*cmp != *src) {
+                                        diff = TRUE;
+                                        break;
+                                }
+                                src++;
+                                cmp++;
+                        }
+                        if (diff || (*cmp != NULLCH)) {
+                                continue;
+                        } else {
+                                break;
+                        }
+                }
+
+		/* run */
+                if (j < ncmd) {
+ 			if (! cmdtab[j].cbuiltin)
+	    			resume( create(cmdtab[j].cfunc, 16384, 20, 
+       		                	cmdtab[j].cname, 0));
+
+                }
+
+
+
+
+      //write_log(buf);
+      buf[0] = '\0';
+    }
+
+    mu_end_window(ctx);
+  }
+}
+
 
 
 static void test_window(mu_Context *ctx) {
@@ -181,8 +264,6 @@ for (int i = 0; i < 1000; i++) {
   }
   mu_pop_id(ctx);
 }
-	if (ctx->updated_focus)
-		printf("test window focus\n");
     mu_end_window(ctx);
   }
 }
@@ -237,9 +318,10 @@ static void style_window(mu_Context *ctx) {
 
 static void process_frame(mu_Context *ctx) {
   mu_begin(ctx);
-  style_window(ctx);
+//  style_window(ctx);
   log_window(ctx);
-  test_window(ctx);
+ // test_window(ctx);
+  test_menu(ctx);
 
 	int i;
 	for (i=0; i<N_WIN; i++) {

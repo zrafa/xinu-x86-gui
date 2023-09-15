@@ -144,9 +144,16 @@ void r_handle_input(mu_Context *ctx)
 			// RAFA mu_input_text(ctx, buf);
 		} else if (new_key == 13) {
 			/* enter */
+			/* backspace first (remove return symbol from input text) */
+			mu_input_keydown(ctx, MU_KEY_BACKSPACE);
+			mu_input_keyup(ctx, MU_KEY_BACKSPACE);
+			/* enter */
 			mu_input_keydown(ctx, MU_KEY_RETURN);
 			mu_input_keyup(ctx, MU_KEY_RETURN);
 		} else if (new_key == 8) {
+			/* backspace (this first bksp is for removing bksp symbol from input text */
+			mu_input_keydown(ctx, MU_KEY_BACKSPACE);
+			mu_input_keyup(ctx, MU_KEY_BACKSPACE);
 			/* backspace */
 			mu_input_keydown(ctx, MU_KEY_BACKSPACE);
 			mu_input_keyup(ctx, MU_KEY_BACKSPACE);
