@@ -39,7 +39,6 @@ process vtty_out(int n, int t)
         intmask mask;                   /* Saved interrupt mask         */
 	struct ttycblk *typtr;
 
-
         int32   ochars;                 /* Number of output chars sent  */
                                         /*   to the UART                */
         int32   avail;                  /* Available chars in output buf*/
@@ -51,7 +50,7 @@ process vtty_out(int n, int t)
 	
 while(1) {
 	m = receive();
-       mask = disable();
+	mask = disable();
         byte    ier = 0;
 
         /* If output is currently held, simply ignore the call */
@@ -79,9 +78,7 @@ while(1) {
         /*   nonempty, xmit chars from the echo queue           */
 
         while (typtr->tyehead != typtr->tyetail) {
-		// vt100_del_cursor(term);
                 vt100_putc(term, (char) *typtr->tyehead++);
-		// vt100_draw_cursor(term);
 		// io_outb(csrptr->buffer, *typtr->tyehead++);
                 if (typtr->tyehead >= &typtr->tyebuff[TY_EBUFLEN]) {
                         typtr->tyehead = typtr->tyebuff;
@@ -95,9 +92,7 @@ while(1) {
         ochars = 0;
         avail = TY_OBUFLEN - semcount(typtr->tyosem);
         while ( (avail > 0) ) {
-		// vt100_del_cursor(term);
                 vt100_putc(term, (char) *typtr->tyohead++);
-		// vt100_draw_cursor(term);
                 // io_outb(csrptr->buffer, *typtr->tyohead++);
                 if (typtr->tyohead >= &typtr->tyobuff[TY_OBUFLEN]) {
                         typtr->tyohead = typtr->tyobuff;
@@ -398,7 +393,7 @@ process vt(void)
 	t = vt100_get_vt(n_vt);
 
 	sprintf(title, "virtual terminal %d", n_vt);
-	n = mu_add_win(title, 300, 10+n_vt*10, VT_W, VT_H, buf);
+	n = mu_add_win(title, 100+n_vt*40, 400-n_vt*40, VT_W, VT_H, buf);
 	
 	vt100_init(t, null_str);
 

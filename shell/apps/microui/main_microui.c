@@ -7,7 +7,8 @@
 
 static  char logbuf[64000];
 static   int logbuf_updated = 0;
-static float bg[3] = { 90, 95, 100 };
+// static float bg[3] = { 90, 95, 100 };
+static float bg[3] = { 84, 164, 111 };
 
 char * malloc(int n)
 {
