@@ -800,10 +800,12 @@ STATE(_st_idle, term, ev, arg){
 					break;
 				}
 				case '\b': { // backspace 0x08
+					vt100_del_cursor(term);
 					_vt100_move(term, -1, 0); 
 					// backspace does not delete the character! Only moves cursor!
 					//ili9340_drawChar(term->cursor_x * term->char_width,
 					//	term->cursor_y * term->char_height, ' ');
+					vt100_draw_cursor(term);
 					break;
 				}
 				case KEY_DEL: { // del - delete character under cursor

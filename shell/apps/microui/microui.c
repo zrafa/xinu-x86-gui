@@ -58,7 +58,8 @@ static mu_Style default_style = {
   24, 12, 8,
   {
     { 230, 230, 230, 255 }, /* MU_COLOR_TEXT */
-    { 25,  25,  25,  255 }, /* MU_COLOR_BORDER */
+    // RAFA { 25,  25,  25,  255 }, /* MU_COLOR_BORDER */
+    { 95,  95,  95,  255 }, /* MU_COLOR_BORDER */
     { 50,  50,  50,  255 }, /* MU_COLOR_WINDOWBG */
     { 25,  25,  25,  255 }, /* MU_COLOR_TITLEBG */
     { 240, 240, 240, 255 }, /* MU_COLOR_TITLETEXT */

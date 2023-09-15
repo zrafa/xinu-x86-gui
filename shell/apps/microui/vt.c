@@ -21,7 +21,7 @@ void vtty_out_set_pid(int n, int pid)
 	typtr = &ttytab[n+1];
 	typtr->vtty_out_pid = pid;
 	
-	typtr->sem_vtty_out = semcreate(0);
+//	typtr->sem_vtty_out = semcreate(0);
 
 }
 

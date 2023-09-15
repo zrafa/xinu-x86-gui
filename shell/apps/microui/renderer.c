@@ -118,33 +118,30 @@ void r_handle_input(mu_Context *ctx)
 	read(KEYBOARD, &curr_key, 1);
 	/* get ascii code */
 	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
-	if (shift)	printf("no  %d \n", curr_key);
-	if ((new_key == 178) || (new_key == 179)) {
+
+	/* process SHIFT */
+	if ((new_key == 178) || (new_key == 179)) { 		/* SHIFT keys */
 		shift = 1;
-		printf("SHIFT %d \n", curr_key);
 		prev_key = new_key;
-	} else if (curr_key == 170) {
+	} else if (curr_key == 170) {				/* release SHIFT keys */
 		shift = 0;
 		prev_key = new_key;
 	} else if ((shift) && (curr_key < 59)) {
 			new_key = latin_qwerty_map[curr_key - 1 + 76];
 		};
 
-
 	/* make text for mu_input_text */
 	char buf[2];
 	buf[0] = new_key;
 	buf[1] = '\0';
+
 	if(prev_key != new_key) {
 
-		printf("no  %d \n", curr_key);
-		printf("no  %d \n", new_key);
-			// RAFA
+			// RAFA all the keys must go to virtual terminal
 			mu_input_text(ctx, buf);
 		if(new_key > 31 && new_key < 127) {
 			/* a key was just pressed */
 			// RAFA mu_input_text(ctx, buf);
-				//printf("keyssssss.... %d \n", strlen(ctx->input_text));
 		} else if (new_key == 13) {
 			/* enter */
 			mu_input_keydown(ctx, MU_KEY_RETURN);
