@@ -7,6 +7,8 @@
 - it is not a bug, it is a feature. BUT we need to understand this feature:
     you can not have two windows with the same title (if you have, you will see
     just one window).
+- if exit on shell on vt, it should kill all the processes working with it.
+- backspacke on textbox does not work.
 
 
 
