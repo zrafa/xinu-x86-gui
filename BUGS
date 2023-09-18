@@ -5,12 +5,25 @@
 - textbox overflows text
 - behaviour of mouse in virtualbox is not correct
 - when X button closes dynamic window, process does not finish
+  (virtual terminal is a problem. When we click on close icon
+  it should kills/finishes all the processes related with virtual
+  terminal (vt, shell, vtty_out, etc).
 - it is not a bug, it is a feature. BUT we need to understand this feature:
     you can not have two windows with the same title (if you have, you will see
     just one window).
 - if exit on shell on vt, it should kill all the processes working with it.
 - backspacke on textbox does not work.
-- backspace on shell on virtual terminal does not "repeat" (just once when it is still pressed)
+- backspace on shell on virtual terminal does not "repeat" (just once when 
+  it is still pressed)
+- there are many warnings when building. Some of them are easy to fix (just 
+  including some #include <> in .c).
+- you can just write on virtual terminal when you "click" on the shell frame.
+  But, we need also to be able to focus the frame when you click on title bar.
+- there is not clear which window is on focus.
+- virtualbox mouse movements does not work very well
+- check how to run this xinu on real PC (some PCs work out of the box
+  some not).
+
 
 
 
