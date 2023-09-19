@@ -1,0 +1,22 @@
+
+SOme nice notes about multiboot and graphical part:
+
+https://forum.osdev.org/viewtopic.php?f=1&t=28468
+
+
+
+Hi,
+
+Some notes:
+BPP stands for "bits per pixel", and is mostly likely to be 1, 2, 4, 8, 15, 16, 24 or 32. It is not "bytes per pixel" (so "if(bpp*8 == 32)" wouldn't make sense) and it's definitely not "eights of a bit per pixel" so "if(bpp/8 == 32)" is even less sane.
+For C, if you have a pointer to 32-bit value/s (e.g. "uint32_t* physbase") then an expression like "foo = physbase[123]" is equivalent to "foo = (uint32_t *) ( (void *)phybase + 123*sizeof(uint32_t) )". For the 24-bpp and 32-bpp cases, you've written it for "uint8_t* physbase" (and not "uint32_t* physbase" which you're actually using) and for those cases it's incorrect. For the 15-bpp and 16-bpp cases, you've written it for "uint16_t* physbase" (and not "uint32_t* physbase" which you're actually using) and for those cases it's incorrect.
+For 15-bpp one bit may be reserved, and for 32-bpp 8 bits may be reserved. The reserved bits are often used in a "vendor specific" way to implement non-standard features (e.g. alternative "bits to colour" conversions, overlays, etc). For this reason you should not set these reserved bits and need to ensure they are zeros.
+Knowing "bits per pixel" is not enough. You also need to know how those bits effect the colour. There are 2 important things in VBE's "mode info" structure that you must also check. The first is the "MemoryMode" field, to determine if it's a planar mode, a mode that uses a lookup table/palette to determine colour, a "direct colour" mode, or if it's a YUV mode (that doesn't use "reg, green and blue" at all). The second (for "direct colour" modes) is the entire set of "redMask", "redPosition", "greenMask", "greenPosition", "blueMask" and "bluePosition" fields. These tell you which bits are used for red, green and blue (e.g. and if it's "RGB" or "BGR", etc).
+If you ask for (e.g.) a "1024*768, 32-bpp" mode and the computer's VBE doesn't support that mode; then (according to the multi-boot specification) the boot loader is free to do anything it feels like without caring; including giving you text mode, or some strange/unusual graphics mode like "512 * 512, 4-bpp planar"; even if a similar 1024*768, 24-bpp" mode is supported.
+If you ask for (e.g.) a "1024*768, 32-bpp" mode and the computer's VBE does support that mode, then the boot loader will (should) switch to that mode for you; but there's is no guarantee that the monitor supports the video mode and it may still be entirely unusable.
+If a tornado is ripping apart your house it'd be a bad idea to ignore it and pretend everything is fine. In the same way, if the boot loader has set a video mode that your OS doesn't support it's a bad idea to ignore it and pretend everything is fine. When video initialisation has failed, there are a variety of ways you could use to inform the user that your OS is unable to boot (e.g. flash keyboard LEDs, make the PC speaker beep, etc). Note: The best option would be to just return a "boot aborted" status (or even better, an ASCIIZ string saying why you can't boot) to the boot loader; but sadly multiboot doesn't support sensible things.
+
+However; despite all of the bugs, it's likely that you would've still got some messed up pixels at the top left of the screen (e.g. maybe a blue pixel, a green pixel then a red pixel, rather than one white pixel). If this didn't happen, then it may also mean that there's an additional problem somewhere (that isn't in the list above).
+
+
+
