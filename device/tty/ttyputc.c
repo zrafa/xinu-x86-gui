@@ -32,11 +32,11 @@ devcall	ttyputc(
 
 	/* Start output in case device is idle */
 
-if (devptr->dvminor == 0) { 	/* if REAL TTY */
-	ttykickout((struct uart_csreg *)devptr->dvcsr);
-} else {
-	send(typtr->vtty_out_pid, 1);
-}
+	if (devptr->dvminor == 0) { 	/* if REAL TTY */
+		ttykickout((struct uart_csreg *)devptr->dvcsr);
+	} else {
+		// REMOVE SOON	send(typtr->vtty_out_pid, 1);
+	}
 
 	return OK;
 }

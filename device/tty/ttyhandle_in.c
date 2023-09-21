@@ -68,7 +68,7 @@ void	ttyhandle_in (
 			if (typtr->vtty_n == 0) {	/* if REAL CONSOLE */
 				ttykickout(csrptr);
 			} else {
-				send(typtr->vtty_out_pid, 1);
+				// REMOVE SOON send(typtr->vtty_out_pid, 1);
 			}
 			return;
 		} else if (ch == typtr->tyostop) {  /* ^S stops	output	*/
@@ -275,7 +275,7 @@ local	void	eputc(
 	if (typtr->vtty_n == 0) {	/* if REAL CONSOLE */
 		ttykickout(csrptr);
 	} else {
-		send(typtr->vtty_out_pid, 1);
+		// REMOVE SOON send(typtr->vtty_out_pid, 1);
 	}
 	return;
 }

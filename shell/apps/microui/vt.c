@@ -20,9 +20,6 @@ void vtty_out_set_pid(int n, int pid)
 	struct ttycblk *typtr;
 	typtr = &ttytab[n+1];
 	typtr->vtty_out_pid = pid;
-	
-//	typtr->sem_vtty_out = semcreate(0);
-
 }
 
 void vtty_in_set_ch(int n, char ch)
@@ -49,25 +46,26 @@ process vtty_out(int n, int t)
 	struct vt100 *term = vt100_get_vt(n);
 	
 while(1) {
-	m = receive();
-	mask = disable();
+	sleepms(10);
+	// REMOVE SOON 	m = receive();
+	// REMOVE SOON 	mask = disable();
         byte    ier = 0;
 
         /* If output is currently held, simply ignore the call */
 
         if (typtr->tyoheld) {
-		restore(mask);
+	// REMOVE SOON 		restore(mask);
                 continue;
-		// return;
+		//  REMOVE SOON return;
         }
 
         /* If echo and output queues empty, turn off interrupts */
 
         if ( (typtr->tyehead == typtr->tyetail) &&
              (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
-		restore(mask);
+		// REMOVE SOON	restore(mask);
 		continue;
-                // return;
+                // REMOVE SOON return;
         }
         
         /* Initialize uspace to the size of the transmit FIFO */
@@ -79,7 +77,6 @@ while(1) {
 
         while (typtr->tyehead != typtr->tyetail) {
                 vt100_putc(term, (char) *typtr->tyehead++);
-		// io_outb(csrptr->buffer, *typtr->tyehead++);
                 if (typtr->tyehead >= &typtr->tyebuff[TY_EBUFLEN]) {
                         typtr->tyehead = typtr->tyebuff;
                 }
@@ -93,7 +90,6 @@ while(1) {
         avail = TY_OBUFLEN - semcount(typtr->tyosem);
         while ( (avail > 0) ) {
                 vt100_putc(term, (char) *typtr->tyohead++);
-                // io_outb(csrptr->buffer, *typtr->tyohead++);
                 if (typtr->tyohead >= &typtr->tyobuff[TY_OBUFLEN]) {
                         typtr->tyohead = typtr->tyobuff;
 
@@ -106,7 +102,7 @@ while(1) {
                 signaln(typtr->tyosem, ochars);
         }
 
-	restore(mask);
+	// REMOVE SOON	restore(mask);
 }
 
 }
@@ -397,24 +393,8 @@ process vt(void)
 	
 	vt100_init(t, null_str);
 
-	/* program source code (for example, modify surface
-	 * drawn into window
-	 */
-
-/*
-	int l, c;
- 		for(l = 0; l < 40; l++){
-                        for(c = 0; c < 40; c++){
-                                vt100_putc(t, '0'+l);
-                        }
-                        if(l < 39) vt100_puts(t, "\r\n"); 
-                }
-	printf ("PASAMOS\n");
-*/
-  vt100_puts(t, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
-//	test_cursor(buf, VT_W);
-//	test_scroll(buf, VT_W);
-//	test_colors(buf, VT_W);
+	/* clear screen */
+	vt100_puts(t, "\e[c\e[2J\e[m\e[r\e[?6l\e[1;1H");
 
 	int vtty_pid;
 	vtty_pid = create(vtty_out, 2048, 60, "vtty_out", 1, n_vt, t);
@@ -427,6 +407,7 @@ process vt(void)
         intmask mask;                   /* Saved interrupt mask         */
 
         /* Wait for shell to exit and recreate it */
+	sleepms(5);
         resume(create(shell, 4096, 20, "shell", 1, VTTY0+n_vt));
 
 	mu_event_t e;
@@ -443,6 +424,7 @@ process vt(void)
 			restore(mask);
 		}
 
+		sleepms(2);
 	};
 
 	/* wait until window closes or program finishes */

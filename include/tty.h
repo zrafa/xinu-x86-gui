@@ -13,7 +13,8 @@
 #define	TY_IBUFLEN	128		/* Num. chars in input queue	*/
 #endif
 #ifndef	TY_OBUFLEN
-#define	TY_OBUFLEN	64		/* Num.	chars in output	queue	*/
+//#define	TY_OBUFLEN	64		/* Num.	chars in output	queue	*/
+#define	TY_OBUFLEN	2048		/* Num.	chars in output	queue	*/
 #endif
 
 /* Mode constants for input and output modes */
