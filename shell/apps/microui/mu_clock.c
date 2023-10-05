@@ -89,8 +89,8 @@ void show_time(uint32 *buf, int w)
 
 	datestr[3] = 0;
 	datestr[11] = 0;
-	gui_buf_print_text(buf, w, 40, 104, datestr, 0x00, 0x00FFFFFF);
-	gui_buf_print_text(buf, w, 40+(6*4), 104, &datestr[4], 0x00, 0x00FFFFFF);
+	gui_buf_print_text(buf, w, 45, 104, datestr, 0x00, 0x00FFFFFF);
+	gui_buf_print_text(buf, w, 45+(6*4), 104, &datestr[4], 0x00, 0x00FFFFFF);
 }
 
 process mu_clock(void)
@@ -100,7 +100,7 @@ process mu_clock(void)
 
 	buf = gui_buf_getmem(W*H*4);
 	gui_buf_draw_image(buf, W, 0, 0, W, H, pixel_data);
-	n = mu_add_win("Date and Time", 700, 40, W, H, buf);
+	n = mu_add_win("Date and Time", 800, 600, W, H, buf);
 
 	/* program source code (for example, modify surface
 	 * drawn into window
