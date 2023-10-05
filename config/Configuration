@@ -207,6 +207,7 @@ nam:
 #define VGA_WIDTH	1024 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_HEIGHT	768 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_BPP		32 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
+#define TIMESERVER	"200.11.116.10"
 
 #ifndef	ETHER0
 #define	ETHER0	0

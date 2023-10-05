@@ -73,6 +73,7 @@ extern	shellcmd  xsh_udpeserver (int32, char *[]);
 /* in file xsh_uptime.c */
 extern	shellcmd  xsh_uptime	(int32, char *[]);
 extern	shellcmd  mu_gui_demo	(int32, char *[]);
+extern	shellcmd  mu_clock	(void);
 extern	shellcmd  vt		();
 extern	shellcmd  mu_galaga	(int32, char *[]);
 

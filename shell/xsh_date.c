@@ -56,6 +56,9 @@ shellcmd xsh_date(int nargs, char *args[]) {
 		}
 	}
 
+	// RAFA
+	NetData.ntpserver = 0;
+
 	retval = gettime(&now);
 	if (retval == SYSERR) {
 		fprintf(stderr,
