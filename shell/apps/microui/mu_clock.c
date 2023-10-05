@@ -108,9 +108,10 @@ process mu_clock(void)
 
 	int msg;
 	int child;
+	const char * args = "-f"; 
 
 
-	child = create(xsh_date, 4096, 30, "date", 1, "-f");
+	child = create(xsh_date, 4096, 30, "date", 2, 1, args);
 	msg = recvclr();
         resume(child);
 	msg = receive();
