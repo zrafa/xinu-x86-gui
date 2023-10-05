@@ -377,7 +377,11 @@ int microui() {
 	if (strlen(ctx->input_text))
 		printf("KEYs 3 %d \n", strlen(ctx->input_text));
     /* render */
+    /* wallpaper */
     r_clear(mu_color(bg[0], bg[1], bg[2], 255));
+    gui_print_text(40,740, "XINU Visual Interface", 0x00202020, 0x00545454);
+    gui_print_text(40,750, "Authors: a group of students and professors from Purdue and UNCOMA universities", 0x00202020, 0x00545454);
+
     mu_Command *cmd = NULL;
     while (mu_next_command(ctx, &cmd)) {
       switch (cmd->type) {
