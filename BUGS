@@ -19,10 +19,12 @@
   including some #include <> in .c).
 - you can just write on virtual terminal when you "click" on the shell frame.
   But, we need also to be able to focus the frame when you click on title bar.
-- there is not clear which window is on focus.
+- it is not clear which window is on focus.
 - virtualbox mouse movements does not work very well
 - check how to run this xinu on real PC (some PCs work out of the box
   some not).
+- move extra software to apps/ folder on root. Add proper licenses for those
+  progrmas in LICENSE file.
 
 
 
