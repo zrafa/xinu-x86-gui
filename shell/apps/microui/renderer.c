@@ -117,6 +117,8 @@ void r_handle_input(mu_Context *ctx)
 {
 	read(KEYBOARD, &curr_key, 1);
 	/* get ascii code */
+
+	// TODO: debug for the caps lock issue
 	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
 
 	/* process SHIFT */
@@ -129,6 +131,8 @@ void r_handle_input(mu_Context *ctx)
 	} else if ((shift) && (curr_key < 59)) {
 			new_key = latin_qwerty_map[curr_key - 1 + 76];
 		};
+
+	// add CAPS LOCK 
 
 	/* make text for mu_input_text */
 	char buf[2];
