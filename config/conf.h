@@ -26,46 +26,37 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 /* Device name definitions */
 
 #define CONSOLE              0	/* type tty      */
-#define VTTY0                1	/* type tty      */
-#define VTTY1                2	/* type tty      */
-#define VTTY2                3	/* type tty      */
-#define VTTY3                4	/* type tty      */
-#define VTTY4                5	/* type tty      */
-#define VTTY5                6	/* type tty      */
-#define VTTY6                7	/* type tty      */
-#define VTTY7                8	/* type tty      */
-#define VTTY9                9	/* type tty      */
-#define VGA                 10	/* type vga      */
-#define MOUSE               11	/* type mice     */
-#define KEYBOARD            12	/* type kbd      */
-#define NULLDEV             13	/* type null     */
-#define ETHER0              14	/* type eth      */
-#define NAMESPACE           15	/* type nam      */
-#define RDISK               16	/* type rds      */
-#define RAM0                17	/* type ram      */
-#define RFILESYS            18	/* type rfs      */
-#define RFILE0              19	/* type rfl      */
-#define RFILE1              20	/* type rfl      */
-#define RFILE2              21	/* type rfl      */
-#define RFILE3              22	/* type rfl      */
-#define RFILE4              23	/* type rfl      */
-#define RFILE5              24	/* type rfl      */
-#define RFILE6              25	/* type rfl      */
-#define RFILE7              26	/* type rfl      */
-#define RFILE8              27	/* type rfl      */
-#define RFILE9              28	/* type rfl      */
-#define LFILESYS            29	/* type lfs      */
-#define LFILE0              30	/* type lfl      */
-#define LFILE1              31	/* type lfl      */
-#define LFILE2              32	/* type lfl      */
-#define LFILE3              33	/* type lfl      */
-#define LFILE4              34	/* type lfl      */
-#define LFILE5              35	/* type lfl      */
+#define VGA                  1	/* type vga      */
+#define MOUSE                2	/* type mice     */
+#define KEYBOARD             3	/* type kbd      */
+#define NULLDEV              4	/* type null     */
+#define ETHER0               5	/* type eth      */
+#define NAMESPACE            6	/* type nam      */
+#define RDISK                7	/* type rds      */
+#define RAM0                 8	/* type ram      */
+#define RFILESYS             9	/* type rfs      */
+#define RFILE0              10	/* type rfl      */
+#define RFILE1              11	/* type rfl      */
+#define RFILE2              12	/* type rfl      */
+#define RFILE3              13	/* type rfl      */
+#define RFILE4              14	/* type rfl      */
+#define RFILE5              15	/* type rfl      */
+#define RFILE6              16	/* type rfl      */
+#define RFILE7              17	/* type rfl      */
+#define RFILE8              18	/* type rfl      */
+#define RFILE9              19	/* type rfl      */
+#define LFILESYS            20	/* type lfs      */
+#define LFILE0              21	/* type lfl      */
+#define LFILE1              22	/* type lfl      */
+#define LFILE2              23	/* type lfl      */
+#define LFILE3              24	/* type lfl      */
+#define LFILE4              25	/* type lfl      */
+#define LFILE5              26	/* type lfl      */
 
 /* Control block sizes */
 
 #define	Nnull	1
-#define	Ntty	10
+#define	Ntty	1
 #define	Neth	1
 #define	Nrds	1
 #define	Nram	1
@@ -78,7 +69,7 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define	Nkbd	1
 #define	Nnam	1
 
-#define NDEVS 36
+#define NDEVS 27
 
 
 /* Configuration and Size Constants */
@@ -95,7 +86,6 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define VGA_WIDTH	1024 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_HEIGHT	768 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_BPP		32 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
-#define TIMESERVER	"200.11.116.10"
 
 #ifndef	ETHER0
 #define	ETHER0	0

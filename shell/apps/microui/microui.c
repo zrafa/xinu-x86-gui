@@ -282,7 +282,6 @@ void dynamic_window(mu_Context *ctx, int n) {
                 mu_draw_image(ctx, windows[n].buf, mu_rect(rect.x, rect.y, windows[n].w, windows[n].h), w, h, n);
 
                 mu_end_window(ctx);
-                
         }
 }
 
@@ -378,7 +377,6 @@ void mu_end(mu_Context *ctx) {
       cnt->tail->jump.dst = ctx->command_list.items + ctx->command_list.idx;
     }
   }
-  
 }
 
 
@@ -1387,8 +1385,6 @@ int mu_begin_window_ex(mu_Context *ctx, const char *title, mu_Rect rect, int opt
 void mu_end_window(mu_Context *ctx) {
   mu_pop_clip_rect(ctx);
   end_root_container(ctx);
-  
-  
 }
 
 
@@ -1432,5 +1428,4 @@ void mu_begin_panel_ex(mu_Context *ctx, const char *name, int opt) {
 void mu_end_panel(mu_Context *ctx) {
   mu_pop_clip_rect(ctx);
   pop_container(ctx);
-  
 }
