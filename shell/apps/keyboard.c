@@ -18,7 +18,7 @@ process keyboard_p (
 	*/
 	
 	char texto[10];
-	unsigned char buf;
+	char buf;
 	
 	open(KEYBOARD, NULL, 0);
 	while(1) {

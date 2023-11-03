@@ -22,5 +22,6 @@ void gui_draw_rect(int x, int y, int w, int h, uint32 color);
 void gui_draw_hollow_rect(int x, int y, int w, int h, uint32 color);
 void gui_init(void);
 void gui_flush(void);
+char check_bit(unsigned char c, int pos);
 
 #endif

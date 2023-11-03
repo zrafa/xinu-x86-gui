@@ -33,12 +33,12 @@ uint32 rgb16_to_32(uint16 color)
 
 void gui_buf_init()
 {
-	galaga_buf = getmem(240*160*4);
+	galaga_buf = (uint32 *)getmem(240*160*4);
 }
 
 void gui_buf_free()
 {
-	freemem(galaga_buf, 240*160*4);
+	freemem((char *)galaga_buf, 240*160*4);
 }
 
 void setPixel(int x, int y, u16 color) {

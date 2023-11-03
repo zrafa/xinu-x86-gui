@@ -160,11 +160,12 @@ int galaga(int n){
 	resume(pid_game);
 
 	int endgame_msg = receive();
-
+	//receive();
 	kill(pid_game);
 	kill(pid_info);
 	drawRect(0, 0, 240, 160, YELLOW);
 	// gui_buf_free();
+	return endgame_msg;
 }
 
 int game_galaga(int n) {
@@ -341,8 +342,8 @@ void game_over(int state) {
 
 void info_game(){
 	while(1){
-		int change_msg = receive();
-		
+		//int change_msg = receive();
+		receive();
 		sprintf(str_lives, "Lives: %d", player.lives);
 		sprintf(str_score, "Score: %d", player.score);
 		// print_text_on_vga(280, 20, str_lives);

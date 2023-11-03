@@ -1,5 +1,6 @@
 #include <xinu.h>
 #include <font.h>
+#include <gui.h>
 
 uint32 rgb16_to_rgb32(uint16 color)
 {
@@ -23,13 +24,13 @@ uint32 rgb16_to_rgb32(uint16 color)
 uint32 * gui_buf_getmem(int size)
 {
 	uint32 *b;
-	b = getmem(size);
+	b = (uint32 *)getmem(size);
 	return b;
 }
 
 void gui_buf_freemem(uint32 *buf, int size)
 {
-	freemem(buf, size);
+	freemem((char *)buf, size);
 }
 
 void gui_buf_pixel(uint32 *buf, int w, int x, int y, uint32 color)

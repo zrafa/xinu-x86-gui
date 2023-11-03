@@ -415,7 +415,7 @@ process vt(void)
 	for (;;) {
                 // ensuring that vtty's are killed upon close
                 mu_get_event(n, &e);
-                if (e.c[0] == 27) { // esc: TODO replace with enum of some kind
+                if (e.c[0] == 27 || windows[n].cnt->open == 0) { // esc: TODO replace with enum of some kind
                         kill(vtty_pid);
                         kill(shell_pid);
 	                vt100_free_vt(n_vt);
