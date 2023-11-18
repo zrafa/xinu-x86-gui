@@ -113,20 +113,40 @@ unsigned char new_key;
 unsigned char prev_key;
 unsigned char curr_key;
 int shift = 0;
+int caps = 0;
+int caps_goingto = 0;
 void r_handle_input(mu_Context *ctx)
 {
 	read(KEYBOARD, &curr_key, 1);
 	/* get ascii code */
 	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
+	// printf("TECLA : %d \n", new_key);
+	// 186 CAPS LOCK UP
+	// Las liberaciones de tecla tienen el bit mas significativo en 1
+	// Ejemplo: si tecla q == 0x10, entonces liberar tecla q tiene codigo 0x90
+
+	/* process CAPS */
+	if ((new_key == 180) && (caps == 0)) { 		/* CAPS LOCK key going to pressed */
+		caps_goingto = 1;
+		prev_key = new_key;
+	} else if ((curr_key == 186) && (caps_goingto == 1)) {
+		caps = 1;
+		prev_key = new_key;
+	} else if ((new_key == 180) && (caps == 1)) { 		/* CAPS LOCK key going to released */
+		caps_goingto = 0;
+		prev_key = new_key;
+	} else if ((curr_key == 186) && (caps_goingto == 0)) {
+		caps = 0;
+		prev_key = new_key;
 
 	/* process SHIFT */
-	if ((new_key == 178) || (new_key == 179)) { 		/* SHIFT keys */
+	} else if ((new_key == 178) || (new_key == 179)) { 		/* SHIFT keys */
 		shift = 1;
 		prev_key = new_key;
 	} else if (curr_key == 170) {				/* release SHIFT keys */
 		shift = 0;
 		prev_key = new_key;
-	} else if ((shift) && (curr_key < 59)) {
+	} else if ((shift || caps) && (curr_key < 59)) {
 			new_key = latin_qwerty_map[curr_key - 1 + 76];
 		};
 

@@ -1,5 +1,5 @@
 static unsigned char latin_qwerty_map[] = {
-27, // 'ESC',
+27, // 'ESC',          entrada 0
 '1',
 '2',
 '3',
@@ -9,7 +9,7 @@ static unsigned char latin_qwerty_map[] = {
 '7',
 '8',
 '9',
-'0',
+'0',       // entrada 10
 '-',
 '=',
 8, // 'BKSP',
@@ -19,7 +19,7 @@ static unsigned char latin_qwerty_map[] = {
 'e',
 'r',
 't',
-'y',
+'y',	// entrada 20
 'u',
 'i',
 'o',
@@ -29,7 +29,7 @@ static unsigned char latin_qwerty_map[] = {
 13, // 'ENTER',
 17, //'CTRLprs',
 'a',
-'s',
+'s',	// entrada 30
 'd',
 'f',
 'g',
@@ -39,7 +39,7 @@ static unsigned char latin_qwerty_map[] = {
 'l',
 ';',
 '\'',
-'`',
+'`',		// entrada 40
 178, // 'LSHIFTprs',
 92, // '\'
 'z',
@@ -49,17 +49,17 @@ static unsigned char latin_qwerty_map[] = {
 'b',
 'n',
 'm',
-',',
+',',		// entrada 50
 '.',
 '/',
 179, //'RSHIFTprs',
 0, // 'print ALTprs',
 0, // 'LALT',
 32, //'SPACE',
-0, //'CAPS',
+180, //'CAPS',
 0, // 'F1',
 0, // 'F2',
-0, // 'F3',
+0, // 'F3',	// entrada 60
 0, // 'F4',
 0, // 'F5',
 0, // 'F6',
@@ -69,7 +69,7 @@ static unsigned char latin_qwerty_map[] = {
 0, // 'F10',
 0, // 'UP',
 0, // 'RIGHT',
-0, // 'LEFT',
+0, // 'LEFT',	// entrada 70
 0, // 'DOWN',
 0, // 'HOME',
 0, // 'END',
@@ -79,7 +79,7 @@ static unsigned char latin_qwerty_map[] = {
         // # all codes below start with LSHIFTprs as commented in first item:,
 '!',  // distancia 75 a partir del '1'
 '@',
-'#',
+'#',		// entrada 80
 '$',
 '%',
 '^',
@@ -89,9 +89,9 @@ static unsigned char latin_qwerty_map[] = {
 ')',
 '_',
 '+',
+0,		// entrada 90
 0,
-0,
-'Q',
+'Q',		// entrada 92
 'W',
 'E',
 'R',

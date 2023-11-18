@@ -426,7 +426,6 @@ process vt(void)
 		}
 
                 if (e.c[0] != '\0') {
-                        // printf("KEY: %c %d \n", e.c[0], e.c[0]);
 			mask = disable();
 			typtr->vtty_in_ch = e.c[0];
 			ttyhandle_in(typtr, NULL);
