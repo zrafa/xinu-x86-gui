@@ -3,7 +3,7 @@
 - after galaga gameover does not restart well
 - galaga is broken
 - textbox overflows text
-- behaviour of mouse in virtualbox is not correct
+- behaviour of mouse in VIRTUALBOX is not correct
 - it is not a bug, it is a feature. BUT we need to understand this feature:
     you can not have two windows with the same title (if you have, you will see
     just one window).
@@ -16,12 +16,10 @@
 - you can just write on virtual terminal when you "click" on the shell frame.
   But, we need also to be able to focus the frame when you click on title bar.
 - it is not clear which window is on focus.
-- virtualbox mouse movements does not work very well
 - check how to run this xinu on real PC (some PCs work out of the box
   some not).
 - move extra software to apps/ folder on root. Add proper licenses for those
   progrmas in LICENSE file.
-- feature: CAPSLOCK in virtual terminal
 
 
 already FIXED:
@@ -30,6 +28,8 @@ already FIXED:
   (virtual terminal is a problem. When we click on close icon
   it should kills/finishes all the processes related with virtual
   terminal (vt, shell, vtty_out, etc).
+- feature: CAPSLOCK in virtual terminal
+- max number of virtual terminals running control
 
 
 vtty.c code :
