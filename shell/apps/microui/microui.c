@@ -217,6 +217,8 @@ int mu_add_win(char *name, int x, int y, int w, int h, void *buf)
 			windows[i].h = h;
 			windows[i].buf = buf;
 
+      windows[i].cnt->open = 1;
+
 			return i;
 		}
 	}
@@ -265,6 +267,9 @@ void mu_get_event(int n, mu_event_t *e) {
 #define FRAME_SPACE_W 10
 #define FRAME_SPACE_H 35
 
+void mu_set_window_container(int n, mu_Container * cnt) {
+  windows[n].cnt = cnt;
+}
 void dynamic_window(mu_Context *ctx, int n) {
         mu_Rect rect;
         int w,h;
@@ -272,6 +277,8 @@ void dynamic_window(mu_Context *ctx, int n) {
         /* do window */
         if (mu_begin_window(ctx, windows[n].name, mu_rect(windows[n].posx, windows[n].posy, windows[n].w+FRAME_SPACE_W, windows[n].h+FRAME_SPACE_H))) {
                 mu_Container *win = mu_get_current_container(ctx);
+                mu_set_window_container(n, win);
+                
                 w = win->rect.w - FRAME_SPACE_W;
                 h = win->rect.h - FRAME_SPACE_H;
 

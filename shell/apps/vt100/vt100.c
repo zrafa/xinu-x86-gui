@@ -21,7 +21,7 @@
 #include <stdint.h>
 
 #include <vt100.h>
-
+#include <gui_buf.h>
 
 #define MAX_N_VT 40	/* max numbers of virtual terminals available */
 

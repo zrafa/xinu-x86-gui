@@ -408,7 +408,8 @@ process vt(void)
 
         /* Wait for shell to exit and recreate it */
 	sleepms(5);
-        resume(create(shell, 4096, 20, "shell", 1, VTTY0+n_vt));
+        int shell_pid = create(shell, 4096, 20, "shell", 1, VTTY0+n_vt);
+        resume(shell_pid);
 
 	mu_event_t e;
 	for (;;) {
@@ -416,6 +417,11 @@ process vt(void)
                 if (e.but != -1) {
                         // DO SOMETHING WITH MOUSE printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
 		}
+
+		if (windows[n].cnt->open == 0) { // esc: TODO replace with enum of some kind
+			break;
+		}
+
                 if (e.c[0] != '\0') {
                         // printf("KEY: %c %d \n", e.c[0], e.c[0]);
 			mask = disable();
@@ -427,12 +433,11 @@ process vt(void)
 		sleepms(2);
 	};
 
-	/* wait until window closes or program finishes */
-	sleep(100);	
-
 	kill(vtty_pid);
+	kill(shell_pid);
 	vt100_free_vt(n_vt);
 	gui_buf_freemem(buf, VT_W*VT_H*4);
 	mu_free_win(n) ;
+
 }
 

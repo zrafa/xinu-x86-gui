@@ -10,7 +10,7 @@
 #define BLACK 0x00303030
 #define RED 0x00ff0000
 
-extern const uint32 nina[];
+extern uint32 nina[];
 
 process gui_test(void)
 {
@@ -22,6 +22,6 @@ process gui_test(void)
 	gui_print_text(320, 120, "Window", WHITE, GREY);
 
 	close(VGA);
-
+	return 0;
 }
 

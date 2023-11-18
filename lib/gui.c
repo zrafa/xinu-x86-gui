@@ -5,6 +5,7 @@
 #include <string.h>
 #include <font.h>
 #include <gui.h>
+#include <gui_buf.h>
 
 /* software double buffering for graphics */
 uint32 * gui_buf;
