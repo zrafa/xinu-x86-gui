@@ -135,7 +135,10 @@ nam:
    VTTY5 is tty  on uart
    VTTY6 is tty  on uart
    VTTY7 is tty  on uart
+   VTTY8 is tty  on uart
+   /* WARNING: keep this max VTTY# in sync with MAX_N_VT at the end */
    VTTY9 is tty  on uart
+
 
    /* Define the vga screen framebuffer */
    VGA is vga on nothing
@@ -213,3 +216,5 @@ nam:
 #define	ETHER0	0
 #endif
 
+/* max numbers of virtual terminals available */
+#define  MAX_N_VT 10   /* WARNING: keep this in sync with VTTY# max VTTY! */

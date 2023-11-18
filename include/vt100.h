@@ -32,7 +32,6 @@ extern "C" {
 #define VT100_HEIGHT (VT100_SCREEN_HEIGHT / VT100_CHAR_HEIGHT)
 #define VT100_WIDTH (VT100_SCREEN_WIDTH / VT100_CHAR_WIDTH)
 
-#define MAX_N_VT 40
 #define MAX_COMMAND_ARGS 4
 
 typedef struct vt100 {

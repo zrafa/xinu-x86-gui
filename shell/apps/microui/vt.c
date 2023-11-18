@@ -10,7 +10,6 @@
 #define FRAME_SPACE_H 35
 
 
-
 void null_str(char *str) {
 
 }
@@ -381,11 +380,15 @@ process vt(void)
 	int n, n_vt;
 	uint32 *buf;
 	struct vt100 *t;
-
 	char title[30];
-	buf = gui_buf_getmem(VT_W*VT_H*4);
 
+	buf = gui_buf_getmem(VT_W*VT_H*4);
 	n_vt = vt100_get_vt_available(buf, VT_W);
+	if (n_vt == -1) {
+		gui_buf_freemem(buf, VT_W*VT_H*4);
+		return;
+	}
+
 	t = vt100_get_vt(n_vt);
 
 	sprintf(title, "virtual terminal %d", n_vt);

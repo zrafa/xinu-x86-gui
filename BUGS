@@ -4,10 +4,6 @@
 - galaga is broken
 - textbox overflows text
 - behaviour of mouse in virtualbox is not correct
-- when X button closes dynamic window, process does not finish
-  (virtual terminal is a problem. When we click on close icon
-  it should kills/finishes all the processes related with virtual
-  terminal (vt, shell, vtty_out, etc).
 - it is not a bug, it is a feature. BUT we need to understand this feature:
     you can not have two windows with the same title (if you have, you will see
     just one window).
@@ -25,8 +21,15 @@
   some not).
 - move extra software to apps/ folder on root. Add proper licenses for those
   progrmas in LICENSE file.
+- feature: CAPSLOCK in virtual terminal
 
 
+already FIXED:
+
+- (by Nika) when X button closes dynamic window, process does not finish
+  (virtual terminal is a problem. When we click on close icon
+  it should kills/finishes all the processes related with virtual
+  terminal (vt, shell, vtty_out, etc).
 
 
 vtty.c code :

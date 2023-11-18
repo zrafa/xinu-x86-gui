@@ -23,8 +23,6 @@
 #include <vt100.h>
 #include <gui_buf.h>
 
-#define MAX_N_VT 40	/* max numbers of virtual terminals available */
-
 #define KEY_ESC 0x1b
 #define KEY_DEL 0x7f
 #define KEY_BELL 0x07
