@@ -1,4 +1,0 @@
-/tmp/t/avr-vt100/CMakeFiles/install.dir
-/tmp/t/avr-vt100/CMakeFiles/firmware.elf.dir
-/tmp/t/avr-vt100/CMakeFiles/edit_cache.dir
-/tmp/t/avr-vt100/CMakeFiles/rebuild_cache.dir
