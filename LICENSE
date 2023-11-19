@@ -10,7 +10,7 @@ This project has three components:
 Each one with its own license. See the LICENSE.add-ons file for details 
 of specific licenses of each third-party add-on. 
 
-For 1. and 2. (XINU kernel and shell), the copyright license is:
+For 1. and 2. (XINU kernel and shell), the copyright license note is:
 
         Copyright (c) 2012, 2015 Douglas E. Comer and CRC Press, Inc.
                         All rights reserved.
