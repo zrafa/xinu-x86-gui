@@ -1,28 +1,25 @@
 #include <xinu.h>
-//#include <stdlib.h>
-//#include "stdio.h"
-#include "myLib.h"
-#include "text.h"
+
+#include <gui_buf.h>
+#include <microui.h>
+#include "myLib2.h"
 #include "sprites.h"
-#include "start.h"
-//#include <string.h>
-#include "gameover.h"
+#include "start2.h"
+#include "gameover2.h"
 
 enum GBAState {
-	START,
-	START_NODRAW,
+	START2,
+	START2_NODRAW,
 	GAME,
 	GAMEOVER
 };
 
-int arkanoid()
+int arkanoid(uint32* buf, int w, int n)
 {
-	// REG_DISPCNT = MODE3 | BG2_ENABLE;
 	
-	enum GBAState state = START;
-	enum GBAState prevState = START;
+	enum GBAState state = START2;
+	enum GBAState prevState = START2;
 
-	//Set up moving objects and properties
 	MOVOBJ objs;
 	MOVOBJ ball;
 	MOVOBJ oldobjs;
@@ -52,34 +49,37 @@ int arkanoid()
 	int ballReleased = 1;
 	oldball = ball;	
 
+	   mu_event_t e;
 	while(1)
 	{	
-		//Switch for different screens
+                mu_get_event(n, &e);
 		switch(state) {
-		case START: // Start screen
+		case START2: 
 			prevState = state;
-			state = START_NODRAW;
+			state = START2_NODRAW;
 			waitForVblank();
-			//drawImage3(0,0,240,160,start);
 			sprintf(buffer, "Press A to Start");
-			drawString(55, 50, buffer, WHITE);
-			if(KEY_DOWN_NOW(BUTTON_SELECT)) //Select back to start
+			gui_buf_print_text(buf, w, 55, 50, buffer, WHITE, BLACK);
+        	        if (e.c[0] == 'a')
+//			if(KEY_DOWN_NOW(BUTTON_SELECT)) //Select back to start
 			{
-				state = START;
+				state = START2;
 				break;
 			}
 			allocateRects();
 			break;
 
-		case START_NODRAW: //Press A on Start or GameOver screen to go to game
-			if(KEY_DOWN_NOW(BUTTON_SELECT))
+		case START2_NODRAW: //Press A on Start or GameOver screen to go to game
+        	        if (e.c[0] == 'b')
+		//	if(KEY_DOWN_NOW(BUTTON_SELECT))
 			{
-				state = START;
+				state = START2;
 				break;
 			}
-			if(KEY_DOWN_NOW(BUTTON_A)) // Set up Game
+        	        if (e.c[0] == 'c')
+		//	if(KEY_DOWN_NOW(BUTTON_A)) // Set up Game
 			{
-				drawRect(0,0,160,240,bgcolor);
+				gui_buf_rect(buf, w, 0,0,160,240,bgcolor);
 				lives = 3;
 				objs.row = 160-objs.height;
 				objs.col = 120-objs.width/2;
@@ -94,22 +94,23 @@ int arkanoid()
 			break;
 
 		case GAME:	//Game screen and game mechanics
-			//move bar
-			if(KEY_DOWN_NOW(BUTTON_RIGHT))
+        	        if (e.c[0] == 'k')
+			//if(KEY_DOWN_NOW(BUTTON_RIGHT))
 			{
 				objs.cd=3;
 			}
-			if(KEY_DOWN_NOW(BUTTON_LEFT))
+        	        if (e.c[0] == 'j')
+			//if(KEY_DOWN_NOW(BUTTON_LEFT))
 			{
 				objs.cd=-3;
 			}
 
-			//release ball from bar
 			if(ballReleased)
 			{
 				ball.row = objs.row - ball.height;
 				ball.col = objs.col + (objs.width/2) - (ball.width/2);
-				if(KEY_DOWN_NOW(BUTTON_B))
+        	        	if (e.c[0] == 'n')
+				//if(KEY_DOWN_NOW(BUTTON_B))
 				{
 					ballReleased = 0;
 				}
@@ -197,17 +198,18 @@ int arkanoid()
 				state = GAMEOVER;
 				break;
 			}
-			else if(KEY_DOWN_NOW(BUTTON_SELECT))
+        	        	else if (e.c[0] == 'r')
+			// else if(KEY_DOWN_NOW(BUTTON_SELECT))
 			{
 				lives = 3;
 				prevState = state;
-				state = START;
+				state = START2;
 				break;
 			}
 			//draw next level
 			else if(finished)
 			{
-				drawRect(0,0,160,240,bgcolor);
+				gui_buf_rect(buf, w, 0,0,160,240,bgcolor);
 				objs.row = 160-objs.height;
 				objs.col = 120-objs.width/2;
 				ball.row = 120;
@@ -226,27 +228,27 @@ int arkanoid()
 			{
 
 				sprintf(buffer, "Lives: ");
-				drawString(0, 25, buffer, YELLOW);
+				gui_buf_print_text(buf, w, 0, 25, buffer, YELLOW, BLACK);
 				sprintf(buffer, "%d", oldlives);
-				drawString(0, 72, buffer, bgcolor);
+				gui_buf_print_text(buf, w, 0, 72, buffer, bgcolor, BLACK);
 				sprintf(buffer, "%d", lives);
-				drawString(0, 72, buffer, YELLOW);
+				gui_buf_print_text(buf, w, 0, 72, buffer, YELLOW, BLACK);
 
 				sprintf(buffer, "Score: ");
-				drawString(0, 140, buffer, YELLOW);
+				gui_buf_print_text(buf, w, 0, 140, buffer, YELLOW, BLACK);
 				sprintf(buffer, "%d", oldscore);
-				drawString(0, 182, buffer, bgcolor);
+				gui_buf_print_text(buf, w, 0, 182, buffer, bgcolor, BLACK);
 				sprintf(buffer, "%d", score);
-				drawString(0, 182, buffer, YELLOW);
+				gui_buf_print_text(buf, w, 0, 182, buffer, YELLOW, BLACK);
 
-				drawLevel();
+				drawLevel(buf, w);
 
-				drawRect(oldobjs.row, oldobjs.col, oldobjs.height, oldobjs.width, bgcolor);
-				drawRect(oldball.row, oldball.col, oldball.height, oldball.width, bgcolor);
+				gui_buf_rect(buf, w, oldobjs.row, oldobjs.col, oldobjs.height, oldobjs.width, bgcolor);
+				gui_buf_rect(buf, w, oldball.row, oldball.col, oldball.height, oldball.width, bgcolor);
 				
 				//drawSpriteImage(rectangle.row, rectangle.col, rectangle.height, rectangle.width, SPRITES_WIDTH, &sprites[OFFSET(83,30,SPRITES_WIDTH)]);
-				drawSpriteImage(ball.row, ball.col, ball.height, ball.width, SPRITES_WIDTH, &sprites[OFFSET(94,46,SPRITES_WIDTH)]);
-				drawSpriteImage(objs.row, objs.col, objs.height, objs.width, SPRITES_WIDTH, &sprites[OFFSET(95,60,SPRITES_WIDTH)]);
+				drawSpriteImage(buf, w, ball.row, ball.col, ball.height, ball.width, SPRITES_WIDTH, &sprites[OFFSET(94,46,SPRITES_WIDTH)]);
+				drawSpriteImage(buf, w, objs.row, objs.col, objs.height, objs.width, SPRITES_WIDTH, &sprites[OFFSET(95,60,SPRITES_WIDTH)]);
 
 				//RECT rectangles[] = drawLevel(0);
 				//memcpy(rectangles, drawLevel(0), sizeof(dra));
@@ -260,13 +262,13 @@ int arkanoid()
 		//Game over screen
 		case GAMEOVER:
 			prevState = state;
-			state = START_NODRAW;
+			state = START2_NODRAW;
 			waitForVblank();
-			drawImage3(0,0,240,160,gameover);
+			gui_buf_draw_image(buf, w, 0,0,240,160,gameover2);
 			sprintf(buffer, "Game Over");
-			drawString(80, 60, buffer, WHITE);
+			gui_buf_print_text(buf, w, 80, 60, buffer, WHITE, BLACK);
 			sprintf(buffer, "Score: %d", score);
-			drawString(89, 60, buffer, WHITE);
+			gui_buf_print_text(buf, w, 89, 60, buffer, WHITE, BLACK);
 			lives = 3;
 			objs.row = 160-objs.height;
 			objs.col = 120-objs.width/2;
