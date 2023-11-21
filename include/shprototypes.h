@@ -76,6 +76,7 @@ extern	shellcmd  mu_gui_demo	(int32, char *[]);
 extern	shellcmd  mu_clock	(void);
 extern	shellcmd  vt		();
 extern	shellcmd  mu_galaga	(int32, char *[]);
+extern	shellcmd  mu_arkanoid	(int32, char *[]);
 
 /* in file xsh_help.c */
 extern	shellcmd  xsh_help	(int32, char *[]);
