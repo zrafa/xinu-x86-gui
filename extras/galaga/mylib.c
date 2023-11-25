@@ -70,10 +70,14 @@ void drawHollowRect(int x, int y, int width, int height, u16 color) {
 }
 
 void drawImage3(int x, int y, int width, int height, const u16* image) {
-	for (int i = 0; i < width; i++) {
-		for (int j = 0; j < height; j++) {
-			u16 color = *(image + i + (width * j));
-			setPixel(x + i, y + j, color);
+	int colorPos = 0;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			u16 color = 0xffff & ((image[colorPos] << 8) | image[colorPos + 1]);
+			setPixel(x + j, y + i, color);
+			colorPos += 2;
 		}
 	}
 }
