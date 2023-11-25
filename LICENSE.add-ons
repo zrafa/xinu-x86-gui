@@ -4,8 +4,8 @@ This file has the copyright notice for the bellow extra add-ons:
 - vt100.c (GPL license)
 - galaga game (NO license)
 
-apps/microui/
--------------
+extras/microui/
+---------------
 
 Microui https://github.com/rxi/microui
 MIT license (https://github.com/rxi/microui/blob/master/LICENSE)
@@ -31,8 +31,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-vt100/vt100.c
--------------
+extras/vt100/vt100.c
+--------------------
 
 (file from https://github.com/mkschreder/avr-vt100)
 
@@ -56,8 +56,8 @@ This file is part of FORTMAX.
 	Copyright: Martin K. Schröder (info@fortmax.se) 2014
 
 
-apps/galaga/
-------------
+extras/galaga/
+--------------
 
 NO LICENSE
 original: https://github.com/josephcantrell14/Aliens-GBA

@@ -45,14 +45,14 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/kbd			\
 			-s $(TOPDIR)/net  'arp_dump*'  		\
 				'dhcp_dump*'  pxe.c		\
-			-s $(TOPDIR)/apps/galaga		\
-			-s $(TOPDIR)/apps/arkanoid		\
-			-s $(TOPDIR)/apps			\
-			-s $(TOPDIR)/apps/vt100		\
-			-s $(TOPDIR)/apps/microui		\
+			-s $(TOPDIR)/extras/galaga		\
+			-s $(TOPDIR)/extras/arkanoid		\
+			-s $(TOPDIR)/extras			\
+			-s $(TOPDIR)/extras/vt100		\
+			-s $(TOPDIR)/extras/microui		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
-INCLUDE		=	-I$(TOPDIR)/include -I$(TOPDIR)/apps/include
+INCLUDE		=	-I$(TOPDIR)/include -I$(TOPDIR)/extras/include
 
 # Amount to move loaded image down in memory
 

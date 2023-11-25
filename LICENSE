@@ -5,7 +5,7 @@ This project has three components:
 
 1. XINU kernel.
 2. XINU shell.
-3. Third-party add-ons (extra applications and libs).
+3. Third-party add-ons (extra applications and libs under extras/ directory).
 
 Each one with its own license. See the LICENSE.add-ons file for details 
 of specific licenses of each third-party add-on. 
