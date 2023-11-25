@@ -119,15 +119,24 @@ int repetition = 0;
 #define N_REPETITION 200
 #define N_REP_DELAY 20
 
-int is_special_key(unsigned char c)
+int is_SHIFT_key(unsigned char c)
 {
 	int res = 0;
-	if ((c == 13) || (c == 8) || (c == 170) || (c == 179) || (c == 178) || (c == 186) || (c == 180))
+	//if ((c == 13) || (c == 8) || (c == 170) || (c == 179) || (c == 178) || (c == 186) || (c == 180))
+	if ((c == 170) || (c == 179) || (c == 178) || (c == 186) || (c == 180))
 		res = 1;
 
 	return res;
-
 }
+int is_special_key(unsigned char c)
+{
+	int res = 0;
+	if ((c == 13) || (c == 8))
+		res = 1;
+
+	return res;
+}
+
 
 void r_handle_input(mu_Context *ctx)
 {
@@ -163,7 +172,7 @@ void r_handle_input(mu_Context *ctx)
 
 	/* SHIFT or CAPS + key */
 	} else if ((shift || caps) && (curr_key < 59) &&
-						 (!is_special_key(new_key))) {
+		 (!is_SHIFT_key(new_key)) && (!is_special_key(new_key))) {
 			new_key = latin_qwerty_map[curr_key - 1 + 76];
 		};
 
@@ -176,7 +185,11 @@ void r_handle_input(mu_Context *ctx)
 	if (prev_key != new_key) 
 		repetition = 0;
 	repetition++;
-
+        if (is_SHIFT_key(new_key)) {
+		repetition = 0;
+		prev_key = new_key;
+	}
+	
 	if ((prev_key != new_key) || ((repetition>N_REPETITION) && ((repetition % N_REP_DELAY) == 0))) {
 
 			// RAFA all the keys must go to virtual terminal
