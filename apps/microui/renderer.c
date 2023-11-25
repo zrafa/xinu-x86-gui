@@ -115,6 +115,20 @@ unsigned char curr_key;
 int shift = 0;
 int caps = 0;
 int caps_goingto = 0;
+int repetition = 0;
+#define N_REPETITION 200
+#define N_REP_DELAY 20
+
+int is_special_key(unsigned char c)
+{
+	int res = 0;
+	if ((c == 13) || (c == 8) || (c == 170) || (c == 179) || (c == 178) || (c == 186) || (c == 180))
+		res = 1;
+
+	return res;
+
+}
+
 void r_handle_input(mu_Context *ctx)
 {
 	read(KEYBOARD, &curr_key, 1);
@@ -146,7 +160,10 @@ void r_handle_input(mu_Context *ctx)
 	} else if (curr_key == 170) {				/* release SHIFT keys */
 		shift = 0;
 		prev_key = new_key;
-	} else if ((shift || caps) && (curr_key < 59)) {
+
+	/* SHIFT or CAPS + key */
+	} else if ((shift || caps) && (curr_key < 59) &&
+						 (!is_special_key(new_key))) {
 			new_key = latin_qwerty_map[curr_key - 1 + 76];
 		};
 
@@ -155,9 +172,15 @@ void r_handle_input(mu_Context *ctx)
 	buf[0] = new_key;
 	buf[1] = '\0';
 
-	if(prev_key != new_key) {
+
+	if (prev_key != new_key) 
+		repetition = 0;
+	repetition++;
+
+	if ((prev_key != new_key) || ((repetition>N_REPETITION) && ((repetition % N_REP_DELAY) == 0))) {
 
 			// RAFA all the keys must go to virtual terminal
+		//if (!is_special_key(new_key))
 			mu_input_text(ctx, buf);
 		if(new_key > 31 && new_key < 127) {
 			/* a key was just pressed */
