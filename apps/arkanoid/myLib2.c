@@ -23,7 +23,8 @@ struct RECT_S RECT_default = {.row = 0, .col = 0, .width = 15, .height = 7, .img
 
 RECT *rectangles = NULL;
 int levelSize;
-int bgcolor = 0x2100;
+//int bgcolor = 0x2100;
+int bgcolor = 0x00;
 int score = 0;
 
 
