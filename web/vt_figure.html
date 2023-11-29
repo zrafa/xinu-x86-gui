@@ -1,0 +1,57 @@
+
+<a href="../"> go back... </a>
+
+<figure>
+  <img src="vt_figure.jpg" alt="virtual terminal figure" style="width:70%">
+  <figcaption>Fig.1 - Virtual Terminal</figcaption>
+</figure>
+
+<pre>
+<code>
+
+
+User runs vt (virtual terminal)
+	- vt process checks if there is a VTTY available via tty driver. If any
+	- creates a window via microui. 
+	- creates a surface associated with window.
+	- runs a vtty_out process (which manages ttyhandle_out() for this VTTY).
+	- runs a XINU shell process.
+
+
+How virtual terminal manages INPUT from keyboard
+
+(0) user press a key on keyboard. 
+	- keyboard driver reads key code from keyboard.
+
+(1) microui process reads key codes from keyboard driver
+	- converts key code to key from kbd layout.
+	- puts new key code on on event struct of on-focus windows.
+
+(2) virtual terminal process 0 (vt)
+	-  takes the key code and put it on ttytab[VTTY0] struct.
+	- calls to ttyhandle_int().
+	- tty drives takes ch from struct and puts it on tyiotail.
+
+(3) XINU shell calls to read(VTTY0, buf, sieof(buf));
+	- runs an specific command if there is one. For example  xsh_help.
+
+
+How virtual terminal manages OUTPUT to virtual console (display window)
+
+(4) xsh_help do some printf()
+	- printf() lib does some ttyputc()  (4.1)
+	- ttyput(c) puts char on  tyotail of ttytab[VTTY0] and does 
+		send(vtty_out_pid, 1); to vtty_out 0 process
+
+(5) vtty_out 0 process
+	- takes char from ttyehead of ttytab[VTTY0]
+	- calls to vt100_putc(char)
+
+(6) vt100_putc(char) from vt100 lib
+	- draws char on Surface 0
+
+(7) microui process 
+	- puts Surfaces of all windows on a whole display surface buf
+	- calls to write(VGA, buf, sizeof(buf)); via gui.c lib
+</code>
+</pre>
