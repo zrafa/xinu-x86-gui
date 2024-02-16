@@ -3,6 +3,19 @@
 #include <renderer.h>
 #include "atlas2.inl"
 
+process	kbdpr(unsigned char * curr_key_pt);
+process	mousepr(int * mouse_buf_pt);
+
+unsigned char new_key;
+unsigned char prev_key;
+unsigned char curr_key;
+int shift = 0;
+int caps = 0;
+int caps_goingto = 0;
+int repetition = 0;
+#define N_REPETITION 200
+#define N_REP_DELAY 20
+
 #define BUFFER_SIZE 16384
 
 static int width  = 800;
@@ -10,6 +23,7 @@ static int height = 600;
 static int buf_idx;
 struct mouse_state prev_m_state;
 struct mouse_state m_state;
+int mouse_buf[3];
 
 uint32 mu_color_to_rgb32(mu_Color color)
 {
@@ -29,6 +43,9 @@ void r_init() {
 	m_state.pos_y = 0;
 	m_state.left_mouse = 0;
 	m_state.left_mouse = 0;
+
+	resume(create(kbdpr, 8192, 50, "kbd", 1, &curr_key));
+	resume(create(mousepr, 8192, 50, "mouse", 1, mouse_buf));
 }
 
 
@@ -97,9 +114,8 @@ void r_present(void) {
 
 extern void write_log(char * );
 
-int mouse_buf[3];
 void r_draw_mouse() {
-    read(MOUSE, mouse_buf, 3);
+//    read(MOUSE, mouse_buf, 3);
 	/* check left mouse being pressed */
 	m_state.left_mouse = (mouse_buf[0] & 0x01) ? 1 : 0;
 	/* update mouse position */
@@ -108,16 +124,6 @@ void r_draw_mouse() {
 	/* render */
     gui_draw_image(m_state.pos_x, m_state.pos_y, 11, 18, pointer);
 }
-
-unsigned char new_key;
-unsigned char prev_key;
-unsigned char curr_key;
-int shift = 0;
-int caps = 0;
-int caps_goingto = 0;
-int repetition = 0;
-#define N_REPETITION 200
-#define N_REP_DELAY 20
 
 int is_SHIFT_key(unsigned char c)
 {
@@ -140,7 +146,7 @@ int is_special_key(unsigned char c)
 
 void r_handle_input(mu_Context *ctx)
 {
-	read(KEYBOARD, &curr_key, 1);
+//	read(KEYBOARD, &curr_key, 1);
 	/* get ascii code */
 	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
 	// printf("TECLA : %d \n", new_key);

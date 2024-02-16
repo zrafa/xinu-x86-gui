@@ -26,37 +26,47 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 /* Device name definitions */
 
 #define CONSOLE              0	/* type tty      */
-#define VGA                  1	/* type vga      */
-#define MOUSE                2	/* type mice     */
-#define KEYBOARD             3	/* type kbd      */
-#define NULLDEV              4	/* type null     */
-#define ETHER0               5	/* type eth      */
-#define NAMESPACE            6	/* type nam      */
-#define RDISK                7	/* type rds      */
-#define RAM0                 8	/* type ram      */
-#define RFILESYS             9	/* type rfs      */
-#define RFILE0              10	/* type rfl      */
-#define RFILE1              11	/* type rfl      */
-#define RFILE2              12	/* type rfl      */
-#define RFILE3              13	/* type rfl      */
-#define RFILE4              14	/* type rfl      */
-#define RFILE5              15	/* type rfl      */
-#define RFILE6              16	/* type rfl      */
-#define RFILE7              17	/* type rfl      */
-#define RFILE8              18	/* type rfl      */
-#define RFILE9              19	/* type rfl      */
-#define LFILESYS            20	/* type lfs      */
-#define LFILE0              21	/* type lfl      */
-#define LFILE1              22	/* type lfl      */
-#define LFILE2              23	/* type lfl      */
-#define LFILE3              24	/* type lfl      */
-#define LFILE4              25	/* type lfl      */
-#define LFILE5              26	/* type lfl      */
+#define VTTY0                1	/* type tty      */
+#define VTTY1                2	/* type tty      */
+#define VTTY2                3	/* type tty      */
+#define VTTY3                4	/* type tty      */
+#define VTTY4                5	/* type tty      */
+#define VTTY5                6	/* type tty      */
+#define VTTY6                7	/* type tty      */
+#define VTTY7                8	/* type tty      */
+#define VTTY8                9	/* type tty      */
+#define VTTY9               10	/* type tty      */
+#define VGA                 11	/* type vga      */
+#define MOUSE               12	/* type mice     */
+#define KEYBOARD            13	/* type kbd      */
+#define NULLDEV             14	/* type null     */
+#define ETHER0              15	/* type eth      */
+#define NAMESPACE           16	/* type nam      */
+#define RDISK               17	/* type rds      */
+#define RAM0                18	/* type ram      */
+#define RFILESYS            19	/* type rfs      */
+#define RFILE0              20	/* type rfl      */
+#define RFILE1              21	/* type rfl      */
+#define RFILE2              22	/* type rfl      */
+#define RFILE3              23	/* type rfl      */
+#define RFILE4              24	/* type rfl      */
+#define RFILE5              25	/* type rfl      */
+#define RFILE6              26	/* type rfl      */
+#define RFILE7              27	/* type rfl      */
+#define RFILE8              28	/* type rfl      */
+#define RFILE9              29	/* type rfl      */
+#define LFILESYS            30	/* type lfs      */
+#define LFILE0              31	/* type lfl      */
+#define LFILE1              32	/* type lfl      */
+#define LFILE2              33	/* type lfl      */
+#define LFILE3              34	/* type lfl      */
+#define LFILE4              35	/* type lfl      */
+#define LFILE5              36	/* type lfl      */
 
 /* Control block sizes */
 
 #define	Nnull	1
-#define	Ntty	1
+#define	Ntty	11
 #define	Neth	1
 #define	Nrds	1
 #define	Nram	1
@@ -69,7 +79,7 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define	Nkbd	1
 #define	Nnam	1
 
-#define NDEVS 27
+#define NDEVS 37
 
 
 /* Configuration and Size Constants */
@@ -86,8 +96,11 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 #define VGA_WIDTH	1024 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_HEIGHT	768 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
 #define VGA_BPP		32 /* IMPORTANT: YOU MUST MODIFY system/start.S AS WELL */
+#define TIMESERVER	"200.11.116.10"
 
 #ifndef	ETHER0
 #define	ETHER0	0
 #endif
 
+/* max numbers of virtual terminals available */
+#define  MAX_N_VT 10   /* WARNING: keep this in sync with VTTY# max VTTY! */

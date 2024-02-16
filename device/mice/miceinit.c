@@ -2,7 +2,7 @@
 
 #include <xinu.h>
 
-struct	mouse_t	mouse;
+struct  mousecblk mousec;
 
 /*------------------------------------------------------------------------
  *  miceinit  -  Initialize the ps/2 mouse
@@ -14,35 +14,36 @@ devcall	miceinit (
 {
 	unsigned char _status;
 
-	mouse.buttons = 0;
-	mouse.x = 0;
-	mouse.y = 0;
+    /* Initialize values in the mouse control block */
+    mousec.mousesem = semcreate(0);
+	mousec.mouse.buttons = 0;
+	mousec.mouse.x = 0;
+	mousec.mouse.y = 0;
 
+	// Enable the auxiliary mouse device
+    ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, ENABLE_AUX_INTERFACE);
 
-	//Enable the auxiliary mouse device
-	mouse_wait(1);
-	outportb(MOUSE_CTRL_STATUS_PORT, 0xA8);
+	// Enable the interrupts
+	ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, READ_COMMAND);
+	ps2_wait(0);
+	_status = (inb(PS2_DATA_PORT) | INT2);
+	ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, WRITE_COMMAND);
+	ps2_wait(1);
+	outb(PS2_DATA_PORT, _status);
  
-	//Enable the interrupts
-	mouse_wait(1);
-	outportb(MOUSE_CTRL_STATUS_PORT, 0x20);
-	mouse_wait(0);
-	_status=(inportb(MOUSE_DATA_PORT) | 2);
-	mouse_wait(1);
-	outportb(MOUSE_CTRL_STATUS_PORT, 0x60);
-	mouse_wait(1);
-	outportb(MOUSE_DATA_PORT, _status);
+	// Tell the mouse to use default settings
+	ps2_write(SET_DEFAULTS);
+	ps2_read();  // Acknowledge
  
-	//Tell the mouse to use default settings
-	mouse_write(0xF6);
-	mouse_read();  //Acknowledge
- 
-	//Enable the mouse
-	mouse_write(0xF4);
-	mouse_read();  //Acknowledge
+	// Enable the mouse
+	ps2_write(ENABLE_PACKET_STREAMING);
+	ps2_read();  // Acknowledge
 
-	//Setup the mouse handler: IRQ 12 for mouse
-        set_evec(12 + IRQBASE, (uint32)ps2handlerirq);
+	// Setup the mouse handler: IRQ 12 for mouse
+    set_evec(12 + IRQBASE, (uint32)micedispatch);
 
 	return OK;
 }

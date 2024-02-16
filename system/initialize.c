@@ -11,7 +11,7 @@ extern	void	*_end;		/* End of Xinu code			*/
 /* Function prototypes */
 
 extern	void main(void);	/* Main is the first process created	*/
-static	void sysinit(); 	/* Internal system initialization	*/
+static	int sysinit(int); 	/* Internal system initialization	*/
 extern	void meminit(void);	/* Initializes the free memory list	*/
 local	process startup(void);	/* Process to finish startup tasks	*/
 
@@ -53,11 +53,14 @@ void nulluser (unsigned long magic, unsigned long addr )
 {	
 	struct	memblk	*memptr;	/* Ptr to memory block		*/
 	uint32	free_mem;		/* Total amount of free memory	*/
-	int32 dinfo; /* ethernet device info */
-	
+	int hwstatus;
 
+	/* Platform Specific Initialization */
+
+	hwstatus = platinit();	
+	
 	/* Set MBI to the address of the Multiboot information structure. */
-	kprintf ("magic =  %i \n", magic);
+	kprintf ("magic =  %x \n", magic);
 
 	kprintf ("ad =  %x \n", addr);
 	mbi = (multiboot_info_t *) addr;
@@ -68,7 +71,7 @@ void nulluser (unsigned long magic, unsigned long addr )
 
 	/* Initialize the system */
 
-	sysinit();
+	hwstatus = sysinit(hwstatus);
 
 	/* Output Xinu memory layout */
 	free_mem = 0;
@@ -95,18 +98,23 @@ void nulluser (unsigned long magic, unsigned long addr )
 
 	enable();
 
-	/* Initialize the network stack and start processes */
+    if (hwstatus == OK) {
+		/* Initialize the network stack and start processes */
 
-	dinfo = find_pci_device(INTEL_82545EM_DEVICE_ID,
-                                     INTEL_VENDOR_ID, 0);
-        if (dinfo != SYSERR) {
-		net_init();
-        }
+	    net_init();
 
-	/* Create a process to finish startup and start main */
+	    /* Create a process to finish startup and start main */
 
-	resume(create((void *)startup, INITSTK, INITPRIO,
+	    resume(create((void *)startup, INITSTK, INITPRIO,
 					"Startup process", 0, NULL));
+    } else
+		kprintf("Could not initialize net\n");
+
+
+	/* Create a process to execute function main() */
+
+	resume(create((void *)main, INITSTK, INITPRIO,
+					"Main process", 0, NULL));
 
 	/* Become the Null process (i.e., guarantee that the CPU has	*/
 	/*  something to run when no other process is ready to execute)	*/
@@ -129,19 +137,15 @@ local process	startup(void)
 {
 	uint32	ipaddr;			/* Computer's IP address	*/
 	char	str[128];		/* String used to format output	*/
-	int32 dinfo; /* ethernet device info */
 
 
 	/* Use DHCP to obtain an IP address and format it */
 
-	dinfo = find_pci_device(INTEL_82545EM_DEVICE_ID,
-                                     INTEL_VENDOR_ID, 0);
-        if (dinfo != SYSERR) {
-		ipaddr = getlocalip();
-	}
+	ipaddr = getlocalip();
+
 	if ((int32)ipaddr == SYSERR) {
 		kprintf("Cannot obtain an IP address\n");
-	} else if (dinfo != SYSERR) {
+	} else {
 		/* Print the IP in dotted decimal and hex */
 		ipaddr = NetData.ipucast;
 		sprintf(str, "%d.%d.%d.%d",
@@ -151,11 +155,6 @@ local process	startup(void)
 		kprintf("Obtained IP address  %s   (0x%08x)\n", str,
 								ipaddr);
 	}
-
-	/* Create a process to execute function main() */
-
-	resume(create((void *)main, INITSTK, INITPRIO,
-					"Main process", 0, NULL));
 
 	/* Startup process exits at this point */
 
@@ -169,11 +168,12 @@ local process	startup(void)
  *
  *------------------------------------------------------------------------
  */
-static	void	sysinit()
+static	int	sysinit(int hwstatus)
 {
 	int32	i;
 	struct	procent	*prptr;		/* Ptr to process table entry	*/
 	struct	sentry	*semptr;	/* Ptr to semaphore table entry	*/
+    int retval = OK;
 
 	/* Reset the console */
 
@@ -236,19 +236,20 @@ static	void	sysinit()
 
 	readylist = newqueue();
 
-
-	/* initialize the PCI bus */
-
-	pci_init();
-
 	/* Initialize the real time clock */
 
 	clkinit();
 
 	for (i = 0; i < NDEVS; i++) {
+		if (i == ETHER0) {
+            if ((init(i) != OK) || (hwstatus != OK)) {
+                retval = SYSERR;
+            }
+            continue;
+        }
 		init(i);
 	}
-	return;
+	return retval;
 }
 
 int32	stop(char *s)

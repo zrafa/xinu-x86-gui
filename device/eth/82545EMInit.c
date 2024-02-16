@@ -26,11 +26,11 @@ status 	_82545EMInit(
 	/* Read PCI configuration information */
 #ifdef X86_QEMU
 	/* Use MMIO for QEMU net device */
-	pci_bios_read_config_dword(ethptr->pcidev, E1000_PCI_MEMBASE,
+	pci_read_config_dword(ethptr->pcidev, E1000_PCI_MEMBASE,
 				   (uint32 *)&ethptr->iobase);
 #else
 	/* Read I/O base address */
-	pci_bios_read_config_dword(ethptr->pcidev, E1000_PCI_IOBASE,
+	pci_read_config_dword(ethptr->pcidev, E1000_PCI_IOBASE,
 			       (uint32 *)&ethptr->iobase);
 	ethptr->iobase &= ~1;
 	ethptr->iobase &= 0xffff; /* the low bit is set to indicate I/O */
@@ -38,15 +38,15 @@ status 	_82545EMInit(
 
 	/* Read interrupt line number */
 
-	pci_bios_read_config_byte (ethptr->pcidev, E1000_PCI_IRQ,
+	pci_read_config_byte (ethptr->pcidev, E1000_PCI_IRQ,
 			(byte *)&(ethptr->dev->dvirq));
 
 	/* Enable PCI bus master, I/O port access */
 
-	pci_bios_read_config_word(ethptr->pcidev, E1000_PCI_COMMAND, 
+	pci_read_config_word(ethptr->pcidev, E1000_PCI_COMMAND, 
 			&command);
 	command |= E1000_PCI_CMD_MASK;
-	pci_bios_write_config_word(ethptr->pcidev, E1000_PCI_COMMAND, 
+	pci_write_config_word(ethptr->pcidev, E1000_PCI_COMMAND, 
 			command);
 
 	/* Read the MAC address */

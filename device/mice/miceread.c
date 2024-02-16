@@ -12,10 +12,8 @@ devcall	miceread (
           uint32        count           /* Length of buffer             */
 	)
 {
-	memcpy(buffer, &mouse, sizeof(mouse));
+ 	wait(mousec.mousesem);
+ 	memcpy(buffer, &mousec.mouse, sizeof(mousec.mouse));
 
-	//mouse.buttons = 0;
-	//mouse.x = 0;
-	//mouse.y = 0;
 	return OK;
 }

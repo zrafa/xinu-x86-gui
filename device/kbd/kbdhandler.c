@@ -1,30 +1,20 @@
-/* source: https://forum.osdev.org/viewtopic.php?t=10247 */
-
 /* kbdhandler.c - kbdhandler */
 
 #include <xinu.h>
-
-unsigned char get_scancode()
-{
-    unsigned char inputdata;
-    inputdata = inportb(KEYBOARD_DATAREG);
-    return inputdata;
-}
-
 
 /*------------------------------------------------------------------------
  *  kbdhandler  -  Handle an interrupt for the keyboard device
  *------------------------------------------------------------------------
  */
-void kbdhandler(uint8 data)
+void kbdhandler()
 {
 	int n;
+    unsigned char scancode;
 
-	// kbdc.key = get_scancode();
-	kbdc.key = data;
+    /* Read from the keyboard's data buffer */
+    kbdc.key = inb(PS2_DATA_PORT);
 	n = semcount(kbdc.kbdsem);
 	if (n < 1)
-		signal(kbdc.kbdsem);
-	
+		signal(kbdc.kbdsem);	
 }
 

@@ -2,24 +2,16 @@
 
 /* mouse device */
 
-#define MOUSE_DATA_PORT 0x60
-#define MOUSE_CTRL_STATUS_PORT 0x64
-
-#define inportb(p)      inb(p)
-#define outportb(p,v)   outb(p,v)
-
-
-struct	mouse_t	{
+typedef struct	mouse	{
 	int buttons;
 	int x;
 	int y;
-	};
+	} mouse_t;
+
+struct  mousecblk {             /* mouse control block  */
+        mouse_t mouse;          /* mouse data           */
+        sid32   mousesem;       /* mouse semaphore      */
+};
 
 extern	struct	mouse_t	mouse;
-
-
-/* in miceutils.c */
-
-extern void mouse_wait(unsigned char a_type); //unsigned char
-extern void mouse_write(unsigned char a_write); //unsigned char
-extern unsigned char mouse_read();
+extern  struct  mousecblk mousec;

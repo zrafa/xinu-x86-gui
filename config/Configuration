@@ -102,7 +102,7 @@ mice:
 		-i miceinit	-o miceopen	-c miceclose
 		-r miceread	-g ioerr	-p ioerr
 		-w micewrite	-s ioerr	-n ioerr
-		-intr ps2handlerirq
+		-intr micedispatch
 		
 /* type of the keyboard */
 kbd:
@@ -110,7 +110,7 @@ kbd:
 		-i kbdinit	-o kbdopen	-c kbdclose
 		-r kbdread	-g ioerr	-p ioerr
 		-w kbdwrite	-s ioerr	-n ioerr
-		-intr ps2handlerirq
+		-intr kbddispatch
 		
 /* type of namespace device */
 nam:

@@ -176,6 +176,10 @@ run-qemu: qemu-iso-pre
 	grub-mkrescue -d /usr/lib/grub/i386-pc -o disk.iso test/img
 	qemu-system-i386 -machine accel=kvm -enable-kvm -drive file=disk.iso,index=0,media=cdrom -netdev user,id=u0 -device e1000-82545em,netdev=u0
 
+run-qemu_rtl8139:
+	echo OTRO GRUB PARA PROBAR: grub-mkrescue -o disk.iso test/img
+	grub-mkrescue -d /usr/lib/grub/i386-pc -o disk.iso test/img
+	qemu-system-i386 -machine accel=kvm -enable-kvm -drive file=disk.iso,index=0,media=cdrom -netdev user,id=u0 -device rtl8139,netdev=u0
 
 #--------------------------------------------------------------------------------
 # Locations of source directories and exceptions (.c and .[sS] files to exclude)

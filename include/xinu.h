@@ -35,9 +35,8 @@
 #include <delay.h>
 #include <i386.h>
 #include <pci.h>
+#include <ps2.h>
 #include <e1000e.h>
-#include <quark_pdat.h>
-#include <quark_irq.h>
 #include <multiboot.h>
 #include <stdio.h>
 #include <string.h>

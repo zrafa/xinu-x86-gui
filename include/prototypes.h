@@ -334,7 +334,7 @@ extern	void	pdump(struct netpacket *);
 extern	void	pdumph(struct netpacket *);
 
 /* in file platinit.c */
-extern	void	platinit(void);
+extern	status	platinit(void);
 
 /* in file ptclear.c */
 extern	void	_ptclear(struct ptentry *, uint16, int32 (*)(int32));
@@ -580,6 +580,9 @@ extern	devcall	ttyread(struct dentry *, char *, int32);
 /* in file ttywrite.c */
 extern	devcall	ttywrite(struct dentry *, char *, int32);
 
+/* in file uart.c */
+extern	void	uartinit();
+
 /* in file udp.c */
 extern	void	udp_init(void);
 extern	void	udp_in(struct netpacket *);
@@ -610,22 +613,21 @@ extern	devcall	vgacontrol(struct dentry *, int32, int32, int32);
 
 /* in device/mice* files */
 extern devcall miceclose ( struct dentry *devptr);
-extern void micehandler(uint8 data);
+extern void micehandler();
 extern devcall miceinit (struct dentry *devptr);
 extern devcall miceopen (struct dentry *devptr, char *name, char *mode);
 extern devcall miceread (struct dentry *devptr, char *buffer, uint32 count);
 extern devcall micewrite (struct dentry *devptr, char *buffer, uint32 count);
-extern	interrupt	ps2handlerirq(void);
+extern	interrupt	micedispatch(void);
 
 /* in device/kbd* files */
 extern devcall kbdclose (struct dentry *devptr);
-extern void kbdhandler(uint8 data);
-extern void ps2_shared_handler(void);
+extern void kbdhandler(void);
 extern devcall kbdinit (struct dentry *devptr);
 extern devcall kbdopen (struct dentry  *devptr, char *name, char *mode);
 extern devcall kbdread (struct dentry *devptr, char *buffer, uint32 count);
 extern devcall kbdwrite (struct dentry *devptr, char *buffer, uint32 count);
-extern	interrupt	ps2handlerirq(void);
+extern	interrupt kbddispatch(void);
 
 
 /* in file wait.c */

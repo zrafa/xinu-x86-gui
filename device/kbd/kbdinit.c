@@ -2,39 +2,7 @@
 
 #include <xinu.h>
 
-//unsigned char kblayout [128];  // { ... } Fill your layout yourself 
-//unsigned char key;
 struct  kbdcblk kbdc;
-
-void keyboard_wait(byte a_type) //unsigned char
-{
-  int _time_out=100000; //unsigned int
-  if(a_type==0)
-  {
-    while(_time_out--) //Data
-    {
-      if((inportb(0x64) & 1)==1)
-      {
-        return;
-      }
-    }
-    return;
-  }
-  else
-  {
-    while(_time_out--) //Signal
-    {
-      if((inportb(0x64) & 2)==0)
-      {
-        return;
-      }
-    }
-    return;
-  }
-}
-
-
-
 
 /*------------------------------------------------------------------------
  *  kbdinit  -  Initialize the ps/2 keyboard
@@ -44,42 +12,32 @@ devcall	kbdinit (
 	  struct dentry	*devptr		/* Entry in device switch table	*/
 	)
 {
+	byte _status;
 
-        /* Initialize values in the kbd control block */
-        kbdc.kbdsem = semcreate(0);
-        kbdc.key = 0;
+    /* Initialize values in the kbd control block */
+    kbdc.kbdsem = semcreate(0);
+    kbdc.key = 0;
 
+	// Enable the keyboard device
+	ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, ENABLE_KBD_INTERFACE);
 
-	byte _status;  //unsigned char
-
-	//Enable the keyboard device   old: auxiliary mouse device
-	keyboard_wait(1);
-	outportb(0x64, 0xAE);
+	// Enable the interrupts
+	ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, READ_COMMAND);
+	ps2_wait(0);
+	_status = (inb(PS2_DATA_PORT) | INT);
+	ps2_wait(1);
+	outb(PS2_CTRL_STATUS_PORT, PS2_DATA_PORT);
+	ps2_wait(1);
+	outb(PS2_DATA_PORT, _status);
  
-	//Enable the interrupts
-	keyboard_wait(1);
-	outportb(0x64, 0x20);
-	keyboard_wait(0);
-	_status=(inportb(0x60) | 1);
-	keyboard_wait(1);
-	outportb(0x64, 0x60);
-	keyboard_wait(1);
-	outportb(0x60, _status);
- 
-	//Tell the keyboard to use default settings
-	/* while((inportb(0x64)&2)!=0){};*/
-	// outportb(0x64, 0xF6);
-	//keyboard_read();  //Acknowledge
- 
-	//Enable the keyboard
-	while ((inportb(0x64) & 2) != 0) {
-		inportb(0x60);
+	// Enable the keyboard
+	while ((inb(PS2_CTRL_STATUS_PORT) & IBF) != 0) {
+		inb(PS2_DATA_PORT);
 	}; 
 
-
-	set_evec(1 + IRQBASE, (uint32)ps2handlerirq);
-	//outportb(0x64, 0xF4);
-	//keyboard_read();  //Acknowledge
+	set_evec(1 + IRQBASE, (uint32)kbddispatch);
 
 	return OK;
 }

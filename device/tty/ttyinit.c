@@ -76,6 +76,10 @@ if (devptr->dvminor == 0) {	/* if REAL TTY */
 	io_outb(uptr->fcr, UART_FCR_EFIFO | UART_FCR_RRESET |
 			   UART_FCR_TRESET | UART_FCR_TRIG2);
 
+    /* OUT2 is used to control the board's interrupt tri-state        */
+    /* buffer. It should be set high to generate interrupts properly. */
+	io_outb(uptr->mcr,UART_MCR_OUT2);   /* Turn on user-defined OUT2.   */
+
 	/* Start the device */
 
 	ttykickout(uptr);
