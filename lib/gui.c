@@ -45,6 +45,37 @@ void gui_paint_screen(uint32 color)
 		gui_pixel(x, y, color);
 }
 
+void gui_paint_image_background(uint32 image[]) {
+	/* int clr_pos = 0;
+	int x, y;
+	for (y = 0; y < gui_height; y++) {
+	for (x = 0; x < gui_width; x++) {
+		write_log(image[clr_pos]);
+		gui_pixel(x, y, image[clr_pos]);
+		if (clr_pos < sizeof(image)/sizeof(image[0]) - 1) {
+			clr_pos++;
+		}
+	}
+	} */
+	int x, y = 0;
+
+	// placeholders for nina
+	int width = 200;
+	int height = 185;
+	while (x < gui_width) {
+		while (y < gui_height) {
+			gui_draw_image(x, y, width, height, image);
+			y += height;
+		}
+		x += width;
+		y = 0;
+		
+	}
+		
+
+		
+}
+
 char check_bit(unsigned char c, int pos)
 {
 	unsigned char is_bit_at_pos_on = c & (1 << pos);

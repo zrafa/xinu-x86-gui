@@ -5,6 +5,10 @@
         "xinu.h": "c",
         "visual.h": "c",
         "rfilesys.h": "c",
-        "rdisksys.h": "c"
+        "rdisksys.h": "c",
+        "string.h": "c",
+        "renderer.h": "c",
+        "microui.h": "c",
+        "background_changer.h": "c"
     }
 }

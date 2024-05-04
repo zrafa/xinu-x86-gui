@@ -14,6 +14,7 @@ extern int32 gui_height;
 void gui_set_pixel(int x, int y, uint16 color);
 void gui_pixel(int x, int y, uint32 color);
 void gui_paint_screen(uint32 color);
+void gui_paint_image_background(uint32 image[]);
 void gui_draw_char(int x, int y, char c, uint32 color,
                                    uint32 bg_color);
 void gui_print_text(int x, int y, char *text, uint32 color, uint32 bg_color);

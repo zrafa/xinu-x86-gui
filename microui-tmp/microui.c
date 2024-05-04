@@ -788,7 +788,9 @@ int mu_textbox_raw(mu_Context *ctx, char *buf, int bufsz, mu_Id id, mu_Rect r,
     /* handle backspace */
     if (ctx->key_pressed & MU_KEY_BACKSPACE && len > 0) {
       /* skip utf-8 continuation bytes */
+      
       while ((buf[--len] & 0xc0) == 0x80 && len > 0);
+      
       buf[len] = '\0';
       res |= MU_RES_CHANGE;
     }

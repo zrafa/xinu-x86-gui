@@ -24,6 +24,7 @@ int submitted_grgb = 0;
 int submitted_brgb = 0;
 
 int submitted_graphics = -1;
+int must_clear = 0;
 
 int actual_width = 0;
 int actual_height = 0;
@@ -161,11 +162,8 @@ mu_layout_row(ctx, 2, (int[]) { -70, -1 }, 0);
     if (mu_button(ctx, "Submit")) { submitted_window = 1; }
     if (mu_button(ctx, "Change background to Nina for fun")) {
         submitted_graphics = 1;
-      }
+    }
 
-      if (submitted_graphics) {
-        gui_paint_screen(RED);
-      }
     if (submitted_window) {
       // spawn new window
       //int spawn = create(spawned_window, 16384, 20, "Spawned Window", 2, actual_width, actual_height);
@@ -179,10 +177,10 @@ mu_layout_row(ctx, 2, (int[]) { -70, -1 }, 0);
       struct SpawnedWindow sp;
       sp.width = actual_width;
       sp.height = actual_height;
-      sp.color = mu_color(1, actual_rrgb, actual_grgb, actual_brgb);
+      sp.color = mu_color(actual_rrgb, actual_grgb, actual_brgb, 255);
+      sp.graphic = 0;
       mu_end_window(ctx);
-      //size_h[0] = '\0';
-      //size_w[0] = '\0';
+      must_clear = 1;
       return sp;
     }
 
@@ -194,10 +192,24 @@ mu_layout_row(ctx, 2, (int[]) { -70, -1 }, 0);
     mu_pop_id(ctx);
   } */
       //mu_end_window(ctx);
-      
+      if (must_clear == 1) {
+        size_h[0] = '\0';
+        size_w[0] = '\0';
+        size_brgb[0] = '\0';
+        size_rrgb[0] = '\0';
+        size_grgb[0] = '\0';
+        must_clear = 0;
+        submitted_window = 0;
+      }
       struct SpawnedWindow sp;
       sp.width = 0;
       sp.height = 0;
+      sp.color = mu_color(actual_rrgb, actual_grgb, actual_brgb, 0);
+      if (submitted_graphics == 1) {
+        sp.graphic = 1;
+      } else {
+        sp.graphic = 0;
+      }
       mu_end_window(ctx);
       return sp;
   }

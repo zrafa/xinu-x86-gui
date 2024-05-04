@@ -13,6 +13,7 @@ extern const    struct  cmdent  cmdtab[];
 extern uint32   ncmd;
 extern process mu_gui_demo();
 extern process mu_galaga();
+extern uint32 nina[];
 
 
 static  char logbuf[64000];
@@ -21,6 +22,8 @@ static   int logbuf_updated = 0;
 static float bg[3] = { 84, 84, 84 };
 int graphics_on = 0;
 int graphics_turned_on = 0;
+mu_Color currColor;
+int isImage = 0;
 
 char * malloc(int n)
 {
@@ -343,6 +346,14 @@ static void process_frame(mu_Context *ctx) {
   if (sp.width != 0) {
     spawned_window(sp, ctx);
   }
+
+  if (sp.color.a != 0 && isImage != 1) {
+    currColor = sp.color;
+  }
+
+  if (sp.graphic == 1) {
+    isImage = 1;
+  }
   
 
   //struct GraphicsWindow gw = mu_graphics(ctx);
@@ -397,6 +408,7 @@ int microui() {
   open(KEYBOARD, NULL, 0);
 
   /* main loop */
+  currColor = mu_color(bg[0], bg[1], bg[2], 255);
   for (;;) {
         r_handle_input(ctx);
 
@@ -407,7 +419,11 @@ int microui() {
 		printf("KEYs 3 %d \n", strlen(ctx->input_text));
     /* render */
     /* wallpaper */
-    r_clear(mu_color(bg[0], bg[1], bg[2], 255));
+    //if (isImage == 0) {
+      r_clear(currColor);
+    if (isImage == 1) {
+      gui_paint_image_background(nina);
+    }
     gui_print_text(40,740, "XINU Visual Interface", 0x00202020, 0x00545454);
     gui_print_text(40,750, "Authors: a group of students and professors from Purdue and UNCOMA universities", 0x00202020, 0x00545454);
 

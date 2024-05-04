@@ -37,6 +37,9 @@ extern	shellcmd  xsh_kill	(int32, char *[]);
 /* in file xsh_ls.c */
 extern	shellcmd  xsh_ls	(int32,	char *[]);
 
+/* in file xsh_touch.c */
+extern	shellcmd  xsh_touch	(int32,	char *[]);
+
 /* in file xsh_led.c */
 extern	shellcmd  xsh_led	(int32, char *[]);
 

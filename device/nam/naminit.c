@@ -77,6 +77,9 @@ status	naminit(void)
 		}
 	}
 
+	
+
+
 	/* Add other prefixes (longest prefix first) */
 
         mount("/dev/null",	"",        NULLDEV);
@@ -84,8 +87,8 @@ status	naminit(void)
 	mount("/local/",	NULLSTR,   LFILESYS);
 	mount("/dev/",		NULLSTR,   SYSERR);
         mount("~/",		NULLSTR,   LFILESYS);
-	mount("/",		"root:",   RFILESYS);
+	mount("",		NULLSTR,   RFILESYS);
 	mount("",		"",        LFILESYS);
-
+	
 	return OK;
 }
