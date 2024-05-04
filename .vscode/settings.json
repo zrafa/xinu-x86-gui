@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "vt100.h": "c",
+        "keyboard.h": "c",
+        "xinu.h": "c",
+        "visual.h": "c",
+        "rfilesys.h": "c",
+        "rdisksys.h": "c"
+    }
+}

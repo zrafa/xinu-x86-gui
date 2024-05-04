@@ -1,6 +1,9 @@
 #include <xinu.h>
 #include <renderer.h>
+#include <background_changer.h>
 #include <microui.h>
+#include <visual.h>
+
 #include <vt100.h>
 
 #define NULL 0
@@ -16,6 +19,8 @@ static  char logbuf[64000];
 static   int logbuf_updated = 0;
 // static float bg[3] = { 90, 95, 100 };
 static float bg[3] = { 84, 84, 84 };
+int graphics_on = 0;
+int graphics_turned_on = 0;
 
 char * malloc(int n)
 {
@@ -73,10 +78,22 @@ static void test_menu(mu_Context *ctx)
 	}
     if (mu_button(ctx, "XINU gui mascot")) { 
 		resume( create(mu_gui_demo, 2048, 20, "vt", 0));
+    
 	}
     if (mu_button(ctx, "galaga")) { 
 		resume( create(mu_galaga, 4096, 20, "vt", 0));
 	}
+    /* if (mu_button(ctx, "graphics")) {
+       mu_graphics(ctx);
+    }  */
+
+ 
+
+  /* if (graphics_on == 1 && graphics_turned_on != 1) {
+    struct GraphicsWindow temp;
+    //graphics_window(temp, ctx);
+    graphics_turned_on = 1;
+  } */
 
     if (mu_textbox(ctx, buf, sizeof(buf)) & MU_RES_SUBMIT) {
       mu_set_focus(ctx, ctx->last_id);
@@ -322,6 +339,18 @@ static void process_frame(mu_Context *ctx) {
   log_window(ctx);
  // test_window(ctx);
   test_menu(ctx);
+  struct SpawnedWindow sp = mu_visual(ctx);
+  if (sp.width != 0) {
+    spawned_window(sp, ctx);
+  }
+  
+
+  //struct GraphicsWindow gw = mu_graphics(ctx);
+  /* if (graphics_on != 1 && sp.width != 0) {
+    graphics_on = 1;
+  } */
+
+
 
 	int i;
 	for (i=0; i<N_WIN; i++) {

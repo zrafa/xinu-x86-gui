@@ -49,6 +49,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/shell/apps			\
 			-s $(TOPDIR)/shell/apps/vt100		\
 			-s $(TOPDIR)/shell/apps/microui		\
+			-s $(TOPDIR)/shell/apps/visual-dev  \
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
 INCLUDE		=	-I$(TOPDIR)/include

@@ -213,3 +213,7 @@ nam:
 #define	ETHER0	0
 #endif
 
+/* Remote File System */
+
+#define RF_SERVER 128.10.3.51
+
