@@ -1,0 +1,37 @@
+
+XINU con entorno gráfico en QEMU
+================================
+
+Cuando se inicia XINU con make run-qemu XINU toma
+la IP 10.0.2.15. Y la IP de Linux será la 10.0.2.2 (esas dos IPs las
+maneja internamente qemu y las conecta con la red de vuestras compus).
+
+Desde XINU puede navegar hacia afuera (navegar= alcanzar máquinas en 
+red e internet).
+Pero desde LINUX no podrán acceder a XINU (esto es porque qemu
+arma una red por software que permite salir pero no conecta esa red 
+a la red de sus hogares).
+Pueden verificar en XINU la IP ejecutando en el shell "netinfo"
+
+El entorno gráfico del xinu actual tiene "ventanitas" y puede
+ejecutar varios shells de xinu en diferentes ventanas (similar a las
+"terminales" virtuales en linux). Tiene algunos defectos el entorno
+gráfico aún. Por ejemplo, para "hacer foco" en una ventana terminal
+con el shell, hay que hacer click "dentro de la ventana" (no en la
+barra de título). Y a veces, estás escribiendo en el shell.. y de
+pronto es como que no aparecen más letras. Hay que volver a hacer
+click "dentro" de la ventana con el shell, para hacer foco de vuelta
+(un bug molesto que espero pronto se encuentre y se lo mate :)
+
+Si el entorno gráfico molesta mucho pueden ir a la consola texto 
+(CTRL+ALT+3) y chau, ejecutar cosas desde ahí.
+
+
+XINU con VIRT-MANAGER (y conectar XINU a la red local)
+======================================================
+
+https://youtu.be/9rOI7ldjm_Y
+
+Ahí podrán acceder desde la red local a XINU y desde XINU la 
+red local (e internet).
+
