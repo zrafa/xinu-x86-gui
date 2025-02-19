@@ -1,4 +1,20 @@
 
+xinu-tcp-final.tar.gz
+=====================
+
+El código se encuentra en :
+
+xinu-tcp-final/xinu-final/
+
+Para compilar y ejecutar :
+
+cd xinu-tcp-final/xinu-final/compile
+
+make clean
+make
+make run-qemu
+
+
 XINU con entorno gráfico en QEMU
 ================================
 
@@ -25,6 +41,19 @@ click "dentro" de la ventana con el shell, para hacer foco de vuelta
 
 Si el entorno gráfico molesta mucho pueden ir a la consola texto 
 (CTRL+ALT+3) y chau, ejecutar cosas desde ahí.
+
+Comandos utiles:
+clear   # limpia la terminal
+netinfo  # muestra información de la configuración de red
+
+Para conocer si la red está funcional (desde la consola de texto):
+
+ping google.com 
+
+El código del grupo anterior tiene un cliente HTTP. Pueden probarlo realizando :
+
+client gnu.msn.by 80 /
+
 
 
 XINU con VIRT-MANAGER (y conectar XINU a la red local)
