@@ -197,6 +197,7 @@ void r_handle_input(mu_Context *ctx)
 	}
 	
 	if ((prev_key != new_key) || ((repetition>N_REPETITION) && ((repetition % N_REP_DELAY) == 0))) {
+		kprintf("key: %d id: %d ON FOCUS: %d \n", buf[0], ctx->frame, ctx->focus);
 
 			// RAFA all the keys must go to virtual terminal
 		//if (!is_special_key(new_key))
