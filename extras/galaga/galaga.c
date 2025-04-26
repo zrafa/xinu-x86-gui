@@ -9,8 +9,11 @@
 #include "win.h"
 #include "controls.h"
 
+int n_galaga_window;
+
 volatile unsigned char tecla_actual;
 typedef unsigned short u16;
+
 /*
 ESTA LINEA DE ABAJO ESTA HORRIBLEMENTE MAL
 NO LA CORREGI PORQUE YA HABIA ARMADO LAS IMAGENES
@@ -41,36 +44,40 @@ FORMA CORRECTA
 */
 //#define BUTTONS *(volatile unsigned int *)0x4000130
 
-#define BUTTON_A		0x31	//N
-#define BUTTON_B		0x32 	//M
-#define BUTTON_SELECT	0x36	//RIGHT SHIFT
-#define BUTTON_START	0x1c	//ENTER
-#define BUTTON_RIGHT	0x20	//D
-#define BUTTON_LEFT		0x1e	//A
-#define BUTTON_UP		0x11	//W
-#define BUTTON_DOWN 	0x1f	//S
-#define BUTTON_R		0x25	//K
-#define BUTTON_L		0x24	//J
-#define BUTTON_ESCAPE	0x1		//ESC
+#define BUTTON_A		'j'	//N
+#define BUTTON_B		'k' 	//M
+#define BUTTON_SELECT	'l'	//RIGHT SHIFT
+#define BUTTON_START	'1'  	//ENTER
+#define BUTTON_RIGHT	'd'	//D
+#define BUTTON_LEFT		'a' //A
+#define BUTTON_UP		'w'	//W
+#define BUTTON_DOWN 		's'	//S
+#define BUTTON_R		'n' 	//K
+#define BUTTON_L		'm'	//J
+#define BUTTON_ESCAPE	'0'		//ESC
 // #define KEY_DOWN_NOW(key)  (tecla_actual == key)
 
 void reading_keys()
 {
-        
-        open(KEYBOARD, NULL, 0);
-        while(1) {
-                read(KEYBOARD, &tecla_actual, 1);
-	}
+	 mu_event_t e;
+	 while(1) {
+                mu_get_event(n_galaga_window, &e);
+		if (e.c[0] != '\0')
+			tecla_actual = e.c[0];
+		sleepms(1);
+	 }
+
 }
 
 int KEY_DOWN_NOW(char key)
 {
-	if (tecla_actual == key) {
-		tecla_actual = -1;
-		return 1;
-	}
-	
-	return 0;
+	        if (tecla_actual == key) {
+                tecla_actual = -1;
+                return 1;
+        }
+
+        return 0;
+
 }
 
 
@@ -145,41 +152,45 @@ char str_lives[32], str_score[32];
 int pid_control, pid_info, pid_game;
 
 int galaga(int n){
+	n_galaga_window = n;
 	printf("n2=%d\n", n);
-	int pid;
-	pid = create(reading_keys, 1024, 20, "keys", 0);
-	resume(pid);
+	int pid_keys;
+	pid_keys = create(reading_keys, 1024, 20, "keys", 0);
+	resume(pid_keys);
 
 	pid_control = getpid();
 
+	int endgame_msg;
+	while (1) {
+	initialize();
+	restart();
+	printf("n2=%d\n", n);
 	// gui_buf_init();
 	pid_info = create(info_game, 1024, 20, "info_proc", 0);
 	pid_game = create(game_galaga, 1024, 20, "game_proc", 1, n);
 	
 	resume(pid_info);
 	resume(pid_game);
+	printf("n2=%d\n", n);
 
-	int endgame_msg = receive();
-	//receive();
+	endgame_msg = receive();
 	kill(pid_game);
 	kill(pid_info);
-	drawRect(0, 0, 240, 160, YELLOW);
-	// gui_buf_free();
+	if (endgame_msg == 1) {
+		kill(pid_keys);
+		return endgame_msg;
+	} else if (endgame_msg == 1) {
+	}
+	}
 	return endgame_msg;
 }
 
 int game_galaga(int n) {
-	printf("n=%d", n);
+	printf("n=%d\n", n);
 	initialize();
 	restart();
 	//start black screen for drawing
-	mu_event_t e;
 	while(1) {
-		mu_get_event(n, &e);
-		if (e.but != -1)
-			printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
-	//	if (e.c != -1)
-	//		printf("KEY: %c %d \n", e.c);
 		//go back to title screen if select button is pressed
 		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
 			initialize();
@@ -330,13 +341,8 @@ void game_over(int state) {
 	memset(str_lives, 0, sizeof(str_lives));
 	memset(str_score, 0, sizeof(str_score));
 
+	send(pid_control, 2);
 	while(1){
-		if (KEY_DOWN_NOW(BUTTON_SELECT) || KEY_DOWN_NOW(BUTTON_START)) {
-			initialize();
-			restart();
-
-//			game_galaga();
-		}
 	}
 }
 
