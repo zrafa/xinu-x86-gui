@@ -57,29 +57,51 @@ FORMA CORRECTA
 #define BUTTON_ESCAPE	'0'		//ESC
 // #define KEY_DOWN_NOW(key)  (tecla_actual == key)
 
+int teclasg[11] = {'j', 'k', 'l', '1', 'd', 'a', 'w', 's', 'n', 'm', '0'};
+int pulsadas[11];
 void reading_keys()
 {
 	 mu_event_t e;
 	 while(1) {
                 mu_get_event(n_galaga_window, &e);
-		if (e.c[0] != '\0')
-			tecla_actual = e.c[0];
-		sleepms(1);
+		//if (e.c[0] != '\0')
+		//	tecla_actual = e.c[0];
+		if (e.c[0] != '\0') {
+			for (int i=0; i<11; i++) {
+				if (teclasg[i] == e.c[0]) {
+					pulsadas[i] = 1;
+				}
+			}
+		}
+		sleepms(2);
 	 }
 
 }
 
+void teclas_init() 
+{
+	for (int i=0; i<11; i++)
+		pulsadas[i] = -1;
+}
+
 int KEY_DOWN_NOW(char key)
 {
+	for (int i=0; i<11; i++) {
+		if ((pulsadas[i] != -1) && (teclasg[i] == key)) {
+			pulsadas[i] = -1;
+			return 1;
+		}
+	}
+	return 0;
+
+		 /*
 	        if (tecla_actual == key) {
                 tecla_actual = -1;
                 return 1;
         }
-
         return 0;
-
+	*/
 }
-
 
 
 //variable definitions
@@ -162,41 +184,39 @@ int galaga(int n){
 
 	int endgame_msg;
 	while (1) {
-	initialize();
-	restart();
-	printf("n2=%d\n", n);
+		teclas_init();
+		initialize();
+		restart();
 	// gui_buf_init();
-	pid_info = create(info_game, 1024, 20, "info_proc", 0);
-	pid_game = create(game_galaga, 1024, 20, "game_proc", 1, n);
+		pid_info = create(info_game, 1024, 20, "info_proc", 0);
+		pid_game = create(game_galaga, 1024, 20, "game_proc", 1, n);
 	
-	resume(pid_info);
-	resume(pid_game);
-	printf("n2=%d\n", n);
+		resume(pid_info);
+		resume(pid_game);
 
-	endgame_msg = receive();
-	kill(pid_game);
-	kill(pid_info);
-	if (endgame_msg == 1) {
-		kill(pid_keys);
-		return endgame_msg;
-	} else if (endgame_msg == 1) {
-	}
+		recvclr();
+		endgame_msg = receive();
+		kill(pid_game);
+		kill(pid_info);
+		if (endgame_msg == 1) {
+			kill(pid_keys);
+			return endgame_msg;
+		} else if (endgame_msg == 1) {
+		}
 	}
 	return endgame_msg;
 }
 
 int game_galaga(int n) {
-	printf("n=%d\n", n);
-	initialize();
-	restart();
+	printf("ENTRAMOS n=%d\n", n);
 	//start black screen for drawing
 	while(1) {
 		//go back to title screen if select button is pressed
-		if (KEY_DOWN_NOW(BUTTON_SELECT)) {
-			initialize();
-			restart();
+		// if (KEY_DOWN_NOW(BUTTON_SELECT)) {
+		// 	initialize();
+		// 	restart();
 		//	game_galaga();
-		}
+		//}
 
 		if (KEY_DOWN_NOW(BUTTON_ESCAPE)){
 			send(pid_control, 1);
@@ -220,7 +240,7 @@ int game_galaga(int n) {
 		if (KEY_DOWN_NOW(BUTTON_DOWN) && (player.playerY <= 136)) {
 			player.playerY += playerspeed;
 		}
-		sleepms(50);
+		sleepms(40);
 
 
 		//draw player
@@ -341,6 +361,7 @@ void game_over(int state) {
 	memset(str_lives, 0, sizeof(str_lives));
 	memset(str_score, 0, sizeof(str_score));
 
+	sleep(4);
 	send(pid_control, 2);
 	while(1){
 	}
@@ -358,7 +379,6 @@ void info_game(){
 }
 
 void initialize(){
-
 	//easy enemy wave set setup
 	for (int a = 0; a < 9; a++) {
 		easyEnemies[a].enemyX = (25*a)+10;
@@ -392,6 +412,7 @@ void initialize(){
 			break;
 		if (KEY_DOWN_NOW(BUTTON_ESCAPE))
 			send(pid_control, 1);
+		sleepms(2);
 	}
 
 	drawImage3(0, 0, 240, 160, controls);
@@ -401,6 +422,7 @@ void initialize(){
 		if(KEY_DOWN_NOW(BUTTON_START)){
 			break;
 		}
+		sleepms(2);
 	}
 }
 

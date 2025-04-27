@@ -29,11 +29,12 @@ const	struct	cmdent	cmdtab[] = {
 	{"udpeserver",	FALSE,	xsh_udpeserver},
 	{"uptime",	FALSE,	xsh_uptime},
 	{"gui_test",	FALSE,	gui_test},
-	{"mu_gui_demo",	FALSE,	mu_gui_demo},
+	{"guidemo",	FALSE,	mu_gui_demo},
 	{"mu_clock",	FALSE,	mu_clock},
 	{"vt",	FALSE,	vt},
-	{"mu_galaga",	FALSE,	mu_galaga},
+	{"galaga",	FALSE,	mu_galaga},
 	{"mu_arkanoid",	FALSE,	mu_arkanoid},
+	{"snake",	FALSE,	xsh_snake},
 	{"?",		FALSE,	xsh_help},
 
 };
