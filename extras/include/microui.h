@@ -188,6 +188,7 @@ struct mu_Context {
   mu_Rect last_rect;
   int last_zindex;
   int updated_focus;
+  int focus_timeout;
   int frame;
   mu_Container *hover_root;
   mu_Container *next_hover_root;
