@@ -303,6 +303,7 @@ void mu_init(mu_Context *ctx) {
   ctx->draw_frame = draw_frame;
   ctx->_style = default_style;
   ctx->style = &ctx->_style;
+  ctx->focus_timeout = 10;
 
   int i;
   for (i=0; i<N_WIN; i++)
@@ -345,7 +346,14 @@ void mu_end(mu_Context *ctx) {
   }
 
   /* unset focus if focus id was not touched this frame */
-  if (!ctx->updated_focus) { ctx->focus = 0; }
+  if (!ctx->updated_focus) { 
+    ctx->focus_timeout--;
+    if (ctx->focus_timeout <= 0) {
+      ctx->focus = 0;
+    }
+  } else {
+    ctx->focus_timeout = 10; /* Reset timeout when focus is maintained */
+  }
   ctx->updated_focus = 0;
 
   /* bring hover root to front if mouse was pressed */

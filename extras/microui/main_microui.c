@@ -61,7 +61,7 @@ static void test_menu(mu_Context *ctx)
                                         /*   comparison                 */
         bool8   diff;                   /* Was difference found during  */
 
-  if (mu_begin_window_ex(ctx, "menu", mu_rect(2, 2, 1020, 30), MU_OPT_NOTITLE|MU_OPT_NORESIZE|MU_OPT_HOLDFOCUS)) {
+  if (mu_begin_window_ex(ctx, "menu", mu_rect(2, 2, 1020, 30), MU_OPT_NOTITLE|MU_OPT_NORESIZE)) {
 
     /* input textbox + submit button */
     static char buf[40];
