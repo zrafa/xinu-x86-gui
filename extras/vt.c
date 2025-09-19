@@ -432,7 +432,7 @@ process vt(void)
 			restore(mask);
 		}
 
-		sleepms(2);
+		sleepms(1);
 	};
 
 	kill(vtty_pid);
