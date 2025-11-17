@@ -61,7 +61,7 @@ struct	ttycblk	{			/* Tty line control block	*/
 	int vtty_out_pid;
 	int vtty_n;
 	char vtty_in_ch;
-//	sid32 sem_vtty_out;
+	sid32 tyvsem;			/* VT output event semaphore	*/
 };
 extern	struct	ttycblk	ttytab[];
 

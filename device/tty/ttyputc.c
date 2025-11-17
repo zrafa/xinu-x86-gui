@@ -34,8 +34,8 @@ devcall	ttyputc(
 
 	if (devptr->dvminor == 0) { 	/* if REAL TTY */
 		ttykickout((struct uart_csreg *)devptr->dvcsr);
-	} else {
-		// REMOVE SOON	send(typtr->vtty_out_pid, 1);
+	} else {			/* Virtual TTY */
+		signal(typtr->tyvsem);	/* Signal VT output process */
 	}
 
 	return OK;

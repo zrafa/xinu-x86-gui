@@ -28,6 +28,7 @@ devcall	ttyinit(
 	typtr->tyohead = typtr->tyotail = 	/* Set up output queue	*/
 		&typtr->tyobuff[0];		/*    as empty		*/
 	typtr->tyosem = semcreate(TY_OBUFLEN);	/* Output semaphore	*/
+	typtr->tyvsem = semcreate(0);		/* VT output event sem	*/
 	typtr->tyehead = typtr->tyetail = 	/* Set up echo queue	*/
 		&typtr->tyebuff[0];		/*    as empty		*/
 	typtr->tyimode = TY_IMCOOKED;		/* Start in cooked mode	*/
