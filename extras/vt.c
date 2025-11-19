@@ -45,31 +45,15 @@ process vtty_out(int n, int t)
 	struct vt100 *term = vt100_get_vt(n);
 	
 while(1) {
-	sleepms(10);
-	// REMOVE SOON 	m = receive();
-	// REMOVE SOON 	mask = disable();
-        byte    ier = 0;
+	wait(typtr->tyvsem);		/* Wait for characters to output */
 
         /* If output is currently held, simply ignore the call */
 
         if (typtr->tyoheld) {
-	// REMOVE SOON 		restore(mask);
                 continue;
-		//  REMOVE SOON return;
         }
 
-        /* If echo and output queues empty, turn off interrupts */
-
-        if ( (typtr->tyehead == typtr->tyetail) &&
-             (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
-		// REMOVE SOON	restore(mask);
-		continue;
-                // REMOVE SOON return;
-        }
-        
-        /* Initialize uspace to the size of the transmit FIFO */
-
-        // NO BUFFER uspace = UART_FIFO_SIZE;
+        /* Process echo and output queues */
 
         /* While onboard FIFO is not full and the echo queue is */
         /*   nonempty, xmit chars from the echo queue           */

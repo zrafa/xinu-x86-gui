@@ -274,8 +274,8 @@ local	void	eputc(
 	// RAFA
 	if (typtr->vtty_n == 0) {	/* if REAL CONSOLE */
 		ttykickout(csrptr);
-	} else {
-		// REMOVE SOON send(typtr->vtty_out_pid, 1);
+	} else {			/* Virtual TTY */
+		signal(typtr->tyvsem);	/* Signal VT output process */
 	}
 	return;
 }
