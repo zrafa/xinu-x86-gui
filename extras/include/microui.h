@@ -291,6 +291,7 @@ typedef struct {
 #define N_WIN 256
 typedef struct {
         uint8 valid;
+	uint8 dirty;     // Window needs redraw
 	mu_event_t e;
        // void (*win) (mu_Context *ctx, int n);
        char name[32];

@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include <microui.h>
 #include <gui_buf.h>
+#include <gui.h>
 #include <vt100.h>
 
 #define VT_W (80*VT100_CHAR_WIDTH)
@@ -9,6 +10,8 @@
 #define FRAME_SPACE_W 10
 #define FRAME_SPACE_H 35
 
+// Map VT terminal number to MicroUI window ID
+static int vt_window_ids[MAX_N_VT];
 
 void null_str(char *str) {
 
@@ -83,6 +86,16 @@ while(1) {
         }
         if (ochars > 0) {
                 signaln(typtr->tyosem, ochars);
+                /* mark VT window buffer as dirty */
+                {
+                    int wid = vt_window_ids[n];
+                    extern win_t windows[];
+                    if (wid >= 0 && wid < N_WIN && windows[wid].valid) {
+                        windows[wid].dirty = 1;
+                        /* Signal GUI only once per VT window update batch */
+                        gui_signal_event_type(GUI_EVENT_VT_OUTPUT);
+                    }
+                }
         }
 
 	// REMOVE SOON	restore(mask);
@@ -377,6 +390,7 @@ process vt(void)
 
 	sprintf(title, "virtual terminal %d", n_vt);
 	n = mu_add_win(title, 100+n_vt*40, 400-n_vt*40, VT_W, VT_H, buf);
+	vt_window_ids[n_vt] = n;  // Store window ID for this VT
 	
 	vt100_init(t, null_str);
 

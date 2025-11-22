@@ -216,7 +216,7 @@ int mu_add_win(char *name, int x, int y, int w, int h, void *buf)
 			windows[i].w = w;
 			windows[i].h = h;
 			windows[i].buf = buf;
-
+      windows[i].dirty = 1;
       windows[i].cnt->open = 1;
 
 			return i;

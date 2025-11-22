@@ -4,11 +4,25 @@
 
 #define GUI_FLUSH	seek(VGA, 0); write(VGA, gui_buf, gui_width * gui_heigth * gui_bpp);
 
+/* Event types for GUI updates */
+#define GUI_EVENT_KEYBOARD    0x01  // Key pressed
+#define GUI_EVENT_MOUSE       0x02  // Mouse moved/clicked
+#define GUI_EVENT_VT_OUTPUT   0x04  // Terminal has output
+#define GUI_EVENT_APP_UPDATE  0x08  // App updated its buffer
+
 extern uint32 *gui_buf;
 extern int32 gui_buf_size;
 extern int32 gui_bpp;
 extern int32 gui_width;
 extern int32 gui_height;
+
+/* Event system */
+extern sid32 gui_event_sem;
+void gui_events_init(void);
+void gui_signal_event(void);
+void gui_signal_event_type(uint32 event_type);
+uint32 gui_get_pending_events(void);
+void gui_signal_redraw(int win_id);
 
 
 void gui_set_pixel(int x, int y, uint16 color);

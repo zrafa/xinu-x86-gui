@@ -2,6 +2,7 @@
 #include <renderer.h>
 #include <microui.h>
 #include <vt100.h>
+#include <gui.h>
 
 #define NULL 0
 
@@ -325,9 +326,12 @@ static void process_frame(mu_Context *ctx) {
 
 	int i;
 	for (i=0; i<N_WIN; i++) {
-		if (windows[i].valid)
+		if (windows[i].valid) {
 			dynamic_window(ctx, i);
+			// Mark window clean after processing
+			windows[i].dirty = 0;
 			// windows[i].win(ctx, i);
+		}
 	}
 
   mu_end(ctx);
@@ -367,13 +371,25 @@ int microui() {
   open(MOUSE, NULL, 0);
   open(KEYBOARD, NULL, 0);
 
+  /* init event system */
+  gui_events_init();
+
   /* main loop */
   for (;;) {
-        r_handle_input(ctx);
-
-    /* process frame */
-    process_frame(ctx);
-
+        wait(gui_event_sem);  // Sleep until event occurs
+        uint32 events = gui_get_pending_events();
+        
+        /* Handle input first (keyboard/mouse) */
+        if (events & (GUI_EVENT_KEYBOARD | GUI_EVENT_MOUSE)) {
+            r_handle_input(ctx);
+        }
+        
+        /* Process frame once if any visual update needed */
+        if (events & (GUI_EVENT_VT_OUTPUT | GUI_EVENT_APP_UPDATE | 
+                      GUI_EVENT_KEYBOARD | GUI_EVENT_MOUSE)) {
+            process_frame(ctx);
+        }
+        
 	if (strlen(ctx->input_text))
 		printf("KEYs 3 %d \n", strlen(ctx->input_text));
     /* render */
