@@ -241,6 +241,7 @@ int game_galaga(int n) {
 			player.playerY += playerspeed;
 		}
 		sleepms(40);
+		gui_signal_redraw(n);  // Mark window dirty after game update
 
 
 		//draw player

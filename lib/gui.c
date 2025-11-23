@@ -6,6 +6,7 @@
 #include <font.h>
 #include <gui.h>
 #include <gui_buf.h>
+#include <microui.h>
 
 /* software double buffering for graphics */
 uint32 * gui_buf;
@@ -161,4 +162,14 @@ void gui_init(void)
 	control(VGA, VGA_GET_BPP, (int32) &gui_bpp, NULL);
 	gui_buf_size = gui_width * gui_height * (gui_bpp/8);
 	gui_buf = (uint32 *)getmem(gui_buf_size);
+}
+
+void gui_signal_redraw(int win_id)
+{
+	extern win_t windows[];
+	if (win_id >= 0 && win_id < 256 && windows[win_id].valid) {
+		windows[win_id].dirty = 1;
+		/* signal that an app updated a window */
+		gui_signal_event_type(GUI_EVENT_APP_UPDATE);
+	}
 }

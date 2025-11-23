@@ -145,6 +145,7 @@ process mu_clock(void)
 	for (;;) {
 		gui_buf_draw_image(buf, W, 0, 0, W, H, pixel_data);
 		show_time(buf, W);
+		gui_signal_redraw(n);  // Mark window dirty after update
 
 		mu_get_event(n, &e);
                 if (e.but != -1)

@@ -53,6 +53,7 @@ int arkanoid(uint32* buf, int w, int n)
 	while(1)
 	{	
                 mu_get_event(n, &e);
+		gui_signal_redraw(n);  // Mark window dirty after game update
 		switch(state) {
 		case START2: 
 			prevState = state;
