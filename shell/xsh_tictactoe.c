@@ -1,6 +1,10 @@
 #include <xinu.h>
 #include <stdio.h>
 
+// ANSI escape codes for cursor control
+#define CLEAR_SCREEN "\033[2J"
+#define CURSOR_HOME "\033[H"
+
 char board[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 char current_player = 'X';
 
@@ -157,6 +161,11 @@ int computer_move() {
     return best_move.position;
 }
 
+void clear_and_home() {
+    printf(CLEAR_SCREEN);
+    printf(CURSOR_HOME);
+}
+
 void reset_board() {
     for (int i = 0; i < 9; i++) {
         board[i] = '1' + i;
@@ -168,14 +177,31 @@ void play_game(int mode) {
     reset_board();
     int move;
     
+    // In mode 2, randomly decide who goes first
+    if (mode == 2) {
+        if (rand() % 2 == 0) {
+            current_player = 'O';  // Computer goes first
+            printf("Computer will go first!\n");
+        } else {
+            printf("You go first!\n");
+        }
+    }
+    printf("Game Start in :");
+    for(int i=3 ; i>0;i--){
+        printf("->%d",i);
+        sleep(1);
+    }
+    
     while (1) {
+        // Clear and redraw at same position
+        clear_and_home();
         print_board();
         
         if (mode == 2 && current_player == 'O') {
             // Computer's turn
             printf("Computer's turn (O)...\n");
             printf("Thinking...\n");
-            sleep(1);
+            sleep(2);
             move = computer_move();
             if (move != -1) {
                 make_move(move);
@@ -183,49 +209,68 @@ void play_game(int mode) {
         } else {
             // Human's turn
             char ch;
-            printf("Player %c's turn. Enter position (1-9, or 0 to quit): ", current_player);
+            int valid_input = 0;
+            clear_and_home();
+            print_board();
             
-            ch = getc(stdin);
-            printf("%c\n", ch);
-            
-            // Consume the newline
-            if (getc(stdin) != '\n') {
-                while (getc(stdin) != '\n');
+            while (!valid_input) {
+                printf("Player %c's turn. Enter position (1-9, or 0 to quit): ", current_player);
+                ch = getc(stdin);
+                printf("%c\n", ch);
+                
+                // Consume the newline
+                if (getc(stdin) != '\n') {
+                    while (getc(stdin) != '\n');
+                }
+                
+                if (ch < '0' || ch > '9') {
+                    clear_and_home();
+                    print_board();
+                    printf("Invalid input! Please enter a number.\n");
+                    sleep(1);
+                    continue;
+                }
+                
+                move = ch - '0';
+                
+                if (move == 0) {
+                    printf("Player %c quits the game. Exiting...\n", current_player);
+                    return;
+                }
+                
+                move--;  // Convert to 0-indexed (1-9 becomes 0-8)
+                
+                if (!is_valid_move(move)) {
+                    clear_and_home();
+                    print_board();
+                    printf("Invalid move! That position is already taken. Try again.\n");
+                    sleep(1);
+                    continue;
+                }
+                
+                valid_input = 1;
             }
             
-            if (ch < '0' || ch > '9') {
-                printf("Invalid input! Please enter a number.\n");
-                continue;
-            }
-            
-            move = ch - '0';
-            
-            if (move == 0) {
-                printf("Player %c quits the game. Exiting...\n", current_player);
-                return;
-            }
-            move--;  // Convert to 0-indexed
-            
-            if (!is_valid_move(move)) {
-                printf("Invalid move! Try again.\n");
-                continue;
-            }
             make_move(move);
         }
         
         if (check_winner()) {
+            clear_and_home();
             print_board();
             if (mode == 2 && current_player == 'O') {
                 printf("Computer wins!\n");
             } else {
                 printf("Player %c wins!\n", current_player);
             }
+            sleep(2);
             break;
         }
         
         if (is_board_full()) {
+            clear_and_home();
             print_board();
             printf("It's a tie!\n");
+            sleep(2);
             break;
         }
         
