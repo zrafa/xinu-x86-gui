@@ -34,6 +34,7 @@ const struct cmdent cmdtab[] = {
 	{"vt", FALSE, vt},
 	{"galaga", FALSE, mu_galaga},
 	{"mu_arkanoid", FALSE, mu_arkanoid},
+	{"tictactoe", FALSE, xsh_tictactoe},
 	{"?", FALSE, xsh_help},
 
 };
