@@ -1,20 +1,55 @@
 #include <xinu.h>
 #include <stdio.h>
 
-// ANSI escape codes for cursor control
+// ANSI escape codes for cursor control and colors
 #define CLEAR_SCREEN "\033[2J"
 #define CURSOR_HOME "\033[H"
+#define COLOR_RED     "\033[31m"  // bright red for X
+// #define COLOR_BLUE    "\033[34m"   // it look bad on black screen
+#define COLOR_GREEN   "\033[32m"
+#define COLOR_YELLOW  "\033[33m"
+#define COLOR_CYAN    "\033[36m"
+#define COLOR_RESET   "\033[0m"
+#define COLOR_BOLD    "\033[1m"
 
 char board[9] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 char current_player = 'X';
+int last_move = -1;
+
+typedef struct {
+    int x_wins;
+    int o_wins;
+    int ties;
+} TicTacToeScore;
+
+TicTacToeScore tictactoe_score = {0, 0, 0};
+
+const char* get_cell_color(int pos) {
+    if (board[pos] == 'X') return COLOR_RED;
+    if (board[pos] == 'O') return COLOR_GREEN;
+    return COLOR_YELLOW;  // Available positions
+}
 
 void print_board() {
     printf("\n");
-    printf(" %c | %c | %c \n", board[0], board[1], board[2]);
-    printf("---|---|---\n");
-    printf(" %c | %c | %c \n", board[3], board[4], board[5]);
-    printf("---|---|---\n");
-    printf(" %c | %c | %c \n", board[6], board[7], board[8]);
+    printf("  %s+---+---+---+%s\n", COLOR_CYAN, COLOR_RESET);
+    
+    for (int row = 0; row < 3; row++) {
+        printf("  %s|%s", COLOR_CYAN, COLOR_RESET);
+        for (int col = 0; col < 3; col++) {
+            int pos = row * 3 + col;
+            const char* color = get_cell_color(pos);
+            const char* bold = (pos == last_move) ? COLOR_BOLD : "";
+            printf(" %s%s%c%s %s|%s", bold, color, board[pos], COLOR_RESET, COLOR_CYAN, COLOR_RESET);
+        }
+        printf("\n");
+        
+        if (row < 2) {
+            printf("  %s+---+---+---+%s\n", COLOR_CYAN, COLOR_RESET);
+        }
+    }
+    
+    printf("  %s+---+---+---+%s\n", COLOR_CYAN, COLOR_RESET);
     printf("\n");
 }
 
@@ -52,6 +87,29 @@ int is_valid_move(int position) {
 
 void make_move(int position) {
     board[position] = current_player;
+    last_move = position;
+}
+
+void print_score() {
+    printf("  %s+======== SCORE ===========+%s\n", COLOR_CYAN, COLOR_RESET);
+    printf("  %s|%s  %sX: %2d%s | %sO: %2d%s | Tie: %2d %s|%s\n", 
+           COLOR_CYAN, COLOR_RESET,
+           COLOR_RED, tictactoe_score.x_wins, COLOR_RESET,
+           COLOR_GREEN, tictactoe_score.o_wins, COLOR_RESET,
+           tictactoe_score.ties,
+           COLOR_CYAN, COLOR_RESET);
+    printf("  %s+==========================+%s\n", COLOR_CYAN, COLOR_RESET);
+}
+
+void print_status(int mode) {
+    printf("\n  %s===============================================%s\n", COLOR_CYAN, COLOR_RESET);
+    printf("  Current Player: %s%s%c%s  |  Mode: %s\n",
+           COLOR_BOLD,
+           current_player=='X'?COLOR_RED:COLOR_GREEN,
+           current_player,
+           COLOR_RESET,
+           mode==1?"Human vs Human":"Human vs Computer");
+    printf("  %s===============================================%s\n", COLOR_CYAN, COLOR_RESET);
 }
 
 typedef struct {
@@ -171,6 +229,15 @@ void reset_board() {
         board[i] = '1' + i;
     }
     current_player = 'X';
+    last_move = -1;
+}
+
+void print_title() {
+    printf("\n");
+    printf("  %s+===============================+%s\n", COLOR_CYAN, COLOR_RESET);
+    printf("  %s|%s       %s%sTIC TAC TOE GAME%s         %s|%s\n", 
+           COLOR_CYAN, COLOR_RESET, COLOR_BOLD, COLOR_GREEN, COLOR_RESET, COLOR_CYAN, COLOR_RESET);
+    printf("  %s+===============================+%s\n", COLOR_CYAN, COLOR_RESET);
 }
 
 void play_game(int mode) {
@@ -179,29 +246,38 @@ void play_game(int mode) {
     
     // In mode 2, randomly decide who goes first
     if (mode == 2) {
+        clear_and_home();
+        print_title();
         if (rand() % 2 == 0) {
             current_player = 'O';  // Computer goes first
-            printf("Computer will go first!\n");
+            printf("\n  %sComputer will go first!%s\n", COLOR_GREEN, COLOR_RESET);
         } else {
-            printf("You go first!\n");
+            printf("\n  %sYou go first!%s\n", COLOR_GREEN, COLOR_RESET);
         }
-    }
-    printf("Game Start in :");
-    for(int i=3 ; i>0;i--){
-        printf("->%d",i);
-        sleep(1);
+        printf("\n  Game starts in: ");
+        for(int i=3 ; i>0;i--){
+            printf("%s%d%s ", COLOR_YELLOW, i, COLOR_RESET);
+            sleep(1);
+        }
+        printf("\n");
     }
     
     while (1) {
         // Clear and redraw at same position
         clear_and_home();
+        print_title();
+        print_score();
         print_board();
+        print_status(mode);
         
         if (mode == 2 && current_player == 'O') {
             // Computer's turn
-            printf("Computer's turn (O)...\n");
-            printf("Thinking...\n");
-            sleep(2);
+            printf("\n  %sComputer is thinking%s", COLOR_YELLOW, COLOR_RESET);
+            for (int i = 0; i < 3; i++) {
+                printf(".");
+                sleep(1);
+            }
+            printf("\n");
             move = computer_move();
             if (move != -1) {
                 make_move(move);
@@ -210,11 +286,9 @@ void play_game(int mode) {
             // Human's turn
             char ch;
             int valid_input = 0;
-            clear_and_home();
-            print_board();
             
             while (!valid_input) {
-                printf("Player %c's turn. Enter position (1-9, or 0 to quit): ", current_player);
+                printf("\n  %sEnter position (1-9, or 0 to quit): %s", COLOR_GREEN, COLOR_RESET);
                 ch = getc(stdin);
                 printf("%c\n", ch);
                 
@@ -225,8 +299,11 @@ void play_game(int mode) {
                 
                 if (ch < '0' || ch > '9') {
                     clear_and_home();
+                    print_title();
+                    print_score();
                     print_board();
-                    printf("Invalid input! Please enter a number.\n");
+                    print_status(mode);
+                    printf("\n  %s[X] Invalid input! Please enter a number.%s\n", COLOR_RED, COLOR_RESET);
                     sleep(1);
                     continue;
                 }
@@ -234,7 +311,8 @@ void play_game(int mode) {
                 move = ch - '0';
                 
                 if (move == 0) {
-                    printf("Player %c quits the game. Exiting...\n", current_player);
+                    printf("\n  %sPlayer %c quits the game. Exiting...%s\n", COLOR_YELLOW, current_player, COLOR_RESET);
+                    sleep(1);
                     return;
                 }
                 
@@ -242,8 +320,11 @@ void play_game(int mode) {
                 
                 if (!is_valid_move(move)) {
                     clear_and_home();
+                    print_title();
+                    print_score();
                     print_board();
-                    printf("Invalid move! That position is already taken. Try again.\n");
+                    print_status(mode);
+                    printf("\n  %s[X] Position already taken! Try again.%s\n", COLOR_RED, COLOR_RESET);
                     sleep(1);
                     continue;
                 }
@@ -256,21 +337,40 @@ void play_game(int mode) {
         
         if (check_winner()) {
             clear_and_home();
-            print_board();
-            if (mode == 2 && current_player == 'O') {
-                printf("Computer wins!\n");
+            print_title();
+            
+            // Update score
+            if (current_player == 'X') {
+                tictactoe_score.x_wins++;
             } else {
-                printf("Player %c wins!\n", current_player);
+                tictactoe_score.o_wins++;
             }
-            sleep(2);
+            
+            print_score();
+            print_board();
+            
+            if (mode == 2 && current_player == 'O') {
+                printf("\n  %s*** Computer wins! ***%s\n", COLOR_GREEN, COLOR_RESET);
+            } else {
+                printf("\n  %s*** Player %c wins! ***%s\n", 
+                       current_player=='X'?COLOR_RED:COLOR_GREEN, 
+                       current_player, 
+                       COLOR_RESET);
+            }
+            sleep(3);
             break;
         }
         
         if (is_board_full()) {
             clear_and_home();
+            print_title();
+            
+            tictactoe_score.ties++;
+            
+            print_score();
             print_board();
-            printf("It's a tie!\n");
-            sleep(2);
+            printf("\n  %s*** It's a tie! ***%s\n", COLOR_YELLOW, COLOR_RESET);
+            sleep(3);
             break;
         }
         
@@ -346,34 +446,34 @@ shellcmd xsh_tictactoe(int32 nargs, char *args[]) {
     
     while (1) {
         printf("\n");
-        printf("================================\n");
-        printf("     TIC TAC TOE GAME\n");
-        printf("================================\n");
-        printf("1. Human vs Human\n");
-        printf("2. Human vs Computer\n");
-        printf("3. Quit\n");
-        printf("================================\n");
-        printf("Enter your choice: ");
+        printf("%s================================%s\n", COLOR_CYAN, COLOR_RESET);
+        printf("%s    %sTIC TAC TOE GAME%s\n", COLOR_CYAN, COLOR_GREEN, COLOR_RESET);
+        printf("%s================================%s\n", COLOR_CYAN, COLOR_RESET);
+        printf("%s1.%s Human vs Human\n", COLOR_YELLOW, COLOR_RESET);
+        printf("%s2.%s Human vs Computer\n", COLOR_YELLOW, COLOR_RESET);
+        printf("%s3.%s Quit\n", COLOR_YELLOW, COLOR_RESET);
+        printf("%s================================%s\n", COLOR_CYAN, COLOR_RESET);
+        printf("%sEnter your choice: %s", COLOR_GREEN, COLOR_RESET);
         ch = getc(stdin);
-        choice = ch - '0';
         printf("%c\n", ch);
+        choice = ch - '0';
         // Consume the newline
         if (getc(stdin) != '\n') {
             while (getc(stdin) != '\n');
         }
         
         if (choice == 1) {
-            printf("\n--- Human vs Human Mode ---\n");
+            printf("\n%s--- Human vs Human Mode ---%s\n", COLOR_GREEN, COLOR_RESET);
             play_game(1);
         } else if (choice == 2) {
-            printf("\n--- Human vs Computer Mode ---\n");
-            printf("You are X, Computer is O\n");
+            printf("\n%s--- Human vs Computer Mode ---%s\n", COLOR_GREEN, COLOR_RESET);
+            printf("You are %sX%s, Computer is %sO%s\n", COLOR_RED, COLOR_RESET, COLOR_GREEN, COLOR_RESET);
             play_game(2);
         } else if (choice == 3) {
-            printf("Thanks for playing!\n");
+            printf("%sThanks for playing!%s\n", COLOR_CYAN, COLOR_RESET);
             return 0;
         } else {
-            printf("Invalid choice! Please try again.\n");
+            printf("%sInvalid choice! Please try again.%s\n", COLOR_RED, COLOR_RESET);
         }
         
         printf("\n");
