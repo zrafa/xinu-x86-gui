@@ -1,6 +1,7 @@
 #include <xinu.h>
 #include <microui.h>
 #include <gui_buf.h>
+#include <gui.h>
 
 #define NINA_W 200
 #define NINA_H 185
@@ -27,11 +28,13 @@ process mu_gui_demo(void)
 
 	mu_event_t e;
 	for (;;) {
+
 		mu_get_event(n, &e);
                 if (e.but != -1)
                         printf("mouse x: %d, y: %d \n", e.mouse.x, e.mouse.y);
                 if (e.c[0] != '\0')
                         printf("KEY: %c %d \n", e.c[0], e.c[0]);
+		sleepms(2);
 
 	};
 

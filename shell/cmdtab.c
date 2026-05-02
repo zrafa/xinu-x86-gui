@@ -30,6 +30,7 @@ const struct cmdent cmdtab[] = {
 	{"uptime", FALSE, xsh_uptime},
 	{"gui_test", FALSE, gui_test},
 	{"guidemo", FALSE, mu_gui_demo},
+	{"guirandom", FALSE, mu_gui_random},
 	{"mu_clock", FALSE, mu_clock},
 	{"vt", FALSE, vt},
 	{"galaga", FALSE, mu_galaga},
