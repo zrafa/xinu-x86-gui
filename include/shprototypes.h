@@ -81,6 +81,8 @@ extern	shellcmd  mu_arkanoid	(int32, char *[]);
 
 /* in file xsh_tictactoe.c */
 extern	shellcmd  xsh_tictactoe	(int32, char *[]);
+extern	shellcmd  xinu_doom	(int32, char *[]);
+extern	shellcmd  editor	(int32, char *[]);
 
 /* in file xsh_help.c */
 extern	shellcmd  xsh_help	(int32, char *[]);
