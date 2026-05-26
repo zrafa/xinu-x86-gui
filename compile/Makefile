@@ -46,10 +46,10 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/net  'arp_dump*'  		\
 				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/extras/galaga		\
-			-s $(TOPDIR)/extras/arkanoid		\
 			-s $(TOPDIR)/extras			\
 			-s $(TOPDIR)/extras/vt100		\
 			-s $(TOPDIR)/extras/microui		\
+			-s $(TOPDIR)/extras/doom		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
 INCLUDE		=	-I$(TOPDIR)/include -I$(TOPDIR)/extras/include

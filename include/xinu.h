@@ -45,3 +45,4 @@
 #include <mouse.h>
 #include <keyboard.h>
 #include <vga.h>
+#include <stdint.h>

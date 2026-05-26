@@ -2,6 +2,13 @@
 
 #include <xinu.h>
 
+uint32 ticks = 0;
+
+uint32 get_ticks(void) 
+{
+	return ticks;
+}
+
 /*------------------------------------------------------------------------
  * clkhandler - high level clock interrupt handler
  *------------------------------------------------------------------------
@@ -9,6 +16,8 @@
 void	clkhandler()
 {
 	static	uint32	count1000 = 1000;	/* Count to 1000 ms	*/
+
+	ticks++;
 
 	/* Decrement the ms counter, and see if a second has passed */
 
