@@ -731,6 +731,7 @@ void mu_draw_image(mu_Context *ctx, void * addr, mu_Rect rect2, int w, int h, in
   int clipped = mu_check_clip(ctx, rect);
   if (clipped == MU_CLIP_ALL ) { return; }
   if (clipped == MU_CLIP_PART) { mu_set_clip(ctx, mu_get_clip_rect(ctx)); }
+
   /* do image command */
   cmd = mu_push_command(ctx, MU_COMMAND_IMAGE, sizeof(mu_ImageCommand));
   cmd->image.addr = addr;

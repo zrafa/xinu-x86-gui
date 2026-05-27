@@ -140,9 +140,22 @@ static char* my_getenv(const char* var) { return NULL; }
 #define SCREEN_H 200
 
 
+//#define RGB(r, g, b) ((r << 10) | (g << 5) | b )
+#define RGB(r, g, b) ((r << 16) | (g << 8) | b )
+
 static void render_frame(void)
 {
     const unsigned char* fb = doom_get_framebuffer(4);
+    uint32 * fb_word = (uint32 *) fb;
+
+    unsigned char r,g,b;
+    for (int i=0; i<SCREEN_H*SCREEN_W; i++) {
+	    //fb_word[i] = (0x000000ff & fb_word[i]);
+	    b = ((0x00ff0000 & fb_word[i]) >> 16);
+	    g = ((0x0000ff00 & fb_word[i]) >> 8);
+	    r = (0x000000ff & fb_word[i]);
+	    fb_word[i] = RGB(r, g, b);
+    }
 
     gui_buf_draw_image(buf_doom, SCREEN_W, 0, 0, SCREEN_W, SCREEN_H, (uint32*)fb);
     gui_signal_redraw(n_doom_window);
@@ -251,10 +264,6 @@ process xinu_doom(void)
         	handle_input();
         	doom_update();
         	render_frame();
-		   for (int j=0; j<320; j++) {
-
-                        gui_buf_pixel(buf_doom, SCREEN_W, j, 100, 40000);
-                }
 
 
 		//printf("render\n\r");

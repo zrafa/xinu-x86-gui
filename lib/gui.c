@@ -122,6 +122,7 @@ void gui_draw_image(int x, int y, int w, int h, uint32 *image)
 			// Draw using each pixel color (if not transparent)
 			if(((image[clr_pos] >> 24) & 0xff) != 0xff)
 				gui_pixel(x + j, y + i, image[clr_pos]);
+			
 			clr_pos++;
 		}
 	}

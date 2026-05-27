@@ -389,7 +389,7 @@ int microui() {
                       GUI_EVENT_KEYBOARD | GUI_EVENT_MOUSE)) {
             process_frame(ctx);
         }
-        
+
 	if (strlen(ctx->input_text))
 		printf("KEYs 3 %d \n", strlen(ctx->input_text));
     /* render */
