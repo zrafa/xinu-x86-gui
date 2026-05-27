@@ -12,7 +12,10 @@
 #include "wad_data.h"   // unsigned char wad_data[]; unsigned int wad_data_len;
 
 uint32 *buf_doom;
+uint32 *buf_doom_scale;
 int n_doom_window;
+
+int scale_fb;
 
 // ─── Malloc/Free ─────────────────────────────────────────────────────────────
 
@@ -139,8 +142,22 @@ static char* my_getenv(const char* var) { return NULL; }
 #define SCREEN_W 320
 #define SCREEN_H 200
 
+void gui_scale(uint8_t *dst, const uint8_t *src, int w, int h, int scale)
+{
+    for (int y = 0; y < h; y++)
+        for (int x = 0; x < w; x++) {
+            const uint8_t *px = src + (y * w + x) * 4;
+            for (int sy = 0; sy < scale; sy++)
+                for (int sx = 0; sx < scale; sx++) {
+                    uint8_t *out = dst + ((y * scale + sy) * (w * scale) + (x * scale + sx)) * 4;
+                    out[0] = px[0];
+                    out[1] = px[1];
+                    out[2] = px[2];
+                    out[3] = px[3];
+                }
+        }
+}
 
-//#define RGB(r, g, b) ((r << 10) | (g << 5) | b )
 #define RGB(r, g, b) ((r << 16) | (g << 8) | b )
 
 static void render_frame(void)
@@ -157,7 +174,14 @@ static void render_frame(void)
 	    fb_word[i] = RGB(r, g, b);
     }
 
-    gui_buf_draw_image(buf_doom, SCREEN_W, 0, 0, SCREEN_W, SCREEN_H, (uint32*)fb);
+    if (scale_fb == 2) {
+	gui_scale(buf_doom, fb, SCREEN_W, SCREEN_H, 2);
+	//gui_scale(buf_doom_scale, fb, SCREEN_W, SCREEN_H, 2);
+    	//gui_buf_draw_image(buf_doom, SCREEN_W * scale_fb, 0, 0, SCREEN_W * scale_fb, SCREEN_H * scale_fb, buf_doom_scale);
+    } else { // sin escalar
+    	gui_buf_draw_image(buf_doom, SCREEN_W, 0, 0, SCREEN_W, SCREEN_H, (uint32*)fb);
+    }
+
     gui_signal_redraw(n_doom_window);
 
 }
@@ -171,8 +195,32 @@ static doom_key_t xinu_to_doom_key(char c)
         case 's':  return DOOM_KEY_DOWN_ARROW;
         case 'a':  return DOOM_KEY_LEFT_ARROW;
         case 'd':  return DOOM_KEY_RIGHT_ARROW;
-        case ' ':  return DOOM_KEY_SPACE;
+        case ' ':  return DOOM_KEY_SPACE;       // disparar
+        case '\r': return DOOM_KEY_ENTER;
         case '\n': return DOOM_KEY_ENTER;
+        case 27:   return DOOM_KEY_ESCAPE;
+        case '\t': return DOOM_KEY_TAB;         // mapa
+        case 'e':  return DOOM_KEY_CTRL;        // disparar (alt)
+        case 'q':  return DOOM_KEY_ALT;         // strafearse
+        case ',':  return DOOM_KEY_COMMA;
+        case '.':  return DOOM_KEY_PERIOD;
+        default:
+            if (c >= 'a' && c <= 'z') return (doom_key_t)c;
+            if (c >= '0' && c <= '9') return (doom_key_t)c;
+            return DOOM_KEY_UNKNOWN;
+    }
+}
+/*
+static doom_key_t xinu_to_doom_key(char c)
+{
+    switch (c) {
+        case 'w':  return DOOM_KEY_UP_ARROW;
+        case 's':  return DOOM_KEY_DOWN_ARROW;
+        case 'a':  return DOOM_KEY_LEFT_ARROW;
+        case 'd':  return DOOM_KEY_RIGHT_ARROW;
+        case ' ':  return DOOM_KEY_SPACE;
+        // case '\n': return DOOM_KEY_ENTER;
+        case '\r': return DOOM_KEY_ENTER;
         case 27:   return DOOM_KEY_ESCAPE;
         default:
             if (c >= 'a' && c <= 'z') return (doom_key_t)c;
@@ -180,6 +228,7 @@ static doom_key_t xinu_to_doom_key(char c)
             return DOOM_KEY_UNKNOWN;
     }
 }
+*/
 
 static void handle_input(void)
 {
@@ -196,43 +245,20 @@ static void handle_input(void)
 
 // ─── Main ────────────────────────────────────────────────────────────────────
 
-/*
-void doom_main(void)
-{
-    doom_set_print(my_print);
-    doom_set_malloc(my_malloc, my_free);
-    doom_set_file_io(my_open, my_close, my_read, my_write,
-                     my_seek, my_tell, my_eof);
-    doom_set_gettime(my_gettime);
-    doom_set_exit(my_exit);
-    doom_set_getenv(my_getenv);
-
-    doom_set_resolution(SCREEN_W, SCREEN_H);
-
-    int flags = DOOM_FLAG_HIDE_MOUSE_OPTIONS |
-                DOOM_FLAG_HIDE_SOUND_OPTIONS  |
-                DOOM_FLAG_HIDE_MUSIC_OPTIONS;
-
-    char* doom_argv[] = { "doom" };
-    doom_init(1, doom_argv, flags);
-
-    while (1)
-    {
-        handle_input();
-        doom_update();
-        render_frame();
-        sleepms(28);
-    }
-}
-*/
-
 
 
 #define FRAME_SPACE_W 10
 #define FRAME_SPACE_H 35
 
-process xinu_doom(void)
+process xinu_doom(int nargs, char *args[])
 {
+	printf("NARGS : %d %d \n", nargs, *args[1]);
+
+	scale_fb = 1;
+	if ((nargs == 2) && (*args[1] == '2')) {
+		scale_fb = 2;
+        	buf_doom_scale = gui_buf_getmem(SCREEN_W*SCREEN_H*4 * scale_fb);
+	}
 
     doom_set_print(my_print);
     doom_set_malloc(my_malloc, my_free);
@@ -251,26 +277,21 @@ process xinu_doom(void)
     char* doom_argv[] = { "doom" };
     doom_init(1, doom_argv, flags);
 
-        buf_doom = gui_buf_getmem(SCREEN_W*SCREEN_H*4);
-        //gui_buf_draw_image(buf, SCREEN_W, 0, 0, SCREEN_W, SCREEN_H, nina);
-        n_doom_window = mu_add_win("Demo doom", 700, 40, SCREEN_W, SCREEN_H, buf_doom);
-
-        /* program source code (for example, modify surface
-         * drawn into window
-         */
+        buf_doom = gui_buf_getmem(SCREEN_W*SCREEN_H*4 * scale_fb);
+        n_doom_window = mu_add_win("XINU doom", 700, 40, SCREEN_W * scale_fb, SCREEN_H * scale_fb, buf_doom);
 
         for (;;) {
 
         	handle_input();
         	doom_update();
         	render_frame();
-
-
-		//printf("render\n\r");
         	// sleepms(28);
         };
 
-        gui_buf_freemem(buf_doom, SCREEN_W*SCREEN_H*4);
+        gui_buf_freemem(buf_doom, SCREEN_W*SCREEN_H*4 * scale_fb);
+	if (scale_fb == 2) 
+        	gui_buf_freemem(buf_doom_scale, SCREEN_W*SCREEN_H*4 * scale_fb);
+
         mu_free_win(n_doom_window) ;
 }
 
