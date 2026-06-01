@@ -259,6 +259,9 @@ void mu_get_event(int n, mu_event_t *e) {
 	//e->c = windows[n].e.c; 
 	e->c[0] = '\0';
 	memcpy(e->c, windows[n].e.c, strlen(windows[n].e.c));
+	// RAFA
+	if (e->c[0] == 255) e->c[0] = 0;
+
 	windows[n].e.but = -1; 
 	windows[n].e.c[0] = '\0'; 
 	mu_mutex_unlock(sem_event);

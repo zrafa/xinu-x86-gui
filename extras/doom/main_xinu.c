@@ -191,19 +191,19 @@ static void render_frame(void)
 static doom_key_t xinu_to_doom_key(char c)
 {
     switch (c) {
-        case 'w':  return DOOM_KEY_UP_ARROW;
-        case 's':  return DOOM_KEY_DOWN_ARROW;
-        case 'a':  return DOOM_KEY_LEFT_ARROW;
-        case 'd':  return DOOM_KEY_RIGHT_ARROW;
-        case ' ':  return DOOM_KEY_SPACE;       // disparar
-        case '\r': return DOOM_KEY_ENTER;
-        case '\n': return DOOM_KEY_ENTER;
-        case 27:   return DOOM_KEY_ESCAPE;
-        case '\t': return DOOM_KEY_TAB;         // mapa
-        case 'e':  return DOOM_KEY_CTRL;        // disparar (alt)
-        case 'q':  return DOOM_KEY_ALT;         // strafearse
-        case ',':  return DOOM_KEY_COMMA;
-        case '.':  return DOOM_KEY_PERIOD;
+        case 'w':  return KEY_UPARROW;
+        case 's':  return KEY_DOWNARROW;
+        case 'a':  return KEY_LEFTARROW;
+        case 'd':  return KEY_RIGHTARROW;
+        case ' ':  return KEY_PAUSE;       // disparar
+        case '\r': return KEY_ENTER;
+        case '\n': return KEY_ENTER;
+        case 27:   return KEY_ESCAPE;
+        case '\t': return KEY_TAB;         // mapa
+        case 'j':  return KEY_RCTRL;        // disparar (alt)
+        case 'k':  return KEY_RALT;         // strafearse
+        case 'l':  return KEY_RSHIFT;
+        case '.':  return KEY_LALT;
         default:
             if (c >= 'a' && c <= 'z') return (doom_key_t)c;
             if (c >= '0' && c <= '9') return (doom_key_t)c;
@@ -230,16 +230,16 @@ static doom_key_t xinu_to_doom_key(char c)
 }
 */
 
+static doom_key_t key;
 static void handle_input(void)
 {
     mu_event_t e;
     mu_get_event(n_doom_window, &e);
     if (e.c[0] != '\0') {
-        doom_key_t key = xinu_to_doom_key(e.c[0]);
-        if (key != DOOM_KEY_UNKNOWN) {
-            doom_key_down(key);
-            doom_key_up(key);
-        }
+        key = xinu_to_doom_key(e.c[0]);
+	doom_key_down(key);
+    } else if ((e.c[1] >> 7) == 1) {
+		doom_key_up(xinu_to_doom_key(e.c[1]&0x7f));
     }
 }
 
@@ -285,7 +285,7 @@ process xinu_doom(int nargs, char *args[])
         	handle_input();
         	doom_update();
         	render_frame();
-        	// sleepms(28);
+        	//sleepms(30);
         };
 
         gui_buf_freemem(buf_doom, SCREEN_W*SCREEN_H*4 * scale_fb);

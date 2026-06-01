@@ -156,9 +156,9 @@ int is_special_key(unsigned char c)
 
 void r_handle_input(mu_Context *ctx)
 {
-	//	read(KEYBOARD, &curr_key, 1);
 	/* get ascii code */
-	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
+	// RAFA new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 0;
+	new_key = (curr_key < 59) ? latin_qwerty_map[curr_key - 1] : 255;
 	// printf("TECLA : %d \n", new_key);
 	// 186 CAPS LOCK UP
 	// Las liberaciones de tecla tienen el bit mas significativo en 1
@@ -205,10 +205,17 @@ void r_handle_input(mu_Context *ctx)
 		new_key = latin_qwerty_map[curr_key - 1 + 76];
 	};
 
-	/* make text for mu_input_text */
-	char buf[2];
+	/* make text for mu_input_text  : 
+	 * RAFA: agrego un byte a buf [] para poner el byte crudo del driver KBD
+	 */
+	char buf[3];
 	buf[0] = new_key;
-	buf[1] = '\0';
+	if ((curr_key >> 7) == 1) {
+		buf[1] = 0x80 | latin_qwerty_map[(curr_key&0x7f) - 1];
+	} else {
+		buf[1] = curr_key;
+	}
+	buf[2] = '\0';
 
 	if (prev_key != new_key)
 		repetition = 0;

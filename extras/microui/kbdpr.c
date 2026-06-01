@@ -8,7 +8,7 @@ process	kbdpr(unsigned char *curr_key_pt)
 	while (TRUE) {
 		read(KEYBOARD, curr_key_pt, 1);
 		gui_signal_event_type(GUI_EVENT_KEYBOARD);  // Wake GUI for keyboard input
-    }
+	}
 
 	close(KEYBOARD);
 
