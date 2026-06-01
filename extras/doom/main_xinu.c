@@ -11,6 +11,11 @@
 
 #include "wad_data.h"   // unsigned char wad_data[]; unsigned int wad_data_len;
 
+#define SCREEN_W 320
+#define SCREEN_H 200
+
+int pid_doom;
+
 uint32 *buf_doom;
 uint32 *buf_doom_scale;
 int n_doom_window;
@@ -130,7 +135,13 @@ static void my_print(const char* str)
 
 static void my_exit(int code)
 {
-    while(1) {}
+        gui_buf_freemem(buf_doom, SCREEN_W*SCREEN_H*4 * scale_fb);
+	if (scale_fb == 2) 
+        	gui_buf_freemem(buf_doom_scale, SCREEN_W*SCREEN_H*4 * scale_fb);
+
+        mu_free_win(n_doom_window) ;
+	kill(pid_doom);
+//    while(1) {}
 }
 
 // ─── getenv ──────────────────────────────────────────────────────────────────
@@ -139,8 +150,6 @@ static char* my_getenv(const char* var) { return NULL; }
 
 // ─── Video ───────────────────────────────────────────────────────────────────
 
-#define SCREEN_W 320
-#define SCREEN_H 200
 
 void gui_scale(uint8_t *dst, const uint8_t *src, int w, int h, int scale)
 {
@@ -280,12 +289,17 @@ process xinu_doom(int nargs, char *args[])
         buf_doom = gui_buf_getmem(SCREEN_W*SCREEN_H*4 * scale_fb);
         n_doom_window = mu_add_win("XINU doom", 700, 40, SCREEN_W * scale_fb, SCREEN_H * scale_fb, buf_doom);
 
-        for (;;) {
+	pid_doom = getpid();
+
+	int doom_running = 1;
+        while(doom_running) {
 
         	handle_input();
         	doom_update();
         	render_frame();
         	//sleepms(30);
+		if (mu_is_win_closed(n_doom_window))
+			doom_running = 0;
         };
 
         gui_buf_freemem(buf_doom, SCREEN_W*SCREEN_H*4 * scale_fb);

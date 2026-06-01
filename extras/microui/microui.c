@@ -267,6 +267,14 @@ void mu_get_event(int n, mu_event_t *e) {
 	mu_mutex_unlock(sem_event);
 }
 
+int mu_is_win_closed(int n) {
+	if (windows[n].cnt->open == 0)
+		return 1;
+
+	return 0;
+}
+
+
 #define FRAME_SPACE_W 10
 #define FRAME_SPACE_H 35
 

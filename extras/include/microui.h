@@ -308,6 +308,7 @@ int mu_add_win(char *name, int x, int y, int w, int h, void *buf);
 void mu_free_win(uint8 n); 
 void mu_set_event(int n, mu_event_t *e);
 void mu_get_event(int n, mu_event_t *e);
+int mu_is_win_close(int n);
 
 
 
