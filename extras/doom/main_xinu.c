@@ -204,7 +204,8 @@ static doom_key_t xinu_to_doom_key(char c)
         case 's':  return KEY_DOWNARROW;
         case 'a':  return KEY_LEFTARROW;
         case 'd':  return KEY_RIGHTARROW;
-        case ' ':  return KEY_PAUSE;       // disparar
+        case ' ':  return ' ';
+        case 'p':  return KEY_PAUSE;       // disparar
         case '\r': return KEY_ENTER;
         case '\n': return KEY_ENTER;
         case 27:   return KEY_ESCAPE;
